@@ -1,0 +1,626 @@
+/* ================================
+   Celestia UI Template
+   DaisyUI 5 + Tailwind CSS 4
+   Fantasy LLM Playground Theme
+   ================================ */
+
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* ================================
+   Custom Light Theme - Celestia Light
+   ================================ */
+@plugin "daisyui/theme" {
+  name: "celestia-light";
+  default: true;
+  color-scheme: light;
+
+  /* Fantasy violet/pink color scheme */
+  --color-primary: oklch(50% 0.22 280);
+  --color-primary-content: oklch(98% 0.01 280);
+  --color-secondary: oklch(55% 0.20 330);
+  --color-secondary-content: oklch(98% 0.01 330);
+  --color-accent: oklch(55% 0.18 220);
+  --color-accent-content: oklch(98% 0.01 220);
+  --color-neutral: oklch(25% 0.03 280);
+  --color-neutral-content: oklch(98% 0.01 280);
+
+  /* Light base colors with subtle violet tint */
+  --color-base-100: oklch(99% 0.005 280);
+  --color-base-200: oklch(96% 0.01 280);
+  --color-base-300: oklch(92% 0.02 280);
+  --color-base-content: oklch(20% 0.05 280);
+
+  /* Status colors */
+  --color-info: oklch(65% 0.18 240);
+  --color-info-content: oklch(98% 0.01 240);
+  --color-success: oklch(65% 0.20 145);
+  --color-success-content: oklch(98% 0.01 145);
+  --color-warning: oklch(78% 0.18 70);
+  --color-warning-content: oklch(25% 0.05 70);
+  --color-error: oklch(60% 0.22 25);
+  --color-error-content: oklch(98% 0.01 25);
+
+  /* iOS-style large radius */
+  --radius-selector: 1rem;
+  --radius-field: 0.75rem;
+  --radius-box: 1.5rem;
+
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+/* ================================
+   Custom Dark Theme - Celestia Dark
+   ================================ */
+@plugin "daisyui/theme" {
+  name: "celestia-dark";
+  prefersdark: true;
+  color-scheme: dark;
+
+  /* Fantasy violet/pink - darker variants */
+  --color-primary: oklch(68% 0.20 280);
+  --color-primary-content: oklch(15% 0.02 280);
+  --color-secondary: oklch(72% 0.18 330);
+  --color-secondary-content: oklch(15% 0.02 330);
+  --color-accent: oklch(70% 0.16 220);
+  --color-accent-content: oklch(15% 0.02 220);
+  --color-neutral: oklch(80% 0.02 280);
+  --color-neutral-content: oklch(20% 0.02 280);
+
+  /* Dark base colors with deep purple tint */
+  --color-base-100: oklch(18% 0.025 280);
+  --color-base-200: oklch(22% 0.03 280);
+  --color-base-300: oklch(26% 0.035 280);
+  --color-base-content: oklch(92% 0.02 280);
+
+  /* Status colors - brighter for dark mode */
+  --color-info: oklch(70% 0.16 240);
+  --color-info-content: oklch(15% 0.02 240);
+  --color-success: oklch(70% 0.18 145);
+  --color-success-content: oklch(15% 0.02 145);
+  --color-warning: oklch(80% 0.16 70);
+  --color-warning-content: oklch(20% 0.05 70);
+  --color-error: oklch(68% 0.20 25);
+  --color-error-content: oklch(15% 0.02 25);
+
+  /* iOS-style large radius */
+  --radius-selector: 1rem;
+  --radius-field: 0.75rem;
+  --radius-box: 1.5rem;
+
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+/* ================================
+   Iconify Plugin for Lucide Icons
+   ================================ */
+@plugin "@iconify/tailwind4" {
+  prefixes: lucide;
+}
+
+/* ================================
+   Motion Plugin
+   ================================ */
+@plugin "tailwindcss-motion";
+
+/* ================================
+   Global Styles
+   ================================ */
+html {
+  scroll-behavior: smooth;
+  /* Improve text rendering for CJK */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  /* CJK font stack: Inter for Latin, Noto Sans for CJK (JP first for proper glyph selection) */
+  font-family: 'Inter', 'Noto Sans JP', 'Noto Sans SC', 'Hiragino Sans', 'Microsoft YaHei', system-ui, sans-serif;
+  /* Improve CJK text rendering */
+  font-feature-settings: 'palt' 1;
+  text-rendering: optimizeLegibility;
+  /* Better line height for mixed CJK/Latin text */
+  line-height: 1.75;
+}
+
+/* ================================
+   CJK Typography Utilities
+   ================================ */
+/* Japanese-specific text styles */
+:lang(ja) {
+  line-height: 1.8;
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+
+/* Chinese-specific text styles */
+:lang(zh), :lang(zh-CN), :lang(zh-TW) {
+  line-height: 1.75;
+  word-break: normal;
+}
+
+/* Proper punctuation spacing for CJK */
+.text-cjk-optimize {
+  font-feature-settings: 'palt' 1, 'kern' 1;
+  text-spacing-trim: space-all;
+  hanging-punctuation: allow-end;
+}
+
+/* For vertical writing (optional, useful for Japanese) */
+.writing-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* Better paragraph spacing for CJK content */
+.prose-cjk p {
+  margin-bottom: 1.5em;
+  text-indent: 2em;
+}
+
+.prose-cjk p:first-child {
+  text-indent: 0;
+}
+
+/* Selection styling - violet tint */
+::selection {
+  background: oklch(68% 0.22 280 / 0.3);
+  color: oklch(25% 0.04 280);
+}
+
+/* Focus visible styling */
+:focus-visible {
+  outline: 2px solid oklch(60% 0.24 280 / 0.5);
+  outline-offset: 2px;
+}
+
+/* ================================
+   Animated Gradient Background
+   ================================ */
+.bg-celestia-gradient {
+  background: linear-gradient(
+    135deg,
+    oklch(88% 0.15 350) 0%,
+    oklch(90% 0.12 320) 25%,
+    oklch(88% 0.15 280) 50%,
+    oklch(90% 0.12 230) 75%,
+    oklch(88% 0.15 350) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradient-flow 15s ease infinite;
+}
+
+/* Dark mode background */
+[data-theme="celestia-dark"] .bg-celestia-gradient,
+[data-theme="celestia-dark"].bg-celestia-gradient {
+  background: linear-gradient(
+    135deg,
+    oklch(18% 0.10 350) 0%,
+    oklch(15% 0.12 300) 25%,
+    oklch(18% 0.10 280) 50%,
+    oklch(15% 0.12 250) 75%,
+    oklch(18% 0.10 350) 100%
+  );
+}
+
+@keyframes gradient-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ================================
+   Glass Panel Effects (iOS/VisionOS style)
+   ================================ */
+.glass-panel {
+  background: oklch(100% 0 0 / 0.65);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid oklch(100% 0 0 / 0.7);
+  box-shadow: 
+    0 8px 32px oklch(60% 0.15 280 / 0.1),
+    inset 0 1px 0 oklch(100% 0 0 / 0.5);
+}
+
+.glass-panel-dark {
+  background: oklch(20% 0.02 280 / 0.6);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid oklch(100% 0 0 / 0.1);
+  box-shadow: 
+    0 8px 32px oklch(0% 0 0 / 0.3),
+    inset 0 1px 0 oklch(100% 0 0 / 0.05);
+}
+
+/* Lighter glass for inputs */
+.glass-input {
+  background: oklch(100% 0 0 / 0.5);
+  border: 1px solid oklch(50% 0.1 280 / 0.3);
+  transition: all 0.2s ease;
+  color: oklch(20% 0.05 280);
+}
+
+.glass-input:focus {
+  background: oklch(100% 0 0 / 0.75);
+  border-color: oklch(50% 0.22 280 / 0.6);
+  box-shadow: 0 0 0 3px oklch(50% 0.22 280 / 0.15);
+}
+
+.glass-input::placeholder {
+  color: oklch(45% 0.05 280);
+}
+
+/* ================================
+   iOS-style Rounded Containers
+   ================================ */
+.rounded-ios {
+  border-radius: 2rem;
+}
+
+.rounded-ios-lg {
+  border-radius: 2.5rem;
+}
+
+.rounded-ios-xl {
+  border-radius: 3rem;
+}
+
+/* ================================
+   Custom Button Gradient
+   ================================ */
+.btn-gradient {
+  background: linear-gradient(135deg, oklch(50% 0.24 280), oklch(55% 0.22 330));
+  border: none;
+  color: white;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(135deg, oklch(45% 0.26 280), oklch(50% 0.24 330));
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px oklch(50% 0.24 280 / 0.4);
+}
+
+.btn-gradient:active {
+  transform: translateY(0);
+}
+
+/* ================================
+   Gradient Text
+   ================================ */
+.text-gradient {
+  background: linear-gradient(135deg, oklch(45% 0.25 280), oklch(50% 0.22 330), oklch(50% 0.20 30));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ================================
+   Chat Bubble Styling
+   ================================ */
+.chat-bubble-story {
+  /* Serif stack for story/narrative content */
+  font-family: 'Merriweather', 'Noto Serif JP', 'Noto Serif SC', 'Hiragino Mincho ProN', 'Yu Mincho', Georgia, serif;
+  line-height: 1.8;
+  /* Better spacing for CJK mixed text */
+  letter-spacing: 0.02em;
+}
+
+.chat-bubble-ai {
+  background: oklch(100% 0 0 / 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid oklch(100% 0 0 / 0.5);
+  color: oklch(25% 0.03 280);
+}
+
+.chat-bubble-user {
+  background: linear-gradient(135deg, oklch(58% 0.22 280), oklch(55% 0.20 300));
+  color: white;
+  border: none;
+  box-shadow: 0 4px 16px oklch(58% 0.22 280 / 0.3);
+}
+
+/* ================================
+   Card Hover Effect
+   ================================ */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px oklch(60% 0.15 280 / 0.15);
+}
+
+/* ================================
+   Sidebar Width Utilities
+   ================================ */
+.w-sidebar {
+  width: 280px;
+}
+
+.w-sidebar-lg {
+  width: 320px;
+}
+
+/* ================================
+   Chat Container Height
+   ================================ */
+.h-chat {
+  height: calc(100vh - 8rem);
+}
+
+/* ================================
+   Avatar Ring Gradient
+   ================================ */
+.avatar-ring-gradient {
+  background: linear-gradient(135deg, oklch(58% 0.22 280), oklch(68% 0.20 330));
+  padding: 3px;
+  border-radius: 50%;
+}
+
+.avatar-ring-gradient > * {
+  border-radius: 50%;
+}
+
+/* ================================
+   Hide Scrollbar (keep functionality)
+   ================================ */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ================================
+   Floating Orbs Animation (decorative)
+   ================================ */
+.floating-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.4;
+  animation: float-orb 20s ease-in-out infinite;
+}
+
+.floating-orb-1 {
+  background: oklch(75% 0.15 330);
+  width: 300px;
+  height: 300px;
+  top: -100px;
+  left: -100px;
+  animation-delay: 0s;
+}
+
+.floating-orb-2 {
+  background: oklch(70% 0.15 280);
+  width: 400px;
+  height: 400px;
+  bottom: -150px;
+  right: -150px;
+  animation-delay: -7s;
+}
+
+.floating-orb-3 {
+  background: oklch(75% 0.12 220);
+  width: 250px;
+  height: 250px;
+  top: 50%;
+  left: 50%;
+  animation-delay: -14s;
+}
+
+@keyframes float-orb {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(30px, -30px) scale(1.05);
+  }
+  50% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+  75% {
+    transform: translate(20px, 10px) scale(1.02);
+  }
+}
+
+/* ================================
+   Toast Animations
+   ================================ */
+.toast-enter {
+  animation: toast-slide-in 0.3s ease-out;
+}
+
+.toast-exit {
+  animation: toast-slide-out 0.3s ease-in;
+}
+
+@keyframes toast-slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes toast-slide-out {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* ================================
+   Modal Backdrop Blur
+   ================================ */
+.modal-backdrop-blur {
+  backdrop-filter: blur(8px);
+  background: oklch(0% 0 0 / 0.5);
+}
+
+/* ================================
+   Page Transitions
+   ================================ */
+.page-enter {
+  animation: page-fade-in 0.4s ease-out;
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================================
+   Badge Glow Effect
+   ================================ */
+.badge-glow {
+  box-shadow: 0 0 12px currentColor;
+}
+
+/* ================================
+   Status Indicator Pulse
+   ================================ */
+.status-online::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: inherit;
+  animation: status-pulse 2s ease-in-out infinite;
+}
+
+@keyframes status-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* ================================
+   Form Field Enhancement
+   ================================ */
+.input,
+.select,
+.textarea {
+  transition: all 0.2s ease;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  border-color: oklch(58% 0.22 280 / 0.5);
+  box-shadow: 0 0 0 3px oklch(58% 0.22 280 / 0.1);
+}
+
+/* ================================
+   Dark Mode Adjustments via data-theme
+   ================================ */
+[data-theme="celestia-dark"] .glass-panel {
+  background: oklch(20% 0.02 280 / 0.6);
+  border-color: oklch(100% 0 0 / 0.1);
+  box-shadow: 
+    0 8px 32px oklch(0% 0 0 / 0.3),
+    inset 0 1px 0 oklch(100% 0 0 / 0.05);
+}
+
+[data-theme="celestia-dark"] .glass-input {
+  background: oklch(25% 0.02 280 / 0.5);
+  border-color: oklch(100% 0 0 / 0.15);
+}
+
+[data-theme="celestia-dark"] .glass-input:focus {
+  background: oklch(28% 0.02 280 / 0.7);
+}
+
+[data-theme="celestia-dark"] .chat-bubble-ai {
+  background: oklch(25% 0.02 280 / 0.7);
+  border-color: oklch(100% 0 0 / 0.1);
+  color: oklch(92% 0.02 280);
+}
+
+[data-theme="celestia-dark"] .floating-orb {
+  opacity: 0.25;
+}
+
+/* ================================
+   Chat Sidebar Styles
+   ================================ */
+.chat-sidebar {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.chat-sidebar.collapsed {
+  transform: translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.chat-sidebar-right.collapsed {
+  transform: translateX(100%);
+}
+
+@media (max-width: 1023px) {
+  .chat-sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: 40;
+  }
+  .chat-sidebar-left {
+    left: 0;
+  }
+  .chat-sidebar-right {
+    right: 0;
+  }
+}
+
+/* ================================
+   Chat Message Animation
+   ================================ */
+.chat-message {
+  animation: message-appear 0.3s ease-out;
+}
+
+@keyframes message-appear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

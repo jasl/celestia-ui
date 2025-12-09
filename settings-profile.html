@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="celestia-light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人资料设置 - Celestia</title>
+  <meta name="description" content="管理你的 Celestia 个人信息">
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./assets/app.css">
+  
+  <script>
+    try {
+      const theme = localStorage.getItem('__CELESTIA_THEME__');
+      const isDark = theme === 'celestia-dark' || 
+        (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.setAttribute('data-theme', isDark ? 'celestia-dark' : 'celestia-light');
+    } catch (e) {}
+  </script>
+</head>
+<body class="min-h-screen bg-celestia-gradient antialiased">
+  
+  <!-- Floating Orbs -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+    <div class="floating-orb floating-orb-1"></div>
+    <div class="floating-orb floating-orb-2"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-50 px-4 py-4">
+    <div class="glass-panel rounded-full px-4 md:px-6 py-3 flex justify-between items-center max-w-6xl mx-auto">
+      <a href="/" class="flex items-center gap-2">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white shadow-lg">
+          <span class="iconify lucide--sparkles size-5"></span>
+        </div>
+        <span class="font-bold text-xl hidden sm:inline">Celestia</span>
+      </a>
+      
+      <div class="hidden md:flex items-center gap-1">
+        <a href="/" class="btn btn-ghost btn-sm rounded-full">首页</a>
+        <a href="./chat.html" class="btn btn-ghost btn-sm rounded-full">聊天</a>
+        <a href="./blog-list.html" class="btn btn-ghost btn-sm rounded-full">博客</a>
+      </div>
+      
+      <div class="flex items-center gap-2">
+        <button class="btn btn-ghost btn-sm btn-circle" data-theme-toggle>
+          <span class="iconify lucide--sun size-5 hidden" data-theme-icon="light"></span>
+          <span class="iconify lucide--moon size-5" data-theme-icon="dark"></span>
+        </button>
+        <a href="./chat.html" class="btn btn-primary btn-sm rounded-full">
+          开始聊天
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <div class="flex flex-col lg:flex-row gap-6">
+      
+      <!-- Sidebar Navigation -->
+      <aside class="lg:w-64 flex-shrink-0">
+        <div class="glass-panel rounded-ios p-4">
+          <nav class="space-y-1">
+            <a href="./settings-profile.html" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 text-primary font-medium">
+              <span class="iconify lucide--user size-5"></span>
+              个人资料
+            </a>
+            <a href="./settings-password.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-base-100/50 text-base-content/70 transition-colors">
+              <span class="iconify lucide--lock size-5"></span>
+              修改密码
+            </a>
+            <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-base-100/50 text-base-content/70 transition-colors">
+              <span class="iconify lucide--bell size-5"></span>
+              通知设置
+            </a>
+            <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-base-100/50 text-base-content/70 transition-colors">
+              <span class="iconify lucide--key size-5"></span>
+              API 密钥
+            </a>
+            <hr class="my-3 border-base-300/50">
+            <a href="./auth-login.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-error/10 text-error transition-colors">
+              <span class="iconify lucide--log-out size-5"></span>
+              退出登录
+            </a>
+          </nav>
+        </div>
+      </aside>
+      
+      <!-- Main Form Area -->
+      <div class="flex-1">
+        <div class="glass-panel rounded-ios-lg p-6 md:p-8">
+          <!-- Header -->
+          <div class="mb-8">
+            <h1 class="text-2xl font-bold text-base-content">个人资料</h1>
+            <p class="text-base-content/60 mt-1">管理你的个人信息和账号设置</p>
+          </div>
+          
+          <form class="space-y-8" onsubmit="event.preventDefault(); window.CelestiaToast?.success('资料已保存');">
+            
+            <!-- Avatar Section -->
+            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+              <div class="avatar-ring-gradient">
+                <div class="avatar">
+                  <div class="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-secondary text-white flex items-center justify-center">
+                    <span class="text-3xl font-bold">U</span>
+                  </div>
+                </div>
+              </div>
+              <div class="space-y-2">
+                <h3 class="font-medium text-base-content">头像</h3>
+                <p class="text-sm text-base-content/60">支持 JPG、PNG 格式，最大 2MB</p>
+                <div class="flex gap-2">
+                  <button type="button" class="btn btn-sm btn-primary rounded-lg">
+                    <span class="iconify lucide--upload size-4"></span>
+                    上传图片
+                  </button>
+                  <button type="button" class="btn btn-sm btn-ghost rounded-lg">删除</button>
+                </div>
+              </div>
+            </div>
+            
+            <hr class="border-base-300/50">
+            
+            <!-- Basic Info -->
+            <div class="grid md:grid-cols-2 gap-6">
+              <fieldset class="fieldset">
+                <legend class="fieldset-legend text-sm font-medium text-base-content/80">用户名</legend>
+                <label class="input w-full glass-input rounded-xl">
+                  <span class="iconify lucide--at-sign size-5 text-base-content/50"></span>
+                  <input type="text" value="storyteller" required>
+                </label>
+                <p class="label text-xs text-base-content/50">用于登录和显示</p>
+              </fieldset>
+              
+              <fieldset class="fieldset">
+                <legend class="fieldset-legend text-sm font-medium text-base-content/80">显示名称</legend>
+                <label class="input w-full glass-input rounded-xl">
+                  <span class="iconify lucide--user size-5 text-base-content/50"></span>
+                  <input type="text" value="幻想织梦者" required>
+                </label>
+                <p class="label text-xs text-base-content/50">在对话中显示的名称</p>
+              </fieldset>
+              
+              <fieldset class="fieldset md:col-span-2">
+                <legend class="fieldset-legend text-sm font-medium text-base-content/80">邮箱地址</legend>
+                <label class="input w-full glass-input rounded-xl">
+                  <span class="iconify lucide--mail size-5 text-base-content/50"></span>
+                  <input type="email" value="user@example.com" required>
+                  <span class="badge badge-success badge-sm">已验证</span>
+                </label>
+              </fieldset>
+              
+              <fieldset class="fieldset md:col-span-2">
+                <legend class="fieldset-legend text-sm font-medium text-base-content/80">个人简介</legend>
+                <textarea class="textarea w-full glass-input rounded-xl min-h-[100px]" placeholder="介绍一下你自己...">热爱创意写作和奇幻故事的爱好者，喜欢探索 AI 带来的无限可能。</textarea>
+                <p class="label text-xs text-base-content/50">最多 200 字</p>
+              </fieldset>
+            </div>
+            
+            <hr class="border-base-300/50">
+            
+            <!-- Preferences -->
+            <div>
+              <h3 class="font-semibold text-base-content mb-4">偏好设置</h3>
+              <div class="space-y-4">
+                <label class="flex items-center justify-between cursor-pointer p-4 glass-panel rounded-xl">
+                  <div>
+                    <span class="font-medium text-base-content">跟随系统主题</span>
+                    <p class="text-sm text-base-content/60">自动切换明暗模式</p>
+                  </div>
+                  <input type="checkbox" name="theme-radio" value="system" class="toggle toggle-primary">
+                </label>
+                
+                <label class="flex items-center justify-between cursor-pointer p-4 glass-panel rounded-xl">
+                  <div>
+                    <span class="font-medium text-base-content">邮件通知</span>
+                    <p class="text-sm text-base-content/60">接收产品更新和活动通知</p>
+                  </div>
+                  <input type="checkbox" class="toggle toggle-primary" checked>
+                </label>
+                
+                <label class="flex items-center justify-between cursor-pointer p-4 glass-panel rounded-xl">
+                  <div>
+                    <span class="font-medium text-base-content">公开个人资料</span>
+                    <p class="text-sm text-base-content/60">允许其他用户查看你的资料</p>
+                  </div>
+                  <input type="checkbox" class="toggle toggle-primary">
+                </label>
+              </div>
+            </div>
+            
+            <!-- Actions -->
+            <div class="flex flex-col sm:flex-row gap-3 pt-4">
+              <button type="submit" class="btn btn-gradient rounded-xl px-8">
+                <span class="iconify lucide--save size-5"></span>
+                保存更改
+              </button>
+              <button type="reset" class="btn btn-ghost rounded-xl">取消</button>
+            </div>
+          </form>
+        </div>
+        
+        <!-- Danger Zone -->
+        <div class="glass-panel rounded-ios-lg p-6 md:p-8 mt-6 border-error/30 border">
+          <h3 class="text-lg font-semibold text-error mb-2">危险区域</h3>
+          <p class="text-base-content/60 text-sm mb-4">删除账号后，所有数据将被永久清除且无法恢复。</p>
+          <button type="button" class="btn btn-error btn-outline rounded-xl" onclick="CelestiaModal?.confirm({ title: '删除账号', message: '确定要删除你的账号吗？此操作不可撤销。', confirmText: '删除', onConfirm: () => CelestiaToast?.error('账号已删除') })">
+            <span class="iconify lucide--trash-2 size-5"></span>
+            删除账号
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="./js/app.js"></script>
+  <script src="./js/components/toast.js"></script>
+  <script src="./js/components/modal.js"></script>
+</body>
+</html>
+

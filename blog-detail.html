@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="celestia-light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>打造沉浸式角色扮演体验 - Celestia 博客</title>
+  <meta name="description" content="深入探讨如何创建引人入胜的 AI 角色，设计丰富的世界观">
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./assets/app.css">
+  
+  <script>
+    try {
+      const theme = localStorage.getItem('__CELESTIA_THEME__');
+      const isDark = theme === 'celestia-dark' || 
+        (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.setAttribute('data-theme', isDark ? 'celestia-dark' : 'celestia-light');
+    } catch (e) {}
+  </script>
+</head>
+<body class="min-h-screen bg-celestia-gradient antialiased">
+  
+  <!-- Floating Orbs -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+    <div class="floating-orb floating-orb-1"></div>
+    <div class="floating-orb floating-orb-2"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 right-0 z-50 px-4 py-4">
+    <div class="glass-panel rounded-full px-4 md:px-6 py-3 flex justify-between items-center max-w-6xl mx-auto">
+      <a href="/" class="flex items-center gap-2 group">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all">
+          <span class="iconify lucide--sparkles size-5"></span>
+        </div>
+        <span class="font-bold text-xl tracking-tight text-base-content hidden sm:inline">Celestia</span>
+      </a>
+      
+      <div class="hidden md:flex items-center gap-1">
+        <a href="/" class="btn btn-ghost btn-sm rounded-full">首页</a>
+        <a href="./blog-list.html" class="btn btn-ghost btn-sm rounded-full">博客</a>
+        <a href="./chat.html" class="btn btn-ghost btn-sm rounded-full">开始对话</a>
+      </div>
+      
+      <div class="flex items-center gap-2">
+        <button class="btn btn-ghost btn-sm btn-circle" data-theme-toggle>
+          <span class="iconify lucide--sun size-5 hidden" data-theme-icon="light"></span>
+          <span class="iconify lucide--moon size-5" data-theme-icon="dark"></span>
+        </button>
+        
+        <a href="./chat.html" class="btn btn-primary btn-sm rounded-full shadow-lg px-5">
+          启动
+          <span class="iconify lucide--arrow-right size-4"></span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="pt-28 pb-16 px-4">
+    <article class="max-w-4xl mx-auto">
+      
+      <!-- Header -->
+      <header class="glass-panel rounded-ios-xl p-6 md:p-10 mb-8 relative overflow-hidden">
+        <div class="absolute -top-20 -right-20 w-64 h-64 bg-primary/20 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-secondary/20 rounded-full blur-3xl"></div>
+        
+        <div class="relative z-10">
+          <!-- Breadcrumb -->
+          <nav class="flex items-center gap-2 text-sm text-base-content/50 mb-6">
+            <a href="/" class="hover:text-primary">首页</a>
+            <span class="iconify lucide--chevron-right size-4"></span>
+            <a href="./blog-list.html" class="hover:text-primary">博客</a>
+            <span class="iconify lucide--chevron-right size-4"></span>
+            <span class="text-base-content/70">教程</span>
+          </nav>
+          
+          <!-- Tags -->
+          <div class="flex items-center gap-2 mb-4">
+            <span class="badge badge-primary">教程</span>
+            <span class="badge badge-outline">角色扮演</span>
+            <span class="badge badge-outline">创意写作</span>
+          </div>
+          
+          <!-- Title -->
+          <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-base-content mb-6 leading-tight">
+            打造沉浸式角色扮演体验：<br class="hidden sm:inline">从角色设定到场景构建
+          </h1>
+          
+          <!-- Meta -->
+          <div class="flex flex-wrap items-center gap-6 text-sm">
+            <div class="flex items-center gap-3">
+              <div class="avatar">
+                <div class="w-10 rounded-full bg-secondary text-secondary-content flex items-center justify-center">
+                  <span class="text-sm">C</span>
+                </div>
+              </div>
+              <div>
+                <p class="font-medium text-base-content">Celestia 团队</p>
+                <p class="text-base-content/50">官方账号</p>
+              </div>
+            </div>
+            
+            <div class="flex items-center gap-4 text-base-content/50">
+              <span class="flex items-center gap-1">
+                <span class="iconify lucide--calendar size-4"></span>
+                2025年1月15日
+              </span>
+              <span class="flex items-center gap-1">
+                <span class="iconify lucide--clock size-4"></span>
+                8 分钟阅读
+              </span>
+              <span class="flex items-center gap-1">
+                <span class="iconify lucide--eye size-4"></span>
+                1.2k 阅读
+              </span>
+            </div>
+          </div>
+        </div>
+      </header>
+      
+      <!-- Featured Image -->
+      <div class="glass-panel rounded-ios-lg overflow-hidden mb-8 h-64 md:h-96 bg-gradient-to-br from-primary/30 via-secondary/30 to-accent/30 flex items-center justify-center">
+        <div class="text-center">
+          <span class="iconify lucide--image size-20 text-primary/30"></span>
+          <p class="text-base-content/40 mt-2">文章配图</p>
+        </div>
+      </div>
+      
+      <!-- Article Content -->
+      <div class="glass-panel rounded-ios-lg p-6 md:p-10">
+        <div class="prose prose-lg max-w-none">
+          <!-- Use Merriweather/Serif for article body -->
+          <div style="font-family: 'Merriweather', 'Noto Serif SC', Georgia, serif; line-height: 1.8;">
+            
+            <p class="lead text-xl text-base-content/80">
+              在 AI 角色扮演的世界里，一个精心设计的角色和场景能够带来截然不同的体验。本文将带你深入了解如何从零开始构建一个引人入胜的 AI 对话世界。
+            </p>
+            
+            <h2 class="text-2xl font-bold text-base-content mt-10 mb-4 flex items-center gap-2" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">
+              <span class="text-primary">01</span> 角色设定的核心要素
+            </h2>
+            
+            <p class="text-base-content/80">
+              一个好的 AI 角色不仅仅是一段描述文字，而是一个有血有肉的虚拟存在。在创建角色时，我们需要考虑以下几个核心要素：
+            </p>
+            
+            <div class="glass-panel rounded-xl p-6 my-6 bg-primary/5 border-l-4 border-primary">
+              <h4 class="font-semibold text-base-content mb-3" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">
+                🎭 角色三要素
+              </h4>
+              <ul class="space-y-2 text-base-content/80">
+                <li><strong>性格特质</strong>：定义角色的核心性格，如乐观、沉稳、神秘等</li>
+                <li><strong>说话风格</strong>：独特的语言习惯、口头禅、用词偏好</li>
+                <li><strong>背景故事</strong>：角色的过去经历如何影响其现在的行为</li>
+              </ul>
+            </div>
+            
+            <p class="text-base-content/80">
+              以我们的示例角色「艾丽西亚」为例，她是一位魔法学院的神秘导师。在设定她时，我们不仅描述了她的外貌和身份，更重要的是塑造了她温和而神秘的性格，以及带有古典韵味的说话方式。
+            </p>
+            
+            <h2 class="text-2xl font-bold text-base-content mt-10 mb-4 flex items-center gap-2" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">
+              <span class="text-primary">02</span> 场景与世界观构建
+            </h2>
+            
+            <p class="text-base-content/80">
+              场景是故事发生的舞台。一个好的场景设定能够为对话提供丰富的上下文和氛围。在 Celestia 中，你可以创建详细的世界观设定，包括：
+            </p>
+            
+            <ul class="list-disc pl-6 space-y-2 text-base-content/80 my-4">
+              <li>地理环境：森林、城堡、学院、异世界等</li>
+              <li>时代背景：中世纪、蒸汽朋克、现代都市、未来科幻</li>
+              <li>社会结构：魔法师公会、骑士团、商人协会等组织</li>
+              <li>历史事件：重要的战争、发现、灾难等背景故事</li>
+            </ul>
+            
+            <blockquote class="border-l-4 border-secondary pl-6 py-2 my-6 italic text-base-content/70">
+              "好的世界观就像一座冰山，玩家看到的只是水面上的一角，但水面下的庞大基础让整个世界变得真实可信。"
+            </blockquote>
+            
+            <h2 class="text-2xl font-bold text-base-content mt-10 mb-4 flex items-center gap-2" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">
+              <span class="text-primary">03</span> 提示词技巧
+            </h2>
+            
+            <p class="text-base-content/80">
+              除了角色和场景设定，恰当的提示词技巧也能显著提升对话质量。以下是一些实用的技巧：
+            </p>
+            
+            <div class="grid md:grid-cols-2 gap-4 my-6">
+              <div class="glass-panel rounded-xl p-4">
+                <h5 class="font-semibold text-success mb-2" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">✅ 推荐做法</h5>
+                <ul class="text-sm text-base-content/70 space-y-1">
+                  <li>• 使用具体的细节描写</li>
+                  <li>• 加入感官元素（视觉、听觉、触觉）</li>
+                  <li>• 给角色反应的空间</li>
+                </ul>
+              </div>
+              <div class="glass-panel rounded-xl p-4">
+                <h5 class="font-semibold text-error mb-2" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">❌ 避免做法</h5>
+                <ul class="text-sm text-base-content/70 space-y-1">
+                  <li>• 过于简短的单句回复</li>
+                  <li>• 替角色做出全部决定</li>
+                  <li>• 忽略之前对话的上下文</li>
+                </ul>
+              </div>
+            </div>
+            
+            <h2 class="text-2xl font-bold text-base-content mt-10 mb-4 flex items-center gap-2" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">
+              <span class="text-primary">04</span> 实践案例
+            </h2>
+            
+            <p class="text-base-content/80">
+              让我们看一个实际的对话示例，展示上述技巧的综合运用：
+            </p>
+            
+            <div class="glass-panel rounded-xl p-6 my-6 bg-base-200/30 font-serif">
+              <p class="text-base-content/80 italic mb-4">
+                你推开星辉魔法学院图书馆的古老木门，空气中弥漫着羊皮纸和魔法药水的独特气息。阳光透过彩色玻璃窗洒落，在地板上投下斑驳的光影。
+              </p>
+              <p class="text-base-content/80 italic">
+                一位身着深紫色长袍的女性从书架间走出，她银白色的长发如同月光般流泻，双眸中闪烁着古老而深邃的智慧光芒...
+              </p>
+            </div>
+            
+            <p class="text-base-content/80">
+              注意这段描写如何运用了感官细节（气味、光影）、环境氛围（古老的图书馆）以及角色特征（外貌描写），为接下来的对话创造了完美的开场。
+            </p>
+            
+            <hr class="my-10 border-base-300/50">
+            
+            <h2 class="text-2xl font-bold text-base-content mt-10 mb-4 flex items-center gap-2" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">
+              总结
+            </h2>
+            
+            <p class="text-base-content/80">
+              打造沉浸式的 AI 角色扮演体验需要在角色设定、场景构建和提示技巧三个方面下功夫。记住，最好的故事往往来自于精心准备和自由探索的结合。
+            </p>
+            
+            <p class="text-base-content/80 mt-4">
+              现在就开始在 Celestia 中创建你的第一个角色吧！如果你有任何问题，欢迎在评论区留言讨论。
+            </p>
+          </div>
+        </div>
+        
+        <!-- Tags -->
+        <div class="mt-10 pt-6 border-t border-base-300/50">
+          <div class="flex flex-wrap gap-2">
+            <span class="text-sm text-base-content/50">标签：</span>
+            <a href="#" class="badge badge-outline hover:badge-primary">角色扮演</a>
+            <a href="#" class="badge badge-outline hover:badge-primary">创意写作</a>
+            <a href="#" class="badge badge-outline hover:badge-primary">AI 对话</a>
+            <a href="#" class="badge badge-outline hover:badge-primary">教程</a>
+          </div>
+        </div>
+        
+        <!-- Share -->
+        <div class="mt-6 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="text-sm text-base-content/50">分享：</span>
+            <button class="btn btn-ghost btn-sm btn-circle"><span class="iconify lucide--twitter size-4"></span></button>
+            <button class="btn btn-ghost btn-sm btn-circle"><span class="iconify lucide--facebook size-4"></span></button>
+            <button class="btn btn-ghost btn-sm btn-circle"><span class="iconify lucide--link size-4"></span></button>
+          </div>
+          
+          <button class="btn btn-ghost btn-sm gap-2">
+            <span class="iconify lucide--bookmark size-4"></span>
+            收藏
+          </button>
+        </div>
+      </div>
+      
+      <!-- Author Card -->
+      <div class="glass-panel rounded-ios-lg p-6 mt-8">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <div class="avatar-ring-gradient">
+            <div class="avatar">
+              <div class="w-16 rounded-full bg-secondary text-secondary-content flex items-center justify-center">
+                <span class="text-xl">C</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex-1">
+            <h4 class="font-semibold text-base-content">Celestia 团队</h4>
+            <p class="text-sm text-base-content/60 mt-1">
+              我们是 Celestia 的开发团队，致力于为创意写作者提供最好的 AI 对话体验。欢迎关注我们获取最新产品资讯和创作技巧。
+            </p>
+          </div>
+          <button class="btn btn-primary btn-sm rounded-full">关注</button>
+        </div>
+      </div>
+      
+      <!-- Related Posts -->
+      <section class="mt-12">
+        <h3 class="text-xl font-bold text-base-content mb-6">相关文章</h3>
+        <div class="grid md:grid-cols-2 gap-6">
+          <a href="./blog-detail.html" class="glass-panel rounded-ios p-4 card-hover group">
+            <div class="flex gap-4">
+              <div class="w-24 h-24 rounded-lg bg-gradient-to-br from-success/30 to-primary/30 flex-shrink-0 flex items-center justify-center">
+                <span class="iconify lucide--lightbulb size-8 text-success/40"></span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <span class="badge badge-accent badge-sm mb-2">技术分享</span>
+                <h4 class="font-semibold text-base-content group-hover:text-primary transition-colors line-clamp-2">
+                  Temperature 参数深度解析
+                </h4>
+                <p class="text-xs text-base-content/50 mt-2">6 分钟阅读</p>
+              </div>
+            </div>
+          </a>
+          
+          <a href="./blog-detail.html" class="glass-panel rounded-ios p-4 card-hover group">
+            <div class="flex gap-4">
+              <div class="w-24 h-24 rounded-lg bg-gradient-to-br from-info/30 to-secondary/30 flex-shrink-0 flex items-center justify-center">
+                <span class="iconify lucide--wand-2 size-8 text-info/40"></span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <span class="badge badge-info badge-sm mb-2">教程</span>
+                <h4 class="font-semibold text-base-content group-hover:text-primary transition-colors line-clamp-2">
+                  世界观设定指南
+                </h4>
+                <p class="text-xs text-base-content/50 mt-2">12 分钟阅读</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+      
+      <!-- Comments Section -->
+      <section class="mt-12">
+        <div class="glass-panel rounded-ios-lg p-6 md:p-8">
+          <h3 class="text-xl font-bold text-base-content mb-6 flex items-center gap-2">
+            <span class="iconify lucide--message-square size-5"></span>
+            评论 (12)
+          </h3>
+          
+          <!-- Comment Form -->
+          <div class="mb-8">
+            <textarea class="textarea w-full glass-input rounded-xl min-h-[100px]" placeholder="写下你的评论..."></textarea>
+            <div class="flex justify-end mt-3">
+              <button class="btn btn-primary btn-sm rounded-lg">发表评论</button>
+            </div>
+          </div>
+          
+          <!-- Comment List -->
+          <div class="space-y-6">
+            <!-- Comment -->
+            <div class="flex gap-4">
+              <div class="avatar">
+                <div class="w-10 rounded-full bg-accent text-accent-content flex items-center justify-center flex-shrink-0">
+                  <span class="text-sm">L</span>
+                </div>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="font-medium text-base-content">Luna</span>
+                  <span class="text-xs text-base-content/50">2 小时前</span>
+                </div>
+                <p class="text-sm text-base-content/80">
+                  非常详细的教程！我按照这个方法创建了自己的第一个角色，效果比之前好很多。特别是关于说话风格的部分，真的很有帮助。
+                </p>
+                <div class="flex items-center gap-4 mt-2">
+                  <button class="btn btn-ghost btn-xs gap-1">
+                    <span class="iconify lucide--heart size-3"></span> 24
+                  </button>
+                  <button class="btn btn-ghost btn-xs">回复</button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Another Comment -->
+            <div class="flex gap-4">
+              <div class="avatar">
+                <div class="w-10 rounded-full bg-warning text-warning-content flex items-center justify-center flex-shrink-0">
+                  <span class="text-sm">S</span>
+                </div>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="font-medium text-base-content">StoryWriter</span>
+                  <span class="text-xs text-base-content/50">5 小时前</span>
+                </div>
+                <p class="text-sm text-base-content/80">
+                  请问有没有更多关于世界观构建的深入教程？我正在创建一个复杂的魔法世界，但总感觉不够连贯。
+                </p>
+                <div class="flex items-center gap-4 mt-2">
+                  <button class="btn btn-ghost btn-xs gap-1">
+                    <span class="iconify lucide--heart size-3"></span> 8
+                  </button>
+                  <button class="btn btn-ghost btn-xs">回复</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Load More -->
+          <button class="btn btn-ghost btn-sm w-full mt-6">加载更多评论</button>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-16 px-4 pb-8">
+    <div class="glass-panel rounded-ios-lg max-w-6xl mx-auto p-8 md:p-12">
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-base-content/50">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white">
+            <span class="iconify lucide--sparkles size-4"></span>
+          </div>
+          <span class="font-bold">Celestia</span>
+        </div>
+        <p>© 2025 Celestia. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/app.js"></script>
+  <script src="./js/components/toast.js"></script>
+</body>
+</html>
+
