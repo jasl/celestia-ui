@@ -102,8 +102,8 @@
     <div class="flex-1 flex overflow-hidden px-4 pb-4 gap-4">
       
       <!-- Left Sidebar - Characters/Scenes -->
-      <aside id="left-panel" class="chat-sidebar chat-sidebar-left w-72 flex-shrink-0 hidden lg:flex flex-col">
-        <div class="glass-panel rounded-ios h-full flex flex-col overflow-hidden">
+      <aside id="left-panel" class="chat-sidebar chat-sidebar-left w-72 flex-shrink-0 flex-col" data-visible="auto">
+        <div class="glass-panel rounded-[2rem] h-full flex flex-col overflow-hidden">
           <!-- Tabs -->
           <div class="tabs tabs-box p-2 gap-1 bg-transparent">
             <input type="radio" name="left-tab" class="tab rounded-lg" aria-label="角色" checked>
@@ -144,6 +144,7 @@
                     <h3 class="font-medium text-sm text-base-content truncate">凯尔</h3>
                     <p class="text-xs text-base-content/50 truncate">骑士团副官</p>
                   </div>
+                  <span class="badge badge-success badge-xs">在线</span>
                 </div>
               </div>
               
@@ -173,7 +174,7 @@
       
       <!-- Main Chat Area -->
       <main class="flex-1 flex flex-col min-w-0">
-        <div class="glass-panel rounded-ios h-full flex flex-col overflow-hidden">
+        <div class="glass-panel rounded-[2rem] h-full flex flex-col overflow-hidden">
           
           <!-- Messages -->
           <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4">
@@ -186,7 +187,7 @@
               </div>
             </div>
             
-            <!-- AI Message -->
+            <!-- AI Message 1 -->
             <div class="chat-message chat chat-start">
               <div class="chat-image">
                 <div class="avatar-ring-gradient">
@@ -199,9 +200,9 @@
               </div>
               <div class="chat-header mb-1">
                 <span class="font-medium text-base-content">艾丽西亚</span>
-                <time class="text-xs text-base-content/50 ml-2">刚刚</time>
+                <time class="text-xs text-base-content/50 ml-2">10分钟前</time>
               </div>
-              <div class="chat-bubble chat-bubble-ai rounded-ios p-4">
+              <div class="chat-bubble chat-bubble-ai rounded-[2rem] p-4">
                 <p class="chat-bubble-story">
                   欢迎来到星辉魔法学院的图书馆，年轻的学徒。我是艾丽西亚，负责指导你在这片知识海洋中探索。
                 </p>
@@ -219,13 +220,13 @@
               </div>
             </div>
             
-            <!-- User Message -->
+            <!-- User Message 1 -->
             <div class="chat-message chat chat-end">
               <div class="chat-header mb-1">
-                <time class="text-xs text-base-content/50 mr-2">刚刚</time>
+                <time class="text-xs text-base-content/50 mr-2">9分钟前</time>
                 <span class="font-medium text-base-content">你</span>
               </div>
-              <div class="chat-bubble chat-bubble-user rounded-ios p-4">
+              <div class="chat-bubble chat-bubble-user rounded-[2rem] p-4">
                 <p class="chat-bubble-story">
                   艾丽西亚老师，我对召唤魔法很感兴趣。我听说您曾经是宫廷的首席召唤师，能否指导我入门？
                 </p>
@@ -236,7 +237,234 @@
               </div>
             </div>
             
-            <!-- AI Response -->
+            <!-- AI Response 2 -->
+            <div class="chat-message chat chat-start">
+              <div class="chat-image">
+                <div class="avatar-ring-gradient">
+                  <div class="avatar">
+                    <div class="w-10 rounded-full bg-secondary text-secondary-content flex items-center justify-center">
+                      <span class="text-sm">A</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="chat-header mb-1">
+                <span class="font-medium text-base-content">艾丽西亚</span>
+                <time class="text-xs text-base-content/50 ml-2">8分钟前</time>
+              </div>
+              <div class="chat-bubble chat-bubble-ai rounded-[2rem] p-4">
+                <p class="chat-bubble-story">
+                  <em>艾丽西亚微微挑眉，眼中闪过一丝惊讶和赞赏。她站起身，走向那排高耸入云的书架。</em>
+                </p>
+                <p class="chat-bubble-story mt-3">
+                  "召唤魔法啊……这是一门既古老又危险的艺术。你知道吗，每一次召唤，都是与另一个维度的生灵建立契约。"
+                </p>
+                <p class="chat-bubble-story mt-3">
+                  <em>她从书架上取下一本封面镶嵌着蓝宝石的书籍，书页间隐隐透出柔和的光芒。</em>
+                </p>
+                <p class="chat-bubble-story mt-3">
+                  "首先，让我们从基础开始——了解召唤的本质。你准备好了吗？"
+                </p>
+              </div>
+              <div class="chat-footer text-xs text-base-content/50 mt-1 flex items-center gap-2">
+                <button class="btn btn-ghost btn-xs btn-circle"><span class="iconify lucide--copy size-3"></span></button>
+                <button class="btn btn-ghost btn-xs btn-circle"><span class="iconify lucide--refresh-cw size-3"></span></button>
+                <button class="btn btn-ghost btn-xs btn-circle"><span class="iconify lucide--edit-3 size-3"></span></button>
+              </div>
+            </div>
+            
+            <!-- User Message 2 -->
+            <div class="chat-message chat chat-end">
+              <div class="chat-header mb-1">
+                <time class="text-xs text-base-content/50 mr-2">7分钟前</time>
+                <span class="font-medium text-base-content">你</span>
+              </div>
+              <div class="chat-bubble chat-bubble-user rounded-[2rem] p-4">
+                <p class="chat-bubble-story">
+                  是的，我准备好了！请告诉我，召唤魔法的本质是什么？为什么说它既古老又危险？
+                </p>
+              </div>
+              <div class="chat-footer text-xs text-base-content/50 mt-1 flex items-center gap-2 justify-end">
+                <button class="btn btn-ghost btn-xs btn-circle"><span class="iconify lucide--edit-3 size-3"></span></button>
+                <button class="btn btn-ghost btn-xs btn-circle"><span class="iconify lucide--trash-2 size-3"></span></button>
+              </div>
+            </div>
+            
+            <!-- AI Response 3 -->
+            <div class="chat-message chat chat-start">
+              <div class="chat-image">
+                <div class="avatar-ring-gradient">
+                  <div class="avatar">
+                    <div class="w-10 rounded-full bg-secondary text-secondary-content flex items-center justify-center">
+                      <span class="text-sm">A</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="chat-header mb-1">
+                <span class="font-medium text-base-content">艾丽西亚</span>
+                <time class="text-xs text-base-content/50 ml-2">6分钟前</time>
+              </div>
+              <div class="chat-bubble chat-bubble-ai rounded-[2rem] p-4">
+                <p class="chat-bubble-story">
+                  <em>艾丽西亚翻开书籍，一道淡蓝色的光芒从书页中升起，在空中形成一个复杂的魔法阵图案。</em>
+                </p>
+                <p class="chat-bubble-story mt-3">
+                  "看，这是最基础的召唤阵。召唤魔法的本质，是在不同的维度之间建立一道'桥梁'。通过这座桥梁，你可以呼唤另一个世界的生灵来到这里。"
+                </p>
+                <p class="chat-bubble-story mt-3">
+                  <em>她的手指轻轻划过光芒构成的符文，每一个符文都发出清脆的鸣响。</em>
+                </p>
+                <p class="chat-bubble-story mt-3">
+                  "之所以说它危险，是因为每一次召唤都需要付出代价。如果你无法掌控被召唤的生灵，或者契约出了问题……"
+                </p>
+                <p class="chat-bubble-story mt-3">
+                  <em>她的眼神变得深邃，似乎想起了什么往事。</em>
+                </p>
+                <p class="chat-bubble-story mt-3">
+                  "后果可能是灾难性的。"
+                </p>
+              </div>
+              <div class="chat-footer text-xs text-base-content/50 mt-1 flex items-center gap-2">
+                <button class="btn btn-ghost btn-xs btn-circle"><span class="iconify lucide--copy size-3"></span></button>
+                <button class="btn btn-ghost btn-xs btn-circle"><span class="iconify lucide--refresh-cw size-3"></span></button>
+                <button class="btn btn-ghost btn-xs btn-circle"><span class="iconify lucide--edit-3 size-3"></span></button>
+              </div>
+            </div>
+            
+            <!-- User Message 3 -->
+            <div class="chat-message chat chat-end">
+              <div class="chat-header mb-1">
+                <time class="text-xs text-base-content/50 mr-2">5分钟前</time>
+                <span class="font-medium text-base-content">你</span>
+              </div>
+              <div class="chat-bubble chat-bubble-user rounded-[2rem] p-4">
+                <p class="chat-bubble-story">
+                  这听起来确实很危险……您提到需要付出代价，具体是什么样的代价呢？我需要准备什么吗？
+                </p>
+              </div>
+              <div class="chat-footer text-xs text-base-content/50 mt-1 flex items-center gap-2 justify-end">
+                <button class="btn btn-ghost btn-xs btn-circle"><span class="iconify lucide--edit-3 size-3"></span></button>
+                <button class="btn btn-ghost btn-xs btn-circle"><span class="iconify lucide--trash-2 size-3"></span></button>
+              </div>
+            </div>
+            
+            <!-- AI Response 4 -->
+            <div class="chat-message chat chat-start">
+              <div class="chat-image">
+                <div class="avatar-ring-gradient">
+                  <div class="avatar">
+                    <div class="w-10 rounded-full bg-secondary text-secondary-content flex items-center justify-center">
+                      <span class="text-sm">A</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="chat-header mb-1">
+                <span class="font-medium text-base-content">艾丽西亚</span>
+                <time class="text-xs text-base-content/50 ml-2">4分钟前</time>
+              </div>
+              <div class="chat-bubble chat-bubble-ai rounded-[2rem] p-4">
+                <p class="chat-bubble-story">
+                  <em>艾丽西亚欣慰地点点头，似乎对你的谨慎态度感到满意。</em>
+                </p>
+                <p class="chat-bubble-story mt-3">
+                  "问得好。代价有很多种形式——最常见的是魔力消耗。召唤越强大的生灵，需要的魔力就越多。但这还是最轻的。"
+                </p>
+                <p class="chat-bubble-story mt-3">
+                  <em>她从书架旁的抽屉里取出一块发光的水晶，水晶内部似乎封印着某种流动的能量。</em>
+                </p>
+                <p class="chat-bubble-story mt-3">
+                  "有些契约需要你献上记忆、情感，甚至是寿命。而最危险的契约……"
+                </p>
+                <p class="chat-bubble-story mt-3">
+                  <em>她压低声音，神情严肃。</em>
+                </p>
+                <p class="chat-bubble-story mt-3">
+                  "会要求你献上灵魂的一部分。所以，在学习召唤魔法之前，你必须先学会评估风险，以及——如何拒绝一个不公平的契约。"
+                </p>
+              </div>
+              <div class="chat-footer text-xs text-base-content/50 mt-1 flex items-center gap-2">
+                <button class="btn btn-ghost btn-xs btn-circle"><span class="iconify lucide--copy size-3"></span></button>
+                <button class="btn btn-ghost btn-xs btn-circle"><span class="iconify lucide--refresh-cw size-3"></span></button>
+                <button class="btn btn-ghost btn-xs btn-circle"><span class="iconify lucide--edit-3 size-3"></span></button>
+              </div>
+            </div>
+            
+            <!-- User Message 4 -->
+            <div class="chat-message chat chat-end">
+              <div class="chat-header mb-1">
+                <time class="text-xs text-base-content/50 mr-2">3分钟前</time>
+                <span class="font-medium text-base-content">你</span>
+              </div>
+              <div class="chat-bubble chat-bubble-user rounded-[2rem] p-4">
+                <p class="chat-bubble-story">
+                  我明白了，这比我想象的要复杂得多。那么，对于初学者来说，有没有相对安全的召唤对象可以练习？
+                </p>
+              </div>
+              <div class="chat-footer text-xs text-base-content/50 mt-1 flex items-center gap-2 justify-end">
+                <button class="btn btn-ghost btn-xs btn-circle"><span class="iconify lucide--edit-3 size-3"></span></button>
+                <button class="btn btn-ghost btn-xs btn-circle"><span class="iconify lucide--trash-2 size-3"></span></button>
+              </div>
+            </div>
+            
+            <!-- AI Response 5 -->
+            <div class="chat-message chat chat-start">
+              <div class="chat-image">
+                <div class="avatar-ring-gradient">
+                  <div class="avatar">
+                    <div class="w-10 rounded-full bg-secondary text-secondary-content flex items-center justify-center">
+                      <span class="text-sm">A</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="chat-header mb-1">
+                <span class="font-medium text-base-content">艾丽西亚</span>
+                <time class="text-xs text-base-content/50 ml-2">2分钟前</time>
+              </div>
+              <div class="chat-bubble chat-bubble-ai rounded-[2rem] p-4">
+                <p class="chat-bubble-story">
+                  <em>艾丽西亚的嘴角终于露出一丝温和的笑意，她轻轻挥动手指，那道悬浮的魔法阵缩小成一个小巧的光球。</em>
+                </p>
+                <p class="chat-bubble-story mt-3">
+                  "当然有。对于初学者，我们通常从'元素精灵'开始。它们是自然界中最温和的存在，契约条件也很简单——只需要你的一点点魔力作为供养。"
+                </p>
+                <p class="chat-bubble-story mt-3">
+                  <em>她将光球轻轻放在你的掌心，温暖的能量从光球中传来。</em>
+                </p>
+                <p class="chat-bubble-story mt-3">
+                  "来，试着感受这个魔法阵的结构。闭上眼睛，用你的意识去触碰它……告诉我，你感受到了什么？"
+                </p>
+              </div>
+              <div class="chat-footer text-xs text-base-content/50 mt-1 flex items-center gap-2">
+                <button class="btn btn-ghost btn-xs btn-circle"><span class="iconify lucide--copy size-3"></span></button>
+                <button class="btn btn-ghost btn-xs btn-circle"><span class="iconify lucide--refresh-cw size-3"></span></button>
+                <button class="btn btn-ghost btn-xs btn-circle"><span class="iconify lucide--edit-3 size-3"></span></button>
+              </div>
+            </div>
+            
+            <!-- User Message 5 -->
+            <div class="chat-message chat chat-end">
+              <div class="chat-header mb-1">
+                <time class="text-xs text-base-content/50 mr-2">1分钟前</time>
+                <span class="font-medium text-base-content">你</span>
+              </div>
+              <div class="chat-bubble chat-bubble-user rounded-[2rem] p-4">
+                <p class="chat-bubble-story">
+                  <em>我闭上眼睛，将注意力集中在掌心的光球上。起初只感到温暖，但渐渐地，我仿佛能"看到"一些东西……</em>
+                </p>
+                <p class="chat-bubble-story mt-3">
+                  我感觉到……像是很多条细线交织在一起，它们在不断流动、旋转。中心似乎有一个空洞，像是在等待什么东西填充进去？
+                </p>
+              </div>
+              <div class="chat-footer text-xs text-base-content/50 mt-1 flex items-center gap-2 justify-end">
+                <button class="btn btn-ghost btn-xs btn-circle"><span class="iconify lucide--edit-3 size-3"></span></button>
+                <button class="btn btn-ghost btn-xs btn-circle"><span class="iconify lucide--trash-2 size-3"></span></button>
+              </div>
+            </div>
+            
+            <!-- AI Response 6 (Latest) -->
             <div class="chat-message chat chat-start">
               <div class="chat-image">
                 <div class="avatar-ring-gradient">
@@ -251,18 +479,30 @@
                 <span class="font-medium text-base-content">艾丽西亚</span>
                 <time class="text-xs text-base-content/50 ml-2">刚刚</time>
               </div>
-              <div class="chat-bubble chat-bubble-ai rounded-ios p-4">
+              <div class="chat-bubble chat-bubble-ai rounded-[2rem] p-4">
                 <p class="chat-bubble-story">
-                  <em>艾丽西亚微微挑眉，眼中闪过一丝惊讶和赞赏。她站起身，走向那排高耸入云的书架。</em>
+                  <em>艾丽西亚的眼中闪过一丝惊喜，她不由自主地向前倾身，声音中带着难以掩饰的激动。</em>
                 </p>
                 <p class="chat-bubble-story mt-3">
-                  "召唤魔法啊……这是一门既古老又危险的艺术。你知道吗，每一次召唤，都是与另一个维度的生灵建立契约。"
+                  "了不起！你竟然能感知到魔法阵的'经络'和'核心空洞'！这种感知能力，通常需要数月的训练才能获得……"
                 </p>
                 <p class="chat-bubble-story mt-3">
-                  <em>她从书架上取下一本封面镶嵌着蓝宝石的书籍，书页间隐隐透出柔和的光芒。</em>
+                  <em>她站起身，走到窗边，夕阳的余晖给她披上了一层金色的光芒。</em>
                 </p>
                 <p class="chat-bubble-story mt-3">
-                  "首先，让我们从基础开始——了解召唤的本质。你准备好了吗？"
+                  "你说的'空洞'，正是召唤魔法的关键——那是'召唤之座'，是被召唤者降临的位置。而那些'细线'是魔力的流通渠道，决定了契约的性质。"
+                </p>
+                <p class="chat-bubble-story mt-3">
+                  <em>她转过身，眼神中充满期待。</em>
+                </p>
+                <p class="chat-bubble-story mt-3">
+                  "看来你是天生的召唤师。如果你愿意，从明天开始，我可以正式收你为徒。不过……"
+                </p>
+                <p class="chat-bubble-story mt-3">
+                  <em>她的表情变得严肃。</em>
+                </p>
+                <p class="chat-bubble-story mt-3">
+                  "在那之前，你需要做一个选择。召唤师有两条路——'契约之路'与'支配之路'。前者与召唤物平等相待，后者则追求绝对的控制。你会选择哪一条？"
                 </p>
               </div>
               <div class="chat-footer text-xs text-base-content/50 mt-1 flex items-center gap-2">
@@ -317,8 +557,8 @@
       </main>
       
       <!-- Right Sidebar - Settings -->
-      <aside id="right-panel" class="chat-sidebar chat-sidebar-right w-72 flex-shrink-0 hidden xl:flex flex-col">
-        <div class="glass-panel rounded-ios h-full flex flex-col overflow-hidden">
+      <aside id="right-panel" class="chat-sidebar chat-sidebar-right w-72 flex-shrink-0 flex-col" data-visible="auto">
+        <div class="glass-panel rounded-[2rem] h-full flex flex-col overflow-hidden">
           <div class="p-4 border-b border-base-300/30">
             <h2 class="font-semibold text-base-content flex items-center gap-2">
               <span class="iconify lucide--sliders size-5 text-primary"></span>
@@ -387,8 +627,8 @@
               <input type="range" min="-2" max="2" step="0.1" value="0" class="range range-info range-sm">
             </fieldset>
             
-            <hr class="border-base-300/50">
-            
+<div class="divider"></div>
+
             <!-- Toggles -->
             <div class="space-y-3">
               <label class="flex items-center justify-between cursor-pointer">
@@ -434,62 +674,52 @@
     const toggleLeftBtn = document.getElementById('toggle-left-panel');
     const toggleRightBtn = document.getElementById('toggle-right-panel');
     
-    function togglePanel(panel, isRight = false) {
-      const isLargeScreen = window.innerWidth >= 1024;
-      const isXLScreen = window.innerWidth >= 1280;
+    function togglePanel(panel, breakpoint = 1024) {
+      const isLargeScreen = window.innerWidth >= breakpoint;
+      const currentState = panel.dataset.visible;
       
-      if (isLargeScreen && !isRight) {
-        panel.classList.toggle('hidden');
-        panel.classList.toggle('flex');
-      } else if (isXLScreen && isRight) {
-        panel.classList.toggle('hidden');
-        panel.classList.toggle('flex');
+      if (isLargeScreen) {
+        // Desktop: toggle between 'true' and 'false'
+        panel.dataset.visible = currentState === 'false' ? 'true' : 'false';
       } else {
-        // Mobile behavior
-        const isOpen = !panel.classList.contains('collapsed');
-        if (isOpen) {
-          closePanel(panel);
+        // Mobile: toggle with overlay
+        if (currentState === 'true') {
+          panel.dataset.visible = 'false';
+          updateOverlay();
         } else {
-          openPanel(panel);
+          panel.dataset.visible = 'true';
+          panelOverlay.classList.remove('hidden');
         }
       }
     }
     
-    function openPanel(panel) {
-      panel.classList.remove('hidden', 'collapsed');
-      panel.classList.add('flex');
-      panelOverlay.classList.remove('hidden');
-    }
-    
-    function closePanel(panel) {
-      panel.classList.add('collapsed');
-      setTimeout(() => {
-        if (panel.classList.contains('collapsed')) {
-          panel.classList.add('hidden');
-          panel.classList.remove('flex');
-        }
-      }, 300);
-      
-      // Hide overlay if both panels are closed
-      if (leftPanel.classList.contains('collapsed') || leftPanel.classList.contains('hidden')) {
-        if (rightPanel.classList.contains('collapsed') || rightPanel.classList.contains('hidden')) {
-          panelOverlay.classList.add('hidden');
-        }
+    function updateOverlay() {
+      const leftOpen = leftPanel.dataset.visible === 'true' && window.innerWidth < 1024;
+      const rightOpen = rightPanel.dataset.visible === 'true' && window.innerWidth < 1280;
+      if (!leftOpen && !rightOpen) {
+        panelOverlay.classList.add('hidden');
       }
     }
     
     function closePanels() {
-      if (!leftPanel.classList.contains('hidden') && window.innerWidth < 1024) {
-        closePanel(leftPanel);
-      }
-      if (!rightPanel.classList.contains('hidden') && window.innerWidth < 1280) {
-        closePanel(rightPanel);
-      }
+      if (window.innerWidth < 1024) leftPanel.dataset.visible = 'false';
+      if (window.innerWidth < 1280) rightPanel.dataset.visible = 'false';
       panelOverlay.classList.add('hidden');
     }
     
-    toggleLeftBtn.addEventListener('click', () => togglePanel(leftPanel, false));
-    toggleRightBtn.addEventListener('click', () => togglePanel(rightPanel, true));
+    // Reset to auto on resize (restore responsive behavior)
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        leftPanel.dataset.visible = 'auto';
+        rightPanel.dataset.visible = 'auto';
+        panelOverlay.classList.add('hidden');
+      }, 150);
+    });
+    
+    toggleLeftBtn.addEventListener('click', () => togglePanel(leftPanel, 1024));
+    toggleRightBtn.addEventListener('click', () => togglePanel(rightPanel, 1280));
     
     // Range input value display
     document.querySelectorAll('.range').forEach(range => {

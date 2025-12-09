@@ -33,7 +33,7 @@
 
   <!-- Navbar -->
   <nav class="sticky top-0 z-50 px-4 py-4">
-    <div class="glass-panel rounded-full px-4 md:px-6 py-3 flex justify-between items-center max-w-6xl mx-auto">
+    <div class="glass-panel rounded-full px-4 md:px-6 py-3 flex justify-between items-center max-w-6xl mx-auto relative">
       <a href="/" class="flex items-center gap-2">
         <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white shadow-lg">
           <span class="iconify lucide--sparkles size-5"></span>
@@ -41,7 +41,7 @@
         <span class="font-bold text-xl hidden sm:inline">Celestia</span>
       </a>
       
-      <div class="hidden md:flex items-center gap-1">
+      <div class="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
         <a href="/" class="btn btn-ghost btn-sm rounded-full">首页</a>
         <a href="./chat.html" class="btn btn-ghost btn-sm rounded-full">聊天</a>
         <a href="./blog-list.html" class="btn btn-ghost btn-sm rounded-full">博客</a>
@@ -65,36 +65,44 @@
       
       <!-- Sidebar Navigation -->
       <aside class="lg:w-64 flex-shrink-0">
-        <div class="glass-panel rounded-ios p-4">
-          <nav class="space-y-1">
-            <a href="./settings-profile.html" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 text-primary font-medium">
+        <ul class="menu glass-panel rounded-[2rem] p-2 w-full">
+          <li class="menu-active">
+            <a href="./settings-profile.html">
               <span class="iconify lucide--user size-5"></span>
               个人资料
             </a>
-            <a href="./settings-password.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-base-100/50 text-base-content/70 transition-colors">
+          </li>
+          <li>
+            <a href="./settings-password.html">
               <span class="iconify lucide--lock size-5"></span>
               修改密码
             </a>
-            <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-base-100/50 text-base-content/70 transition-colors">
+          </li>
+          <li>
+            <a href="#">
               <span class="iconify lucide--bell size-5"></span>
               通知设置
             </a>
-            <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-base-100/50 text-base-content/70 transition-colors">
+          </li>
+          <li>
+            <a href="#">
               <span class="iconify lucide--key size-5"></span>
               API 密钥
             </a>
-            <hr class="my-3 border-base-300/50">
-            <a href="./auth-login.html" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-error/10 text-error transition-colors">
+          </li>
+          <li></li>
+          <li>
+            <a href="./auth-login.html" class="text-error">
               <span class="iconify lucide--log-out size-5"></span>
               退出登录
             </a>
-          </nav>
-        </div>
+          </li>
+        </ul>
       </aside>
       
       <!-- Main Form Area -->
       <div class="flex-1">
-        <div class="glass-panel rounded-ios-lg p-6 md:p-8">
+        <div class="glass-panel rounded-[2.5rem] p-6 md:p-8">
           <!-- Header -->
           <div class="mb-8">
             <h1 class="text-2xl font-bold text-base-content">个人资料</h1>
@@ -125,8 +133,8 @@
               </div>
             </div>
             
-            <hr class="border-base-300/50">
-            
+<div class="divider"></div>
+
             <!-- Basic Info -->
             <div class="grid md:grid-cols-2 gap-6">
               <fieldset class="fieldset">
@@ -163,8 +171,8 @@
               </fieldset>
             </div>
             
-            <hr class="border-base-300/50">
-            
+<div class="divider"></div>
+
             <!-- Preferences -->
             <div>
               <h3 class="font-semibold text-base-content mb-4">偏好设置</h3>
@@ -207,7 +215,7 @@
         </div>
         
         <!-- Danger Zone -->
-        <div class="glass-panel rounded-ios-lg p-6 md:p-8 mt-6 border-error/30 border">
+        <div class="glass-panel rounded-[2.5rem] p-6 md:p-8 mt-6 border-error/30 border">
           <h3 class="text-lg font-semibold text-error mb-2">危险区域</h3>
           <p class="text-base-content/60 text-sm mb-4">删除账号后，所有数据将被永久清除且无法恢复。</p>
           <button type="button" class="btn btn-error btn-outline rounded-xl" onclick="CelestiaModal?.confirm({ title: '删除账号', message: '确定要删除你的账号吗？此操作不可撤销。', confirmText: '删除', onConfirm: () => CelestiaToast?.error('账号已删除') })">

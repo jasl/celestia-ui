@@ -32,8 +32,8 @@
   </div>
 
   <!-- Navbar -->
-  <nav class="fixed top-0 left-0 right-0 z-50 px-4 py-4">
-    <div class="glass-panel rounded-full px-4 md:px-6 py-3 flex justify-between items-center max-w-6xl mx-auto">
+  <nav class="fixed top-0 left-0 right-0 z-50 px-4 py-4" data-navbar data-at-top="true">
+    <div class="glass-panel rounded-full px-4 md:px-6 py-3 flex justify-between items-center max-w-6xl mx-auto relative">
       <a href="/" class="flex items-center gap-2 group">
         <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all">
           <span class="iconify lucide--sparkles size-5"></span>
@@ -41,7 +41,7 @@
         <span class="font-bold text-xl tracking-tight text-base-content hidden sm:inline">Celestia</span>
       </a>
       
-      <div class="hidden md:flex items-center gap-1">
+      <div class="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
         <a href="/" class="btn btn-ghost btn-sm rounded-full">首页</a>
         <a href="./blog-list.html" class="btn btn-ghost btn-sm rounded-full">博客</a>
         <a href="./chat.html" class="btn btn-ghost btn-sm rounded-full">开始对话</a>
@@ -66,7 +66,7 @@
     <article class="max-w-4xl mx-auto">
       
       <!-- Header -->
-      <header class="glass-panel rounded-ios-xl p-6 md:p-10 mb-8 relative overflow-hidden">
+      <header class="glass-panel rounded-[3rem] p-6 md:p-10 mb-8 relative overflow-hidden">
         <div class="absolute -top-20 -right-20 w-64 h-64 bg-primary/20 rounded-full blur-3xl"></div>
         <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-secondary/20 rounded-full blur-3xl"></div>
         
@@ -125,7 +125,7 @@
       </header>
       
       <!-- Featured Image -->
-      <div class="glass-panel rounded-ios-lg overflow-hidden mb-8 h-64 md:h-96 bg-gradient-to-br from-primary/30 via-secondary/30 to-accent/30 flex items-center justify-center">
+      <div class="glass-panel rounded-[2.5rem] overflow-hidden mb-8 h-64 md:h-96 bg-gradient-to-br from-primary/30 via-secondary/30 to-accent/30 flex items-center justify-center">
         <div class="text-center">
           <span class="iconify lucide--image size-20 text-primary/30"></span>
           <p class="text-base-content/40 mt-2">文章配图</p>
@@ -133,7 +133,7 @@
       </div>
       
       <!-- Article Content -->
-      <div class="glass-panel rounded-ios-lg p-6 md:p-10">
+      <div class="glass-panel rounded-[2.5rem] p-6 md:p-10">
         <div class="prose prose-lg max-w-none">
           <!-- Use Merriweather/Serif for article body -->
           <div style="font-family: 'Merriweather', 'Noto Serif SC', Georgia, serif; line-height: 1.8;">
@@ -232,7 +232,7 @@
               注意这段描写如何运用了感官细节（气味、光影）、环境氛围（古老的图书馆）以及角色特征（外貌描写），为接下来的对话创造了完美的开场。
             </p>
             
-            <hr class="my-10 border-base-300/50">
+            <div class="divider my-10"></div>
             
             <h2 class="text-2xl font-bold text-base-content mt-10 mb-4 flex items-center gap-2" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">
               总结
@@ -276,7 +276,7 @@
       </div>
       
       <!-- Author Card -->
-      <div class="glass-panel rounded-ios-lg p-6 mt-8">
+      <div class="glass-panel rounded-[2.5rem] p-6 mt-8">
         <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
           <div class="avatar-ring-gradient">
             <div class="avatar">
@@ -299,7 +299,7 @@
       <section class="mt-12">
         <h3 class="text-xl font-bold text-base-content mb-6">相关文章</h3>
         <div class="grid md:grid-cols-2 gap-6">
-          <a href="./blog-detail.html" class="glass-panel rounded-ios p-4 card-hover group">
+          <a href="./blog-detail.html" class="glass-panel rounded-[2rem] p-4 card-hover group">
             <div class="flex gap-4">
               <div class="w-24 h-24 rounded-lg bg-gradient-to-br from-success/30 to-primary/30 flex-shrink-0 flex items-center justify-center">
                 <span class="iconify lucide--lightbulb size-8 text-success/40"></span>
@@ -314,7 +314,7 @@
             </div>
           </a>
           
-          <a href="./blog-detail.html" class="glass-panel rounded-ios p-4 card-hover group">
+          <a href="./blog-detail.html" class="glass-panel rounded-[2rem] p-4 card-hover group">
             <div class="flex gap-4">
               <div class="w-24 h-24 rounded-lg bg-gradient-to-br from-info/30 to-secondary/30 flex-shrink-0 flex items-center justify-center">
                 <span class="iconify lucide--wand-2 size-8 text-info/40"></span>
@@ -333,7 +333,7 @@
       
       <!-- Comments Section -->
       <section class="mt-12">
-        <div class="glass-panel rounded-ios-lg p-6 md:p-8">
+        <div class="glass-panel rounded-[2.5rem] p-6 md:p-8">
           <h3 class="text-xl font-bold text-base-content mb-6 flex items-center gap-2">
             <span class="iconify lucide--message-square size-5"></span>
             评论 (12)
@@ -407,7 +407,7 @@
 
   <!-- Footer -->
   <footer class="mt-16 px-4 pb-8">
-    <div class="glass-panel rounded-ios-lg max-w-6xl mx-auto p-8 md:p-12">
+    <div class="glass-panel rounded-[2.5rem] max-w-6xl mx-auto p-8 md:p-12">
       <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-base-content/50">
         <div class="flex items-center gap-2">
           <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white">

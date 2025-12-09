@@ -232,16 +232,6 @@ body {
     inset 0 1px 0 oklch(100% 0 0 / 0.5);
 }
 
-.glass-panel-dark {
-  background: oklch(20% 0.02 280 / 0.6);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid oklch(100% 0 0 / 0.1);
-  box-shadow: 
-    0 8px 32px oklch(0% 0 0 / 0.3),
-    inset 0 1px 0 oklch(100% 0 0 / 0.05);
-}
-
 /* Lighter glass for inputs */
 .glass-input {
   background: oklch(100% 0 0 / 0.5);
@@ -258,21 +248,6 @@ body {
 
 .glass-input::placeholder {
   color: oklch(45% 0.05 280);
-}
-
-/* ================================
-   iOS-style Rounded Containers
-   ================================ */
-.rounded-ios {
-  border-radius: 2rem;
-}
-
-.rounded-ios-lg {
-  border-radius: 2.5rem;
-}
-
-.rounded-ios-xl {
-  border-radius: 3rem;
 }
 
 /* ================================
@@ -341,24 +316,6 @@ body {
 .card-hover:hover {
   transform: translateY(-4px);
   box-shadow: 0 20px 40px oklch(60% 0.15 280 / 0.15);
-}
-
-/* ================================
-   Sidebar Width Utilities
-   ================================ */
-.w-sidebar {
-  width: 280px;
-}
-
-.w-sidebar-lg {
-  width: 320px;
-}
-
-/* ================================
-   Chat Container Height
-   ================================ */
-.h-chat {
-  height: calc(100vh - 8rem);
 }
 
 /* ================================
@@ -473,11 +430,25 @@ body {
 }
 
 /* ================================
-   Modal Backdrop Blur
+   Mobile Menu
    ================================ */
-.modal-backdrop-blur {
-  backdrop-filter: blur(8px);
-  background: oklch(0% 0 0 / 0.5);
+[data-mobile-menu].open {
+  pointer-events: auto !important;
+}
+
+[data-mobile-menu-overlay] {
+  pointer-events: none;
+}
+
+[data-mobile-menu-overlay].open {
+  pointer-events: auto !important;
+  opacity: 1 !important;
+}
+
+[data-mobile-menu].open > div:last-child {
+  /* Tailwind CSS 4 uses native translate property instead of transform */
+  translate: 0 0 !important;
+  opacity: 1 !important;
 }
 
 /* ================================
@@ -495,37 +466,6 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-/* ================================
-   Badge Glow Effect
-   ================================ */
-.badge-glow {
-  box-shadow: 0 0 12px currentColor;
-}
-
-/* ================================
-   Status Indicator Pulse
-   ================================ */
-.status-online::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: inherit;
-  animation: status-pulse 2s ease-in-out infinite;
-}
-
-@keyframes status-pulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.5);
-    opacity: 0;
   }
 }
 
@@ -582,28 +522,83 @@ body {
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.chat-sidebar.collapsed {
+/* Left sidebar - slides from left */
+.chat-sidebar-left {
+  display: flex;
   transform: translateX(-100%);
   opacity: 0;
   pointer-events: none;
 }
 
-.chat-sidebar-right.collapsed {
+/* Right sidebar - slides from right */
+.chat-sidebar-right {
+  display: flex;
   transform: translateX(100%);
+  opacity: 0;
+  pointer-events: none;
 }
 
+/* Auto mode: responsive behavior */
+@media (min-width: 1024px) {
+  .chat-sidebar-left[data-visible="auto"] {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@media (min-width: 1280px) {
+  .chat-sidebar-right[data-visible="auto"] {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* Explicit show */
+.chat-sidebar-left[data-visible="true"] {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.chat-sidebar-right[data-visible="true"] {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Explicit hide */
+.chat-sidebar-left[data-visible="false"] {
+  transform: translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.chat-sidebar-right[data-visible="false"] {
+  transform: translateX(100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Mobile positioning - fixed overlay */
 @media (max-width: 1023px) {
-  .chat-sidebar {
+  .chat-sidebar-left[data-visible="true"] {
     position: fixed;
     top: 0;
     bottom: 0;
+    left: 0;
     z-index: 40;
   }
-  .chat-sidebar-left {
-    left: 0;
-  }
-  .chat-sidebar-right {
+}
+
+@media (max-width: 1279px) {
+  .chat-sidebar-right[data-visible="true"] {
+    position: fixed;
+    top: 0;
+    bottom: 0;
     right: 0;
+    z-index: 40;
   }
 }
 

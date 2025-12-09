@@ -40,7 +40,7 @@
   <!-- Navbar -->
   <!-- ================================ -->
   <nav class="fixed top-0 left-0 right-0 z-50 px-4 py-4" data-navbar data-at-top="true">
-    <div class="glass-panel rounded-full px-4 md:px-6 py-3 flex justify-between items-center max-w-6xl mx-auto">
+    <div class="glass-panel rounded-full px-4 md:px-6 py-3 flex justify-between items-center max-w-6xl mx-auto relative">
       <!-- Logo -->
       <a href="/" class="flex items-center gap-2 group">
         <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all">
@@ -49,8 +49,8 @@
         <span class="font-bold text-xl tracking-tight text-base-content hidden sm:inline">Celestia</span>
       </a>
       
-      <!-- Desktop Menu -->
-      <div class="hidden md:flex items-center gap-1">
+      <!-- Desktop Menu (absolute centered) -->
+      <div class="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
         <a href="/" class="btn btn-ghost btn-sm rounded-full">首页</a>
         <a href="./blog-list.html" class="btn btn-ghost btn-sm rounded-full">博客</a>
         <a href="./chat.html" class="btn btn-ghost btn-sm rounded-full">开始对话</a>
@@ -80,13 +80,13 @@
 
   <!-- Mobile Menu Drawer -->
   <div class="fixed inset-0 z-40 pointer-events-none md:hidden" data-mobile-menu>
-    <div class="absolute inset-0 bg-black/50 opacity-0 transition-opacity pointer-events-auto hidden" data-mobile-menu-overlay></div>
-    <div class="absolute top-20 left-4 right-4 glass-panel rounded-ios p-6 transform -translate-y-full opacity-0 transition-all pointer-events-auto">
+    <div class="absolute inset-0 bg-black/50 opacity-0 transition-opacity pointer-events-none" data-mobile-menu-overlay></div>
+    <div class="absolute top-20 left-4 right-4 glass-panel rounded-[2rem] p-6 transform -translate-y-full opacity-0 transition-all pointer-events-auto">
       <nav class="flex flex-col gap-2">
         <a href="/" class="btn btn-ghost justify-start rounded-xl">首页</a>
         <a href="./blog-list.html" class="btn btn-ghost justify-start rounded-xl">博客</a>
         <a href="./chat.html" class="btn btn-ghost justify-start rounded-xl">开始对话</a>
-        <hr class="my-2 border-base-300">
+        <div class="divider my-2"></div>
         <a href="./auth-login.html" class="btn btn-ghost justify-start rounded-xl">登录</a>
         <a href="./auth-signup.html" class="btn btn-primary justify-start rounded-xl">注册</a>
       </nav>
@@ -100,7 +100,7 @@
     
     <!-- Hero Section -->
     <section class="max-w-5xl mx-auto text-center">
-      <div class="glass-panel rounded-ios-xl p-8 md:p-12 lg:p-16 relative overflow-hidden">
+      <div class="glass-panel rounded-[3rem] p-8 md:p-12 lg:p-16 relative overflow-hidden">
         <!-- Decorative blurs inside -->
         <div class="absolute -top-20 -left-20 w-64 h-64 bg-secondary/30 rounded-full blur-3xl"></div>
         <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-primary/30 rounded-full blur-3xl"></div>
@@ -126,11 +126,11 @@
           
           <!-- CTA Buttons -->
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="./chat.html" class="btn btn-gradient btn-lg rounded-ios shadow-xl hover:shadow-2xl px-8">
+            <a href="./chat.html" class="btn btn-gradient btn-lg rounded-[2rem] shadow-xl hover:shadow-2xl px-8">
               立即开始
               <span class="iconify lucide--arrow-right size-5"></span>
             </a>
-            <a href="#features" class="btn btn-lg glass-panel hover:bg-base-100/60 rounded-ios px-8">
+            <a href="#features" class="btn btn-lg glass-panel hover:bg-base-100/60 rounded-[2rem] px-8">
               了解更多
             </a>
           </div>
@@ -147,7 +147,7 @@
       
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- Feature 1 -->
-        <div class="glass-panel rounded-ios p-6 card-hover">
+        <div class="glass-panel rounded-[2rem] p-6 card-hover">
           <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mb-4">
             <span class="iconify lucide--users size-6 text-primary"></span>
           </div>
@@ -156,7 +156,7 @@
         </div>
         
         <!-- Feature 2 -->
-        <div class="glass-panel rounded-ios p-6 card-hover">
+        <div class="glass-panel rounded-[2rem] p-6 card-hover">
           <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-secondary/20 to-secondary/10 flex items-center justify-center mb-4">
             <span class="iconify lucide--palette size-6 text-secondary"></span>
           </div>
@@ -165,7 +165,7 @@
         </div>
         
         <!-- Feature 3 -->
-        <div class="glass-panel rounded-ios p-6 card-hover">
+        <div class="glass-panel rounded-[2rem] p-6 card-hover">
           <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent/20 to-accent/10 flex items-center justify-center mb-4">
             <span class="iconify lucide--sliders size-6 text-accent"></span>
           </div>
@@ -174,7 +174,7 @@
         </div>
         
         <!-- Feature 4 -->
-        <div class="glass-panel rounded-ios p-6 card-hover">
+        <div class="glass-panel rounded-[2rem] p-6 card-hover">
           <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-info/20 to-info/10 flex items-center justify-center mb-4">
             <span class="iconify lucide--cloud size-6 text-info"></span>
           </div>
@@ -183,7 +183,7 @@
         </div>
         
         <!-- Feature 5 -->
-        <div class="glass-panel rounded-ios p-6 card-hover">
+        <div class="glass-panel rounded-[2rem] p-6 card-hover">
           <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-success/20 to-success/10 flex items-center justify-center mb-4">
             <span class="iconify lucide--save size-6 text-success"></span>
           </div>
@@ -192,7 +192,7 @@
         </div>
         
         <!-- Feature 6 -->
-        <div class="glass-panel rounded-ios p-6 card-hover">
+        <div class="glass-panel rounded-[2rem] p-6 card-hover">
           <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-warning/20 to-warning/10 flex items-center justify-center mb-4">
             <span class="iconify lucide--moon size-6 text-warning"></span>
           </div>
@@ -204,7 +204,7 @@
 
     <!-- CTA Section -->
     <section class="max-w-4xl mx-auto mt-24">
-      <div class="glass-panel rounded-ios-xl p-8 md:p-12 text-center relative overflow-hidden">
+      <div class="glass-panel rounded-[3rem] p-8 md:p-12 text-center relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10"></div>
         <div class="relative z-10">
           <h2 class="text-2xl md:text-3xl font-bold text-base-content mb-4">准备好开始冒险了吗？</h2>
@@ -212,11 +212,11 @@
             创建免费账户，开启你的 AI 角色扮演之旅。无需信用卡，即刻体验。
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="./auth-signup.html" class="btn btn-gradient btn-lg rounded-ios px-8">
+            <a href="./auth-signup.html" class="btn btn-gradient btn-lg rounded-[2rem] px-8">
               免费注册
               <span class="iconify lucide--user-plus size-5"></span>
             </a>
-            <a href="./blog-list.html" class="btn btn-ghost btn-lg rounded-ios">
+            <a href="./blog-list.html" class="btn btn-ghost btn-lg rounded-[2rem]">
               阅读博客
             </a>
           </div>
@@ -229,7 +229,7 @@
   <!-- Footer -->
   <!-- ================================ -->
   <footer class="mt-16 px-4 pb-8">
-    <div class="glass-panel rounded-ios-lg max-w-6xl mx-auto p-8 md:p-12">
+    <div class="glass-panel rounded-[2.5rem] max-w-6xl mx-auto p-8 md:p-12">
       <div class="grid md:grid-cols-4 gap-8">
         <!-- Brand -->
         <div class="md:col-span-2">
@@ -275,7 +275,7 @@
         </div>
       </div>
       
-      <hr class="my-8 border-base-300">
+      <div class="divider my-8"></div>
       
       <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-base-content/50">
         <p>© 2025 Celestia. All rights reserved.</p>
