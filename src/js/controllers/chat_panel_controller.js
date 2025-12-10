@@ -51,10 +51,13 @@ export default class extends Controller {
   updateOverlay() {
     if (!this.hasOverlayTarget) return
 
-    const panelOpen = this.panelTarget.dataset.visible === 'true' && 
-                      window.innerWidth < this.breakpointValue
+    // Check if ANY chat sidebar panel is open on mobile
+    // This handles the shared overlay between multiple panel controllers
+    const anyPanelOpen = Array.from(document.querySelectorAll('.chat-sidebar')).some(panel => {
+      return panel.dataset.visible === 'true'
+    }) && window.innerWidth < this.breakpointValue
 
-    if (!panelOpen) {
+    if (!anyPanelOpen) {
       this.overlayTarget.classList.add('hidden')
     }
   }
@@ -64,9 +67,7 @@ export default class extends Controller {
     clearTimeout(this.resizeTimer)
     this.resizeTimer = setTimeout(() => {
       this.panelTarget.dataset.visible = 'auto'
-      if (this.hasOverlayTarget) {
-        this.overlayTarget.classList.add('hidden')
-      }
+      this.updateOverlay()
     }, 150)
   }
 }
