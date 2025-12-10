@@ -16,6 +16,26 @@ A beautiful, fantasy-themed HTML template for AI chat playgrounds and creative w
 
 ## 📸 Preview
 
+### Screenshots Gallery
+
+#### Landing Page
+
+| Light Mode | Dark Mode |
+|:----------:|:---------:|
+| ![Landing Light](screenshots/index-light.png) | ![Landing Dark](screenshots/index-dark.png) |
+
+#### Chat Interface
+
+| Light Mode | Dark Mode |
+|:----------:|:---------:|
+| ![Chat Light](screenshots/chat-light.png) | ![Chat Dark](screenshots/chat-dark.png) |
+
+#### Other Pages
+
+| Login Page | Blog List |
+|:----------:|:---------:|
+| ![Login](screenshots/login-light.png) | ![Blog](screenshots/blog-light.png) |
+
 ### Pages Included
 
 | Page | Description |
@@ -30,7 +50,7 @@ A beautiful, fantasy-themed HTML template for AI chat playgrounds and creative w
 | `settings-password.html` | Password & security settings |
 | `style-guide.html` | Design system documentation |
 
-### Theme Preview
+### Theme Highlights
 
 **Light Mode**
 - Soft pink/violet gradient background
