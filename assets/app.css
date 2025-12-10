@@ -124,8 +124,8 @@ html {
 body {
   min-height: 100vh;
   overflow-x: hidden;
-  /* CJK font stack: Inter for Latin, Noto Sans for CJK (JP first for proper glyph selection) */
-  font-family: 'Inter', 'Noto Sans JP', 'Noto Sans SC', 'Hiragino Sans', 'Microsoft YaHei', system-ui, sans-serif;
+  /* CJK font stack: Inter for Latin, Noto Sans SC for Chinese */
+  font-family: 'Inter', 'Noto Sans SC', 'Hiragino Sans', 'Microsoft YaHei', system-ui, sans-serif;
   /* Improve CJK text rendering */
   font-feature-settings: 'palt' 1;
   text-rendering: optimizeLegibility;
@@ -227,9 +227,7 @@ body {
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   border: 1px solid oklch(100% 0 0 / 0.7);
-  box-shadow: 
-    0 8px 32px oklch(60% 0.15 280 / 0.1),
-    inset 0 1px 0 oklch(100% 0 0 / 0.5);
+  box-shadow: 0 8px 32px oklch(60% 0.15 280 / 0.1);
 }
 
 /* Lighter glass for inputs */
@@ -248,6 +246,20 @@ body {
 
 .glass-input::placeholder {
   color: oklch(45% 0.05 280);
+}
+
+/* Glass input validation states */
+.glass-input.input-success {
+  border-color: oklch(65% 0.20 145 / 0.6);
+}
+
+.glass-input.input-error {
+  border-color: oklch(60% 0.22 25 / 0.6);
+}
+
+/* Validator hint */
+.validator-hint {
+  min-height: 1.25rem;
 }
 
 /* ================================
@@ -379,6 +391,13 @@ body {
   top: 50%;
   left: 50%;
   animation-delay: -14s;
+}
+
+/* Disable floating orbs on mobile for performance */
+@media (max-width: 768px) {
+  .floating-orb {
+    display: none;
+  }
 }
 
 @keyframes float-orb {

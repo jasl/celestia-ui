@@ -259,10 +259,167 @@
   }
 
   // ================================
+  // Form Validator
+  // ================================
+  class FormValidator {
+    constructor() {
+      this.validators = {
+        email: {
+          pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+          message: '请输入有效的邮箱地址'
+        },
+        minlength: {
+          validate: (value, min) => value.length >= parseInt(min),
+          message: (min) => `至少需要 ${min} 个字符`
+        },
+        match: {
+          validate: (value, targetId) => {
+            const target = document.getElementById(targetId);
+            return target && value === target.value;
+          },
+          message: '两次输入不一致'
+        }
+      };
+      this.init();
+    }
+
+    init() {
+      // Listen for input events with debounce
+      document.addEventListener('input', (e) => {
+        const input = e.target;
+        if (input.matches('input[type="email"], input[data-validate], input[data-match]')) {
+          this.validateInput(input);
+        }
+      });
+
+      // Listen for blur events for immediate validation
+      document.addEventListener('focusout', (e) => {
+        const input = e.target;
+        if (input.matches('input[type="email"], input[data-validate], input[data-match]')) {
+          this.validateInput(input, true);
+        }
+      });
+    }
+
+    validateInput(input, showError = false) {
+      const value = input.value.trim();
+      const wrapper = input.closest('label.input, .input-wrapper');
+      const hintEl = this.getOrCreateHint(input);
+      
+      let isValid = true;
+      let errorMessage = '';
+
+      // Skip validation if empty and not required
+      if (!value && !input.hasAttribute('required')) {
+        this.clearValidation(input, wrapper, hintEl);
+        return true;
+      }
+
+      // Email validation
+      if (input.type === 'email' && value) {
+        if (!this.validators.email.pattern.test(value)) {
+          isValid = false;
+          errorMessage = this.validators.email.message;
+        }
+      }
+
+      // Minlength validation
+      const minlength = input.getAttribute('minlength');
+      if (minlength && value && value.length < parseInt(minlength)) {
+        isValid = false;
+        errorMessage = this.validators.minlength.message(minlength);
+      }
+
+      // Match validation (for password confirmation)
+      const matchTarget = input.getAttribute('data-match');
+      if (matchTarget && value) {
+        if (!this.validators.match.validate(value, matchTarget)) {
+          isValid = false;
+          errorMessage = this.validators.match.message;
+        }
+      }
+
+      // Apply validation state
+      if (value) {
+        this.applyValidationState(input, wrapper, hintEl, isValid, errorMessage, showError);
+      } else {
+        this.clearValidation(input, wrapper, hintEl);
+      }
+
+      return isValid;
+    }
+
+    getOrCreateHint(input) {
+      const fieldset = input.closest('fieldset');
+      let hint = fieldset?.querySelector('.validator-hint');
+      
+      if (!hint && fieldset) {
+        hint = document.createElement('p');
+        hint.className = 'validator-hint text-xs mt-1 transition-all duration-200';
+        const labelWrapper = fieldset.querySelector('label.input');
+        if (labelWrapper) {
+          labelWrapper.after(hint);
+        }
+      }
+      
+      return hint;
+    }
+
+    applyValidationState(input, wrapper, hintEl, isValid, errorMessage, showError) {
+      // Remove existing states
+      input.classList.remove('input-error', 'input-success');
+      wrapper?.classList.remove('input-error', 'input-success');
+
+      if (isValid) {
+        input.classList.add('input-success');
+        wrapper?.classList.add('input-success');
+        if (hintEl) {
+          hintEl.textContent = '';
+          hintEl.classList.remove('text-error', 'opacity-100');
+          hintEl.classList.add('opacity-0');
+        }
+      } else if (showError) {
+        input.classList.add('input-error');
+        wrapper?.classList.add('input-error');
+        if (hintEl) {
+          hintEl.textContent = errorMessage;
+          hintEl.classList.remove('opacity-0');
+          hintEl.classList.add('text-error', 'opacity-100');
+        }
+      }
+    }
+
+    clearValidation(input, wrapper, hintEl) {
+      input.classList.remove('input-error', 'input-success');
+      wrapper?.classList.remove('input-error', 'input-success');
+      if (hintEl) {
+        hintEl.textContent = '';
+        hintEl.classList.remove('text-error', 'opacity-100');
+        hintEl.classList.add('opacity-0');
+      }
+    }
+
+    // Validate entire form
+    validateForm(form) {
+      const inputs = form.querySelectorAll('input[type="email"], input[data-validate], input[data-match]');
+      let isFormValid = true;
+      
+      inputs.forEach(input => {
+        if (!this.validateInput(input, true)) {
+          isFormValid = false;
+        }
+      });
+      
+      return isFormValid;
+    }
+  }
+
+  // ================================
   // Initialize on DOM Ready
   // ================================
   function init() {
     window.CelestiaTheme = new ThemeController();
+    window.CelestiaValidator = new FormValidator();
     new NavbarController();
     new MobileMenuController();
     new PasswordToggle();
@@ -281,6 +438,7 @@
   // Expose for external use
   window.CelestiaUI = {
     theme: () => window.CelestiaTheme,
+    validator: () => window.CelestiaValidator,
     toast: (message, type) => window.CelestiaToast?.show(message, type),
     modal: {
       open: (id) => document.getElementById(id)?.showModal(),
