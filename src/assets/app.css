@@ -178,15 +178,15 @@ body {
   text-indent: 0;
 }
 
-/* Selection styling - violet tint */
+/* Selection styling - uses primary color */
 ::selection {
-  background: oklch(68% 0.22 280 / 0.3);
-  color: oklch(25% 0.04 280);
+  background: color-mix(in oklch, var(--color-primary) 30%, transparent);
+  color: var(--color-base-content);
 }
 
-/* Focus visible styling - improved visibility */
+/* Focus visible styling - uses primary color */
 :focus-visible {
-  outline: 2px solid oklch(60% 0.24 280 / 0.8);
+  outline: 2px solid color-mix(in oklch, var(--color-primary) 80%, transparent);
   outline-offset: 2px;
 }
 
@@ -222,6 +222,7 @@ body {
     oklch(15% 0.12 250) 75%,
     oklch(18% 0.10 350) 100%
   );
+  background-size: 400% 400%;
 }
 
 @keyframes gradient-flow {
@@ -244,28 +245,28 @@ body {
 /* Lighter glass for inputs */
 .glass-input {
   background: oklch(100% 0 0 / 0.5);
-  border: 1px solid oklch(50% 0.1 280 / 0.3);
+  border: 1px solid color-mix(in oklch, var(--color-primary) 30%, transparent);
   transition: all 0.2s ease;
-  color: oklch(20% 0.05 280);
+  color: var(--color-base-content);
 }
 
 .glass-input:focus {
   background: oklch(100% 0 0 / 0.75);
-  border-color: oklch(50% 0.22 280 / 0.6);
-  box-shadow: 0 0 0 3px oklch(50% 0.22 280 / 0.15);
+  border-color: color-mix(in oklch, var(--color-primary) 60%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--color-primary) 15%, transparent);
 }
 
 .glass-input::placeholder {
-  color: oklch(45% 0.05 280);
+  color: var(--color-base-content-secondary);
 }
 
 /* Glass input validation states */
 .glass-input.input-success {
-  border-color: oklch(65% 0.20 145 / 0.6);
+  border-color: color-mix(in oklch, var(--color-success) 60%, transparent);
 }
 
 .glass-input.input-error {
-  border-color: oklch(60% 0.22 25 / 0.6);
+  border-color: color-mix(in oklch, var(--color-error) 60%, transparent);
 }
 
 /* Validator hint */
@@ -315,31 +316,25 @@ body {
   letter-spacing: 0.02em;
 }
 
-/* ================================
-   Chat Bubble Custom Styling
-   Override DaisyUI default to work with 2rem radius theme
-   ================================ */
-
-/* Hide the default DaisyUI chat bubble tail */
+/* Hide default DaisyUI chat bubble tails for cleaner look with large radius */
 .chat-bubble-ai::before,
 .chat-bubble-user::before {
-  display: none !important;
+  display: none;
 }
 
-/* Base chat bubble styling */
-.chat .chat-bubble {
-  border-radius: 2rem;
+/* Override DaisyUI chat bubble radius to match our theme */
+.chat-bubble.chat-bubble-ai,
+.chat-bubble.chat-bubble-user {
+  border-radius: var(--radius-box);
 }
 
-/* AI chat bubble - left side, small notch on bottom-left near avatar */
+/* Add subtle notch for AI bubbles (left side) */
 .chat-start .chat-bubble.chat-bubble-ai {
-  border-radius: 2rem;
   border-bottom-left-radius: 0.25rem;
 }
 
-/* User chat bubble - right side, small notch on bottom-right */
+/* Add subtle notch for user bubbles (right side) */
 .chat-end .chat-bubble.chat-bubble-user {
-  border-radius: 2rem;
   border-bottom-right-radius: 0.25rem;
 }
 
@@ -347,14 +342,14 @@ body {
   background: oklch(100% 0 0 / 0.7);
   backdrop-filter: blur(12px);
   border: 1px solid oklch(100% 0 0 / 0.5);
-  color: oklch(25% 0.03 280);
+  color: var(--color-base-content);
 }
 
 .chat-bubble-user {
-  background: linear-gradient(135deg, oklch(58% 0.22 280), oklch(55% 0.20 300));
-  color: white;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: var(--color-primary-content);
   border: none;
-  box-shadow: 0 4px 16px oklch(58% 0.22 280 / 0.3);
+  box-shadow: 0 4px 16px color-mix(in oklch, var(--color-primary) 30%, transparent);
 }
 
 /* ================================
@@ -366,14 +361,14 @@ body {
 
 .card-hover:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px oklch(60% 0.15 280 / 0.15);
+  box-shadow: 0 20px 40px color-mix(in oklch, var(--color-primary) 15%, transparent);
 }
 
 /* ================================
    Avatar Ring Gradient
    ================================ */
 .avatar-ring-gradient {
-  background: linear-gradient(135deg, oklch(58% 0.22 280), oklch(68% 0.20 330));
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
   padding: 3px;
   border-radius: 50%;
 }
@@ -406,7 +401,7 @@ body {
 }
 
 .floating-orb-1 {
-  background: oklch(75% 0.15 330);
+  background: var(--color-secondary);
   width: 300px;
   height: 300px;
   top: -100px;
@@ -415,7 +410,7 @@ body {
 }
 
 .floating-orb-2 {
-  background: oklch(70% 0.15 280);
+  background: var(--color-primary);
   width: 400px;
   height: 400px;
   bottom: -150px;
@@ -424,7 +419,7 @@ body {
 }
 
 .floating-orb-3 {
-  background: oklch(75% 0.12 220);
+  background: var(--color-accent);
   width: 250px;
   height: 250px;
   top: 50%;
@@ -539,15 +534,25 @@ body {
 .input:focus,
 .select:focus,
 .textarea:focus {
-  border-color: oklch(58% 0.22 280 / 0.5);
-  box-shadow: 0 0 0 3px oklch(58% 0.22 280 / 0.1);
+  border-color: color-mix(in oklch, var(--color-primary) 50%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--color-primary) 10%, transparent);
+}
+
+/* Fix checkbox radius - should be square, not round */
+.checkbox {
+  border-radius: 0.25rem;
+}
+
+/* Fix toggle radius - keep it round */
+.toggle {
+  border-radius: 9999px;
 }
 
 /* ================================
    Dark Mode Adjustments via data-theme
    ================================ */
 [data-theme="celestia-dark"] .glass-panel {
-  background: oklch(20% 0.02 280 / 0.6);
+  background: color-mix(in oklch, var(--color-base-200) 60%, transparent);
   border-color: oklch(100% 0 0 / 0.1);
   box-shadow: 
     0 8px 32px oklch(0% 0 0 / 0.3),
@@ -555,34 +560,34 @@ body {
 }
 
 [data-theme="celestia-dark"] .glass-input {
-  background: oklch(25% 0.02 280 / 0.5);
+  background: color-mix(in oklch, var(--color-base-300) 50%, transparent);
   border-color: oklch(100% 0 0 / 0.15);
-  color: oklch(92% 0.02 280);
+  color: var(--color-base-content);
 }
 
 [data-theme="celestia-dark"] .glass-input::placeholder {
-  color: oklch(60% 0.03 280);
+  color: var(--color-base-content-secondary);
 }
 
 [data-theme="celestia-dark"] .glass-input:focus {
-  background: oklch(28% 0.02 280 / 0.7);
+  background: color-mix(in oklch, var(--color-base-300) 70%, transparent);
 }
 
 /* Fix select dropdown in dark mode */
 [data-theme="celestia-dark"] .select {
-  background-color: oklch(22% 0.03 280);
-  color: oklch(92% 0.02 280);
+  background-color: var(--color-base-200);
+  color: var(--color-base-content);
 }
 
 [data-theme="celestia-dark"] .select option {
-  background-color: oklch(22% 0.03 280);
-  color: oklch(92% 0.02 280);
+  background-color: var(--color-base-200);
+  color: var(--color-base-content);
 }
 
 [data-theme="celestia-dark"] .chat-bubble-ai {
-  background: oklch(25% 0.02 280 / 0.85);
+  background: color-mix(in oklch, var(--color-base-300) 85%, transparent);
   border-color: oklch(100% 0 0 / 0.1);
-  color: oklch(92% 0.02 280);
+  color: var(--color-base-content);
 }
 
 [data-theme="celestia-dark"] .floating-orb {
@@ -590,29 +595,10 @@ body {
 }
 
 /* ================================
-   Chat Sidebar Tabs - Full Width
-   ================================ */
-.chat-sidebar .tabs-box {
-  width: 100%;
-  display: flex;
-}
-
-/* Active tab styling - enhanced for glass effect */
-.chat-sidebar .tabs-box .tab:checked,
-.chat-sidebar .tabs-box .tab[aria-selected="true"] {
-  background: oklch(100% 0 0 / 0.6);
-}
-
-[data-theme="celestia-dark"] .chat-sidebar .tabs-box .tab:checked,
-[data-theme="celestia-dark"] .chat-sidebar .tabs-box .tab[aria-selected="true"] {
-  background: oklch(100% 0 0 / 0.15);
-}
-
-/* ================================
    Chat Sidebar Styles
    ================================ */
 .chat-sidebar {
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
 }
 
 /* Left sidebar - slides from left */
@@ -621,6 +607,7 @@ body {
   transform: translateX(-100%);
   opacity: 0;
   pointer-events: none;
+  visibility: hidden;
 }
 
 /* Right sidebar - slides from right */
@@ -629,21 +616,26 @@ body {
   transform: translateX(100%);
   opacity: 0;
   pointer-events: none;
+  visibility: hidden;
 }
 
 /* Mobile: hide sidebars completely when not visible to prevent flex space occupation */
 @media (max-width: 1023px) {
   .chat-sidebar-left {
     display: none;
+    visibility: hidden;
   }
   
   .chat-sidebar-left[data-visible="true"] {
     display: flex;
+    visibility: visible;
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     z-index: 40;
+    padding: 1rem;
+    padding-top: 5rem; /* Account for top bar */
     transform: translateX(0);
     opacity: 1;
     pointer-events: auto;
@@ -653,15 +645,19 @@ body {
 @media (max-width: 1279px) {
   .chat-sidebar-right {
     display: none;
+    visibility: hidden;
   }
   
   .chat-sidebar-right[data-visible="true"] {
     display: flex;
+    visibility: visible;
     position: fixed;
     top: 0;
     bottom: 0;
     right: 0;
     z-index: 40;
+    padding: 1rem;
+    padding-top: 5rem; /* Account for top bar */
     transform: translateX(0);
     opacity: 1;
     pointer-events: auto;
@@ -672,24 +668,28 @@ body {
 @media (min-width: 1024px) {
   .chat-sidebar-left {
     display: flex;
+    visibility: visible;
   }
   
   .chat-sidebar-left[data-visible="auto"] {
     transform: translateX(0);
     opacity: 1;
     pointer-events: auto;
+    visibility: visible;
   }
 }
 
 @media (min-width: 1280px) {
   .chat-sidebar-right {
     display: flex;
+    visibility: visible;
   }
   
   .chat-sidebar-right[data-visible="auto"] {
     transform: translateX(0);
     opacity: 1;
     pointer-events: auto;
+    visibility: visible;
   }
 }
 
@@ -698,12 +698,14 @@ body {
   transform: translateX(0);
   opacity: 1;
   pointer-events: auto;
+  visibility: visible;
 }
 
 .chat-sidebar-right[data-visible="true"] {
   transform: translateX(0);
   opacity: 1;
   pointer-events: auto;
+  visibility: visible;
 }
 
 /* Explicit hide */
@@ -711,12 +713,14 @@ body {
   transform: translateX(-100%);
   opacity: 0;
   pointer-events: none;
+  visibility: hidden;
 }
 
 .chat-sidebar-right[data-visible="false"] {
   transform: translateX(100%);
   opacity: 0;
   pointer-events: none;
+  visibility: hidden;
 }
 
 /* ================================
