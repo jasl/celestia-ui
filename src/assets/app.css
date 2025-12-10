@@ -493,16 +493,16 @@ body {
 /* ================================
    Mobile Menu (Stimulus targets)
    ================================ */
-[data-mobile-menu-target="overlay"] {
+[data-celestia-ui--mobile-menu-target="overlay"] {
   pointer-events: none;
 }
 
-[data-mobile-menu-target="overlay"].open {
+[data-celestia-ui--mobile-menu-target="overlay"].open {
   pointer-events: auto !important;
   opacity: 1 !important;
 }
 
-[data-mobile-menu-target="menu"].open {
+[data-celestia-ui--mobile-menu-target="menu"].open {
   /* Tailwind CSS 4 uses native translate property instead of transform */
   translate: 0 0 !important;
   opacity: 1 !important;

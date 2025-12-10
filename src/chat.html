@@ -36,7 +36,7 @@
   </div>
 
   <!-- Main Layout -->
-  <div class="h-screen flex flex-col" data-controller="chat-panel chat-panel-right" data-chat-panel-breakpoint-value="1024" data-chat-panel-right-breakpoint-value="1280">
+  <div class="h-screen flex flex-col" data-controller="celestia-ui--chat-panel celestia-ui--chat-panel-right" data-celestia-ui--chat-panel-breakpoint-value="1024" data-celestia-ui--chat-panel-right-breakpoint-value="1280">
     
     <!-- Top Bar -->
     <header class="flex-shrink-0 px-4 py-3 relative z-50">
@@ -52,7 +52,7 @@
           </a>
           
           <!-- Toggle Left Panel (hidden on desktop when sidebar is always visible) -->
-          <button class="btn btn-ghost btn-sm btn-circle lg:hidden" data-action="click->chat-panel#toggle" title="角色/场景面板">
+          <button class="btn btn-ghost btn-sm btn-circle lg:hidden" data-action="click->celestia-ui--chat-panel#toggle" title="角色/场景面板">
             <span class="iconify lucide--sidebar size-5"></span>
           </button>
         </div>
@@ -75,14 +75,14 @@
         <!-- Right -->
         <div class="flex items-center gap-2">
           <!-- Toggle Right Panel (hidden on desktop when sidebar is always visible) -->
-          <button class="btn btn-ghost btn-sm btn-circle xl:hidden" data-action="click->chat-panel-right#toggle" title="参数设置">
+          <button class="btn btn-ghost btn-sm btn-circle xl:hidden" data-action="click->celestia-ui--chat-panel-right#toggle" title="参数设置">
             <span class="iconify lucide--sliders size-5"></span>
           </button>
           
           <!-- Theme Toggle -->
-          <button class="btn btn-ghost btn-sm btn-circle" data-controller="theme" data-action="click->theme#toggle" title="切换主题">
-            <span class="iconify lucide--sun size-5 hidden" data-theme-target="sunIcon"></span>
-            <span class="iconify lucide--moon size-5" data-theme-target="moonIcon"></span>
+          <button class="btn btn-ghost btn-sm btn-circle" data-controller="celestia-ui--theme" data-action="click->celestia-ui--theme#toggle" title="切换主题">
+            <span class="iconify lucide--sun size-5 hidden" data-celestia-ui--theme-target="sunIcon"></span>
+            <span class="iconify lucide--moon size-5" data-celestia-ui--theme-target="moonIcon"></span>
           </button>
           
           <!-- User Menu -->
@@ -105,7 +105,7 @@
     <div class="flex-1 flex overflow-hidden px-4 pb-4 gap-4">
       
       <!-- Left Sidebar - Characters/Scenes -->
-      <aside id="left-panel" class="chat-sidebar chat-sidebar-left w-72 flex-shrink-0 flex-col" data-visible="auto" data-chat-panel-target="panel">
+      <aside id="left-panel" class="chat-sidebar chat-sidebar-left w-72 flex-shrink-0 flex-col" data-visible="auto" data-celestia-ui--chat-panel-target="panel">
         <div class="glass-panel rounded-[2rem] h-full flex flex-col overflow-hidden">
           <!-- Tabs -->
           <div class="tabs tabs-box p-2 gap-1 bg-transparent w-full">
@@ -521,34 +521,34 @@
           <div class="flex-shrink-0 p-4 border-t border-base-300/30">
             
             <!-- Quick Replies -->
-            <div class="mb-3" data-controller="quick-replies" data-quick-replies-collapsed-height-value="32">
+            <div class="mb-3" data-controller="celestia-ui--quick-replies" data-celestia-ui--quick-replies-collapsed-height-value="32">
               <div class="flex items-center gap-2">
                 <!-- Quick Reply Buttons Wrapper -->
                 <div 
-                  data-quick-replies-target="wrapper"
+                  data-celestia-ui--quick-replies-target="wrapper"
                   class="flex-1 overflow-hidden transition-all duration-300"
                   style="max-height: 32px;"
                 >
-                  <div data-quick-replies-target="list" class="flex flex-wrap gap-2">
-                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors" data-action="click->quick-replies#select">
+                  <div data-celestia-ui--quick-replies-target="list" class="flex flex-wrap gap-2">
+                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors" data-action="click->celestia-ui--quick-replies#select">
                       我选择契约之路
                     </button>
-                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors" data-action="click->quick-replies#select">
+                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors" data-action="click->celestia-ui--quick-replies#select">
                       我选择支配之路
                     </button>
-                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors" data-action="click->quick-replies#select">
+                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors" data-action="click->celestia-ui--quick-replies#select">
                       能详细说明两条路的区别吗？
                     </button>
-                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors" data-action="click->quick-replies#select">
+                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors" data-action="click->celestia-ui--quick-replies#select">
                       我需要更多时间考虑
                     </button>
-                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors" data-action="click->quick-replies#select">
+                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors" data-action="click->celestia-ui--quick-replies#select">
                       您当初选择了哪条路？
                     </button>
-                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors" data-action="click->quick-replies#select">
+                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors" data-action="click->celestia-ui--quick-replies#select">
                       两条路可以切换吗？
                     </button>
-                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors" data-action="click->quick-replies#select">
+                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors" data-action="click->celestia-ui--quick-replies#select">
                       选择后会有什么影响？
                     </button>
                   </div>
@@ -556,12 +556,12 @@
                 
                 <!-- Expand/Collapse Toggle -->
                 <button 
-                  data-quick-replies-target="toggle"
+                  data-celestia-ui--quick-replies-target="toggle"
                   class="btn btn-ghost btn-xs btn-circle flex-shrink-0 text-base-content/50 hover:text-primary hidden"
                   title="展开/收起"
-                  data-action="click->quick-replies#toggle"
+                  data-action="click->celestia-ui--quick-replies#toggle"
                 >
-                  <span class="iconify lucide--chevron-up size-4 transition-transform duration-300" data-quick-replies-target="icon"></span>
+                  <span class="iconify lucide--chevron-up size-4 transition-transform duration-300" data-celestia-ui--quick-replies-target="icon"></span>
                 </button>
               </div>
             </div>
@@ -573,13 +573,13 @@
               </button>
               
               <!-- Input -->
-              <div class="flex-1 relative" data-controller="textarea-autoresize" data-textarea-autoresize-max-height-value="150">
+              <div class="flex-1 relative" data-controller="celestia-ui--textarea-autoresize" data-celestia-ui--textarea-autoresize-max-height-value="150">
                 <textarea 
                   class="textarea glass-input w-full rounded-xl pr-12 resize-none" 
                   placeholder="输入你的回应..."
                   rows="2"
                   style="min-height: 60px; max-height: 150px;"
-                  data-action="input->textarea-autoresize#resize keydown->textarea-autoresize#handleKeydown"
+                  data-action="input->celestia-ui--textarea-autoresize#resize keydown->celestia-ui--textarea-autoresize#handleKeydown"
                   id="chat-textarea"
                 ></textarea>
                 
@@ -609,7 +609,7 @@
       </main>
       
       <!-- Right Sidebar - Settings -->
-      <aside id="right-panel" class="chat-sidebar chat-sidebar-right w-72 flex-shrink-0 flex-col" data-visible="auto" data-chat-panel-right-target="panel">
+      <aside id="right-panel" class="chat-sidebar chat-sidebar-right w-72 flex-shrink-0 flex-col" data-visible="auto" data-celestia-ui--chat-panel-right-target="panel">
         <div class="glass-panel rounded-[2rem] h-full flex flex-col overflow-hidden">
           <div class="p-4 border-b border-base-300/30">
             <h2 class="font-semibold text-base-content flex items-center gap-2">
@@ -631,12 +631,12 @@
             </fieldset>
             
             <!-- Temperature -->
-            <fieldset class="fieldset" data-controller="range-display">
+            <fieldset class="fieldset" data-controller="celestia-ui--range-display">
               <legend class="fieldset-legend text-sm font-medium flex items-center justify-between">
                 <span>Temperature</span>
-                <span class="text-primary font-mono" data-range-display-target="display">0.8</span>
+                <span class="text-primary font-mono" data-celestia-ui--range-display-target="display">0.8</span>
               </legend>
-              <input type="range" min="0" max="2" step="0.1" value="0.8" class="range range-primary range-sm" data-range-display-target="input" data-action="input->range-display#update">
+              <input type="range" min="0" max="2" step="0.1" value="0.8" class="range range-primary range-sm" data-celestia-ui--range-display-target="input" data-action="input->celestia-ui--range-display#update">
               <div class="flex justify-between text-xs text-base-content/50 mt-1">
                 <span>精确</span>
                 <span>创意</span>
@@ -644,39 +644,39 @@
             </fieldset>
             
             <!-- Max Tokens -->
-            <fieldset class="fieldset" data-controller="range-display">
+            <fieldset class="fieldset" data-controller="celestia-ui--range-display">
               <legend class="fieldset-legend text-sm font-medium flex items-center justify-between">
                 <span>Max Tokens</span>
-                <span class="text-primary font-mono" data-range-display-target="display">2048</span>
+                <span class="text-primary font-mono" data-celestia-ui--range-display-target="display">2048</span>
               </legend>
-              <input type="range" min="256" max="4096" step="256" value="2048" class="range range-secondary range-sm" data-range-display-target="input" data-action="input->range-display#update">
+              <input type="range" min="256" max="4096" step="256" value="2048" class="range range-secondary range-sm" data-celestia-ui--range-display-target="input" data-action="input->celestia-ui--range-display#update">
             </fieldset>
             
             <!-- Top P -->
-            <fieldset class="fieldset" data-controller="range-display">
+            <fieldset class="fieldset" data-controller="celestia-ui--range-display">
               <legend class="fieldset-legend text-sm font-medium flex items-center justify-between">
                 <span>Top P</span>
-                <span class="text-primary font-mono" data-range-display-target="display">0.95</span>
+                <span class="text-primary font-mono" data-celestia-ui--range-display-target="display">0.95</span>
               </legend>
-              <input type="range" min="0" max="1" step="0.05" value="0.95" class="range range-accent range-sm" data-range-display-target="input" data-action="input->range-display#update">
+              <input type="range" min="0" max="1" step="0.05" value="0.95" class="range range-accent range-sm" data-celestia-ui--range-display-target="input" data-action="input->celestia-ui--range-display#update">
             </fieldset>
             
             <!-- Presence Penalty -->
-            <fieldset class="fieldset" data-controller="range-display">
+            <fieldset class="fieldset" data-controller="celestia-ui--range-display">
               <legend class="fieldset-legend text-sm font-medium flex items-center justify-between">
                 <span>Presence Penalty</span>
-                <span class="text-primary font-mono" data-range-display-target="display">0.0</span>
+                <span class="text-primary font-mono" data-celestia-ui--range-display-target="display">0.0</span>
               </legend>
-              <input type="range" min="-2" max="2" step="0.1" value="0" class="range range-info range-sm" data-range-display-target="input" data-action="input->range-display#update">
+              <input type="range" min="-2" max="2" step="0.1" value="0" class="range range-info range-sm" data-celestia-ui--range-display-target="input" data-action="input->celestia-ui--range-display#update">
             </fieldset>
             
             <!-- Frequency Penalty -->
-            <fieldset class="fieldset" data-controller="range-display">
+            <fieldset class="fieldset" data-controller="celestia-ui--range-display">
               <legend class="fieldset-legend text-sm font-medium flex items-center justify-between">
                 <span>Frequency Penalty</span>
-                <span class="text-primary font-mono" data-range-display-target="display">0.0</span>
+                <span class="text-primary font-mono" data-celestia-ui--range-display-target="display">0.0</span>
               </legend>
-              <input type="range" min="-2" max="2" step="0.1" value="0" class="range range-info range-sm" data-range-display-target="input" data-action="input->range-display#update">
+              <input type="range" min="-2" max="2" step="0.1" value="0" class="range range-info range-sm" data-celestia-ui--range-display-target="input" data-action="input->celestia-ui--range-display#update">
             </fieldset>
             
 <div class="divider"></div>
@@ -710,14 +710,14 @@
     </div>
 
     <!-- Mobile Panel Overlay -->
-    <div id="panel-overlay" class="fixed inset-0 bg-black/40 z-30 hidden lg:hidden" data-chat-panel-target="overlay" data-chat-panel-right-target="overlay" data-action="click->chat-panel#close click->chat-panel-right#close"></div>
+    <div id="panel-overlay" class="fixed inset-0 bg-black/40 z-30 hidden lg:hidden" data-celestia-ui--chat-panel-target="overlay" data-celestia-ui--chat-panel-right-target="overlay" data-action="click->celestia-ui--chat-panel#close click->celestia-ui--chat-panel-right#close"></div>
   </div>
 
   <!-- Toast Container -->
-  <div data-controller="toast"></div>
+  <div data-controller="celestia-ui--toast"></div>
 
   <!-- Modal Container -->
-  <div data-controller="modal"></div>
+  <div data-controller="celestia-ui--modal"></div>
 
   <!-- Scripts -->
   <script type="module" src="./js/application.js"></script>

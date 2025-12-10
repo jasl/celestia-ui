@@ -51,9 +51,9 @@
       </div>
       
       <div class="flex items-center gap-2">
-        <button class="btn btn-ghost btn-sm btn-circle" data-controller="theme" data-action="click->theme#toggle">
-          <span class="iconify lucide--sun size-5 hidden" data-theme-target="sunIcon"></span>
-          <span class="iconify lucide--moon size-5" data-theme-target="moonIcon"></span>
+        <button class="btn btn-ghost btn-sm btn-circle" data-controller="celestia-ui--theme" data-action="click->celestia-ui--theme#toggle">
+          <span class="iconify lucide--sun size-5 hidden" data-celestia-ui--theme-target="sunIcon"></span>
+          <span class="iconify lucide--moon size-5" data-celestia-ui--theme-target="moonIcon"></span>
         </button>
         <a href="./chat.html" class="btn btn-primary btn-sm rounded-full">
           开始聊天
@@ -231,7 +231,7 @@
   </main>
 
   <!-- Delete Account Modal -->
-  <dialog id="delete-account-modal" class="modal" data-controller="modal">
+  <dialog id="delete-account-modal" class="modal" data-controller="celestia-ui--modal">
     <div class="modal-box glass-panel rounded-ios">
       <h3 class="text-lg font-bold">删除账号</h3>
       <p class="py-4">确定要删除你的账号吗？此操作不可撤销。</p>
@@ -246,7 +246,7 @@
   </dialog>
 
   <!-- Toast Container -->
-  <div data-controller="toast"></div>
+  <div data-controller="celestia-ui--toast"></div>
 
   <script type="module" src="./js/application.js"></script>
 </body>

@@ -35,9 +35,9 @@
   </div>
 
   <!-- Theme Toggle (floating) -->
-  <button class="fixed top-4 right-4 btn btn-ghost btn-sm btn-circle glass-panel" data-controller="theme" data-action="click->theme#toggle" aria-label="切换主题">
-    <span class="iconify lucide--sun size-5 hidden" data-theme-target="sunIcon"></span>
-    <span class="iconify lucide--moon size-5" data-theme-target="moonIcon"></span>
+  <button class="fixed top-4 right-4 btn btn-ghost btn-sm btn-circle glass-panel" data-controller="celestia-ui--theme" data-action="click->celestia-ui--theme#toggle" aria-label="切换主题">
+    <span class="iconify lucide--sun size-5 hidden" data-celestia-ui--theme-target="sunIcon"></span>
+    <span class="iconify lucide--moon size-5" data-celestia-ui--theme-target="moonIcon"></span>
   </button>
 
   <div class="w-full max-w-md">
@@ -73,14 +73,14 @@
           </fieldset>
           
           <!-- Password -->
-          <fieldset class="fieldset" data-controller="password-toggle">
+          <fieldset class="fieldset" data-controller="celestia-ui--password-toggle">
             <legend class="fieldset-legend text-sm font-medium text-base-content/80">密码</legend>
             <label class="input w-full glass-input rounded-xl">
               <span class="iconify lucide--lock size-5 text-base-content/50"></span>
-              <input type="password" id="password" placeholder="••••••••" required autocomplete="current-password" data-password-toggle-target="input">
-              <button type="button" class="btn btn-ghost btn-xs btn-circle" data-action="click->password-toggle#toggle" aria-label="显示密码">
-                <span class="iconify lucide--eye size-4 text-base-content/50" data-password-toggle-target="showIcon"></span>
-                <span class="iconify lucide--eye-off size-4 text-base-content/50 hidden" data-password-toggle-target="hideIcon"></span>
+              <input type="password" id="password" placeholder="••••••••" required autocomplete="current-password" data-celestia-ui--password-toggle-target="input">
+              <button type="button" class="btn btn-ghost btn-xs btn-circle" data-action="click->celestia-ui--password-toggle#toggle" aria-label="显示密码">
+                <span class="iconify lucide--eye size-4 text-base-content/50" data-celestia-ui--password-toggle-target="showIcon"></span>
+                <span class="iconify lucide--eye-off size-4 text-base-content/50 hidden" data-celestia-ui--password-toggle-target="hideIcon"></span>
               </button>
             </label>
           </fieldset>
@@ -134,7 +134,7 @@
   </div>
 
   <!-- Toast Container -->
-  <div data-controller="toast"></div>
+  <div data-controller="celestia-ui--toast"></div>
 
   <script type="module" src="./js/application.js"></script>
 </body>

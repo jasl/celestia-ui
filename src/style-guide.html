@@ -52,9 +52,9 @@
       </div>
       
       <div class="flex items-center gap-2">
-        <button class="btn btn-ghost btn-sm btn-circle" data-controller="theme" data-action="click->theme#toggle">
-          <span class="iconify lucide--sun size-5 hidden" data-theme-target="sunIcon"></span>
-          <span class="iconify lucide--moon size-5" data-theme-target="moonIcon"></span>
+        <button class="btn btn-ghost btn-sm btn-circle" data-controller="celestia-ui--theme" data-action="click->celestia-ui--theme#toggle">
+          <span class="iconify lucide--sun size-5 hidden" data-celestia-ui--theme-target="sunIcon"></span>
+          <span class="iconify lucide--moon size-5" data-celestia-ui--theme-target="moonIcon"></span>
         </button>
       </div>
     </div>
@@ -763,7 +763,7 @@
   </main>
 
   <!-- Toast Container -->
-  <div data-controller="toast"></div>
+  <div data-controller="celestia-ui--toast"></div>
 
   <script type="module" src="./js/application.js"></script>
 </body>

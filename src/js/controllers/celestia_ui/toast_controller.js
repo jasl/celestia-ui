@@ -42,7 +42,7 @@ export default class extends Controller {
       this.container.className = `toast ${this.positionValue} z-[9999]`
       this.container.setAttribute('role', 'alert')
       this.container.setAttribute('aria-live', 'polite')
-      this.container.setAttribute('data-toast-target', 'container')
+      this.container.setAttribute('data-celestia-ui--toast-target', 'container')
       document.body.appendChild(this.container)
     } else {
       this.container = this.containerTarget
@@ -58,7 +58,7 @@ export default class extends Controller {
     toast.innerHTML = `
       <span class="iconify ${config.icon} size-5 shrink-0"></span>
       <span class="flex-1">${this.escapeHtml(message)}</span>
-      <button class="btn btn-ghost btn-xs btn-circle" aria-label="Close" data-action="click->toast#dismissToast">
+      <button class="btn btn-ghost btn-xs btn-circle" aria-label="Close" data-action="click->celestia-ui--toast#dismissToast">
         <span class="iconify lucide--x size-4"></span>
       </button>
     `

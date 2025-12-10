@@ -79,12 +79,12 @@ export default class extends Controller {
     const isDark = effectiveTheme === this.darkThemeValue
 
     // Update all theme toggle buttons in the document
-    document.querySelectorAll('[data-theme-target="sunIcon"]').forEach(icon => {
+    document.querySelectorAll('[data-celestia-ui--theme-target="sunIcon"]').forEach(icon => {
       icon.classList.toggle('hidden', !isDark)
       icon.classList.toggle('block', isDark)
     })
 
-    document.querySelectorAll('[data-theme-target="moonIcon"]').forEach(icon => {
+    document.querySelectorAll('[data-celestia-ui--theme-target="moonIcon"]').forEach(icon => {
       icon.classList.toggle('hidden', isDark)
       icon.classList.toggle('block', !isDark)
     })
