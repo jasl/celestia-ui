@@ -69,11 +69,10 @@
             <label class="input w-full glass-input rounded-xl">
               <span class="iconify lucide--lock size-5 text-base-content/50"></span>
               <input type="password" id="password" placeholder="••••••••" required autocomplete="current-password">
-              <label class="swap btn btn-ghost btn-xs btn-circle">
-                <input type="checkbox" data-password-toggle="password" aria-label="显示密码">
-                <span class="iconify lucide--eye swap-off size-4 text-base-content/50"></span>
-                <span class="iconify lucide--eye-off swap-on size-4 text-base-content/50"></span>
-              </label>
+              <button type="button" class="btn btn-ghost btn-xs btn-circle" data-password-toggle="password" aria-label="显示密码">
+                <span class="iconify lucide--eye size-4 text-base-content/50" data-show-icon></span>
+                <span class="iconify lucide--eye-off size-4 text-base-content/50 hidden" data-hide-icon></span>
+              </button>
             </label>
           </fieldset>
           

@@ -499,10 +499,26 @@ body {
 [data-theme="celestia-dark"] .glass-input {
   background: oklch(25% 0.02 280 / 0.5);
   border-color: oklch(100% 0 0 / 0.15);
+  color: oklch(92% 0.02 280);
+}
+
+[data-theme="celestia-dark"] .glass-input::placeholder {
+  color: oklch(60% 0.03 280);
 }
 
 [data-theme="celestia-dark"] .glass-input:focus {
   background: oklch(28% 0.02 280 / 0.7);
+}
+
+/* Fix select dropdown in dark mode */
+[data-theme="celestia-dark"] .select {
+  background-color: oklch(22% 0.03 280);
+  color: oklch(92% 0.02 280);
+}
+
+[data-theme="celestia-dark"] .select option {
+  background-color: oklch(22% 0.03 280);
+  color: oklch(92% 0.02 280);
 }
 
 [data-theme="celestia-dark"] .chat-bubble-ai {
@@ -538,8 +554,49 @@ body {
   pointer-events: none;
 }
 
-/* Auto mode: responsive behavior */
+/* Mobile: hide sidebars completely when not visible to prevent flex space occupation */
+@media (max-width: 1023px) {
+  .chat-sidebar-left {
+    display: none;
+  }
+  
+  .chat-sidebar-left[data-visible="true"] {
+    display: flex;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 40;
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@media (max-width: 1279px) {
+  .chat-sidebar-right {
+    display: none;
+  }
+  
+  .chat-sidebar-right[data-visible="true"] {
+    display: flex;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 40;
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* Auto mode: responsive behavior - show on large screens */
 @media (min-width: 1024px) {
+  .chat-sidebar-left {
+    display: flex;
+  }
+  
   .chat-sidebar-left[data-visible="auto"] {
     transform: translateX(0);
     opacity: 1;
@@ -548,6 +605,10 @@ body {
 }
 
 @media (min-width: 1280px) {
+  .chat-sidebar-right {
+    display: flex;
+  }
+  
   .chat-sidebar-right[data-visible="auto"] {
     transform: translateX(0);
     opacity: 1;
@@ -579,27 +640,6 @@ body {
   transform: translateX(100%);
   opacity: 0;
   pointer-events: none;
-}
-
-/* Mobile positioning - fixed overlay */
-@media (max-width: 1023px) {
-  .chat-sidebar-left[data-visible="true"] {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 40;
-  }
-}
-
-@media (max-width: 1279px) {
-  .chat-sidebar-right[data-visible="true"] {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 40;
-  }
 }
 
 /* ================================

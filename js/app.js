@@ -217,13 +217,22 @@
     }
 
     init() {
-      document.addEventListener('change', (e) => {
-        const toggle = e.target.closest('[data-password-toggle]');
+      document.addEventListener('click', (e) => {
+        const toggle = e.target.closest('button[data-password-toggle]');
         if (toggle) {
           const targetId = toggle.getAttribute('data-password-toggle');
           const input = document.getElementById(targetId);
           if (input) {
-            input.type = toggle.checked ? 'text' : 'password';
+            const isPassword = input.type === 'password';
+            input.type = isPassword ? 'text' : 'password';
+            
+            // Toggle icon visibility
+            const showIcon = toggle.querySelector('[data-show-icon]');
+            const hideIcon = toggle.querySelector('[data-hide-icon]');
+            if (showIcon && hideIcon) {
+              showIcon.classList.toggle('hidden', isPassword);
+              hideIcon.classList.toggle('hidden', !isPassword);
+            }
           }
         }
       });
