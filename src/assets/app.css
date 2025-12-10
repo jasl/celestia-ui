@@ -483,22 +483,18 @@ body {
 }
 
 /* ================================
-   Mobile Menu
+   Mobile Menu (Stimulus targets)
    ================================ */
-[data-mobile-menu].open {
-  pointer-events: auto !important;
-}
-
-[data-mobile-menu-overlay] {
+[data-mobile-menu-target="overlay"] {
   pointer-events: none;
 }
 
-[data-mobile-menu-overlay].open {
+[data-mobile-menu-target="overlay"].open {
   pointer-events: auto !important;
   opacity: 1 !important;
 }
 
-[data-mobile-menu].open > div:last-child {
+[data-mobile-menu-target="menu"].open {
   /* Tailwind CSS 4 uses native translate property instead of transform */
   translate: 0 0 !important;
   opacity: 1 !important;

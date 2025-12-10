@@ -40,59 +40,61 @@
   </div>
 
   <!-- ================================ -->
-  <!-- Navbar -->
+  <!-- Navbar & Mobile Menu (wrapped for Stimulus controller scope) -->
   <!-- ================================ -->
-  <nav class="fixed top-0 left-0 right-0 z-50 px-4 py-4" data-controller="navbar" data-at-top="true">
-    <div class="glass-panel rounded-full px-4 md:px-6 py-3 flex justify-between items-center max-w-6xl mx-auto relative">
-      <!-- Logo -->
-      <a href="/" class="flex items-center gap-2 group">
-        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all">
-          <span class="iconify lucide--sparkles size-5"></span>
-        </div>
-        <span class="font-bold text-xl tracking-tight text-base-content hidden sm:inline">Celestia</span>
-      </a>
-      
-      <!-- Desktop Menu (absolute centered) -->
-      <div class="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
-        <a href="/" class="btn btn-ghost btn-sm rounded-full">首页</a>
-        <a href="./blog-list.html" class="btn btn-ghost btn-sm rounded-full">博客</a>
-        <a href="./chat.html" class="btn btn-ghost btn-sm rounded-full">开始对话</a>
-      </div>
-      
-      <!-- Actions -->
-      <div class="flex items-center gap-2">
-        <!-- Theme Toggle: Sun=切换到亮色, Moon=切换到暗色 -->
-        <button class="btn btn-ghost btn-sm btn-circle" data-controller="theme" data-action="click->theme#toggle" aria-label="切换主题">
-          <span class="iconify lucide--sun size-5 hidden" data-theme-target="sunIcon"></span>
-          <span class="iconify lucide--moon size-5" data-theme-target="moonIcon"></span>
-        </button>
-        
-        <a href="./auth-login.html" class="btn btn-ghost btn-sm rounded-full hidden sm:inline-flex">登录</a>
-        <a href="./chat.html" class="btn btn-primary btn-sm rounded-full shadow-lg px-5">
-          启动
-          <span class="iconify lucide--arrow-right size-4"></span>
+  <div data-controller="mobile-menu">
+    <nav class="fixed top-0 left-0 right-0 z-50 px-4 py-4" data-controller="navbar" data-at-top="true">
+      <div class="glass-panel rounded-full px-4 md:px-6 py-3 flex justify-between items-center max-w-6xl mx-auto relative">
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-2 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all">
+            <span class="iconify lucide--sparkles size-5"></span>
+          </div>
+          <span class="font-bold text-xl tracking-tight text-base-content hidden sm:inline">Celestia</span>
         </a>
         
-        <!-- Mobile Menu Toggle -->
-        <button class="btn btn-ghost btn-sm btn-square md:hidden" data-action="click->mobile-menu#toggle" aria-label="菜单">
-          <span class="iconify lucide--menu size-5"></span>
-        </button>
+        <!-- Desktop Menu (absolute centered) -->
+        <div class="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
+          <a href="/" class="btn btn-ghost btn-sm rounded-full">首页</a>
+          <a href="./blog-list.html" class="btn btn-ghost btn-sm rounded-full">博客</a>
+          <a href="./chat.html" class="btn btn-ghost btn-sm rounded-full">开始对话</a>
+        </div>
+        
+        <!-- Actions -->
+        <div class="flex items-center gap-2">
+          <!-- Theme Toggle: Sun=切换到亮色, Moon=切换到暗色 -->
+          <button class="btn btn-ghost btn-sm btn-circle" data-controller="theme" data-action="click->theme#toggle" aria-label="切换主题">
+            <span class="iconify lucide--sun size-5 hidden" data-theme-target="sunIcon"></span>
+            <span class="iconify lucide--moon size-5" data-theme-target="moonIcon"></span>
+          </button>
+          
+          <a href="./auth-login.html" class="btn btn-ghost btn-sm rounded-full hidden sm:inline-flex">登录</a>
+          <a href="./chat.html" class="btn btn-primary btn-sm rounded-full shadow-lg px-5">
+            启动
+            <span class="iconify lucide--arrow-right size-4"></span>
+          </a>
+          
+          <!-- Mobile Menu Toggle -->
+          <button class="btn btn-ghost btn-sm btn-square md:hidden" data-action="click->mobile-menu#toggle" aria-label="菜单">
+            <span class="iconify lucide--menu size-5"></span>
+          </button>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
-  <!-- Mobile Menu Drawer -->
-  <div class="fixed inset-0 z-40 pointer-events-none md:hidden" data-controller="mobile-menu">
-    <div class="absolute inset-0 bg-black/50 opacity-0 transition-opacity pointer-events-none" data-mobile-menu-target="overlay" data-action="click->mobile-menu#close"></div>
-    <div class="absolute top-20 left-4 right-4 glass-panel rounded-[2rem] p-6 transform -translate-y-full opacity-0 transition-all pointer-events-auto" data-mobile-menu-target="menu">
-      <nav class="flex flex-col gap-2">
-        <a href="/" class="btn btn-ghost justify-start rounded-xl">首页</a>
-        <a href="./blog-list.html" class="btn btn-ghost justify-start rounded-xl">博客</a>
-        <a href="./chat.html" class="btn btn-ghost justify-start rounded-xl">开始对话</a>
-        <div class="divider my-2"></div>
-        <a href="./auth-login.html" class="btn btn-ghost justify-start rounded-xl">登录</a>
-        <a href="./auth-signup.html" class="btn btn-primary justify-start rounded-xl">注册</a>
-      </nav>
+    <!-- Mobile Menu Drawer -->
+    <div class="fixed inset-0 z-40 pointer-events-none md:hidden">
+      <div class="absolute inset-0 bg-black/50 opacity-0 transition-opacity pointer-events-none" data-mobile-menu-target="overlay" data-action="click->mobile-menu#close"></div>
+      <div class="absolute top-20 left-4 right-4 glass-panel rounded-[2rem] p-6 transform -translate-y-full opacity-0 transition-all pointer-events-auto" data-mobile-menu-target="menu">
+        <nav class="flex flex-col gap-2">
+          <a href="/" class="btn btn-ghost justify-start rounded-xl">首页</a>
+          <a href="./blog-list.html" class="btn btn-ghost justify-start rounded-xl">博客</a>
+          <a href="./chat.html" class="btn btn-ghost justify-start rounded-xl">开始对话</a>
+          <div class="divider my-2"></div>
+          <a href="./auth-login.html" class="btn btn-ghost justify-start rounded-xl">登录</a>
+          <a href="./auth-signup.html" class="btn btn-primary justify-start rounded-xl">注册</a>
+        </nav>
+      </div>
     </div>
   </div>
 
