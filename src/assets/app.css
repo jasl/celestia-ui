@@ -30,6 +30,9 @@
   --color-base-200: oklch(96% 0.01 280);
   --color-base-300: oklch(92% 0.02 280);
   --color-base-content: oklch(20% 0.05 280);
+  
+  /* Secondary content color for better contrast (65% brightness difference) */
+  --color-base-content-secondary: oklch(35% 0.04 280);
 
   /* Status colors */
   --color-info: oklch(65% 0.18 240);
@@ -76,6 +79,9 @@
   --color-base-200: oklch(22% 0.03 280);
   --color-base-300: oklch(26% 0.035 280);
   --color-base-content: oklch(92% 0.02 280);
+  
+  /* Secondary content color for better contrast (65% brightness) */
+  --color-base-content-secondary: oklch(65% 0.03 280);
 
   /* Status colors - brighter for dark mode */
   --color-info: oklch(70% 0.16 240);
@@ -178,10 +184,15 @@ body {
   color: oklch(25% 0.04 280);
 }
 
-/* Focus visible styling */
+/* Focus visible styling - improved visibility */
 :focus-visible {
-  outline: 2px solid oklch(60% 0.24 280 / 0.5);
+  outline: 2px solid oklch(60% 0.24 280 / 0.8);
   outline-offset: 2px;
+}
+
+/* Secondary content text utility class */
+.text-content-secondary {
+  color: var(--color-base-content-secondary);
 }
 
 /* ================================
@@ -266,7 +277,7 @@ body {
    Custom Button Gradient
    ================================ */
 .btn-gradient {
-  background: linear-gradient(135deg, oklch(50% 0.24 280), oklch(55% 0.22 330));
+  background: linear-gradient(135deg, oklch(45% 0.24 280), oklch(50% 0.22 330));
   border: none;
   color: white;
   transition: all 0.2s ease;
@@ -274,9 +285,9 @@ body {
 }
 
 .btn-gradient:hover {
-  background: linear-gradient(135deg, oklch(45% 0.26 280), oklch(50% 0.24 330));
+  background: linear-gradient(135deg, oklch(40% 0.26 280), oklch(45% 0.24 330));
   transform: translateY(-1px);
-  box-shadow: 0 8px 24px oklch(50% 0.24 280 / 0.4);
+  box-shadow: 0 8px 24px oklch(45% 0.24 280 / 0.4);
 }
 
 .btn-gradient:active {
@@ -541,7 +552,7 @@ body {
 }
 
 [data-theme="celestia-dark"] .chat-bubble-ai {
-  background: oklch(25% 0.02 280 / 0.7);
+  background: oklch(25% 0.02 280 / 0.85);
   border-color: oklch(100% 0 0 / 0.1);
   color: oklch(92% 0.02 280);
 }
@@ -676,5 +687,53 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* ================================
+   Reduced Motion Support
+   For users who prefer reduced motion
+   ================================ */
+@media (prefers-reduced-motion: reduce) {
+  /* Disable background gradient animation */
+  .bg-celestia-gradient {
+    animation: none;
+    background-size: 100% 100%;
+  }
+  
+  /* Disable floating orbs */
+  .floating-orb {
+    animation: none;
+    display: none;
+  }
+  
+  /* Disable chat message animation */
+  .chat-message {
+    animation: none;
+  }
+  
+  /* Disable toast animations */
+  .toast-enter,
+  .toast-exit {
+    animation: none;
+  }
+  
+  /* Disable page transition animation */
+  .page-enter {
+    animation: none;
+  }
+  
+  /* Disable card hover transforms */
+  .card-hover:hover {
+    transform: none;
+  }
+  
+  /* Reduce all transitions to near-instant */
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

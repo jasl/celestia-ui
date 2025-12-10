@@ -28,6 +28,7 @@ A beautiful, fantasy-themed HTML template for AI chat playgrounds and creative w
 | `blog-detail.html` | Full article page with comments |
 | `settings-profile.html` | User profile settings |
 | `settings-password.html` | Password & security settings |
+| `style-guide.html` | Design system documentation |
 
 ### Theme Preview
 
@@ -89,22 +90,24 @@ pnpm preview
 
 ```
 celestia-ui/
-├── assets/
-│   └── app.css          # Main stylesheet with Tailwind & DaisyUI config
-├── js/
-│   ├── app.js           # Theme controller & utilities
-│   └── components/
-│       ├── modal.js     # Modal component
-│       └── toast.js     # Toast notifications
-├── index.html           # Landing page
-├── chat.html            # Chat interface
-├── auth-login.html      # Login page
-├── auth-signup.html     # Signup page
-├── blog-list.html       # Blog listing
-├── blog-detail.html     # Blog article
-├── settings-profile.html
-├── settings-password.html
-├── vite.config.js       # Vite configuration
+├── src/                      # Source files
+│   ├── assets/
+│   │   └── app.css           # Main stylesheet with Tailwind & DaisyUI config
+│   ├── js/
+│   │   ├── app.js            # Theme controller & utilities
+│   │   └── components/
+│   │       ├── modal.js      # Modal component
+│   │       └── toast.js      # Toast notifications
+│   ├── index.html            # Landing page
+│   ├── chat.html             # Chat interface
+│   ├── auth-login.html       # Login page
+│   ├── auth-signup.html      # Signup page
+│   ├── blog-list.html        # Blog listing
+│   ├── blog-detail.html      # Blog article
+│   ├── style-guide.html      # Design system documentation
+│   ├── settings-profile.html
+│   └── settings-password.html
+├── vite.config.js            # Vite configuration
 └── package.json
 ```
 
@@ -112,7 +115,7 @@ celestia-ui/
 
 ### Theme Colors
 
-Edit the theme configuration in `assets/app.css`:
+Edit the theme configuration in `src/assets/app.css`:
 
 ```css
 @plugin "daisyui/theme" {
@@ -125,7 +128,7 @@ Edit the theme configuration in `assets/app.css`:
 
 ### Adding New Pages
 
-1. Create a new HTML file in the root directory
+1. Create a new HTML file in the `src/` directory
 2. Include the theme initialization script in `<head>`:
 
 ```html
@@ -139,7 +142,7 @@ Edit the theme configuration in `assets/app.css`:
 </script>
 ```
 
-3. Add the page to `vite.config.js` (auto-detected for `.html` files in root)
+3. Add the page to `vite.config.js` (auto-detected for `.html` files in `src/`)
 
 ## 🔤 Typography & Multi-language Support
 

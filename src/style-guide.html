@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="celestia-light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>设计系统 - Celestia</title>
+  <meta name="description" content="Celestia UI 设计系统文档，包含颜色、排版、组件规范">
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./assets/app.css">
+  
+  <script>
+    try {
+      const theme = localStorage.getItem('__CELESTIA_THEME__');
+      const isDark = theme === 'celestia-dark' || 
+        (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.setAttribute('data-theme', isDark ? 'celestia-dark' : 'celestia-light');
+    } catch (e) {}
+  </script>
+</head>
+<body class="min-h-screen bg-celestia-gradient antialiased">
+  
+  <!-- Floating Orbs -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+    <div class="floating-orb floating-orb-1"></div>
+    <div class="floating-orb floating-orb-2"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-50 px-4 py-4">
+    <div class="glass-panel rounded-full px-4 md:px-6 py-3 flex justify-between items-center max-w-6xl mx-auto relative">
+      <a href="/" class="flex items-center gap-2">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white shadow-lg">
+          <span class="iconify lucide--sparkles size-5"></span>
+        </div>
+        <span class="font-bold text-xl hidden sm:inline">Celestia</span>
+      </a>
+      
+      <div class="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
+        <a href="/" class="btn btn-ghost btn-sm rounded-full">首页</a>
+        <a href="./chat.html" class="btn btn-ghost btn-sm rounded-full">聊天</a>
+        <a href="./blog-list.html" class="btn btn-ghost btn-sm rounded-full">博客</a>
+        <a href="./style-guide.html" class="btn btn-ghost btn-sm rounded-full btn-active">设计系统</a>
+      </div>
+      
+      <div class="flex items-center gap-2">
+        <button class="btn btn-ghost btn-sm btn-circle" data-theme-toggle>
+          <span class="iconify lucide--sun size-5 hidden" data-theme-icon="light"></span>
+          <span class="iconify lucide--moon size-5" data-theme-icon="dark"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    
+    <!-- Header -->
+    <header class="glass-panel rounded-[2.5rem] p-8 md:p-12 mb-8 text-center">
+      <h1 class="text-3xl md:text-4xl font-bold text-base-content mb-4">Celestia 设计系统</h1>
+      <p class="text-content-secondary max-w-2xl mx-auto">
+        基于 DaisyUI 5 + Tailwind CSS 4 构建的设计 Token 和组件规范文档。
+        使用 OKLCH 色彩空间确保感知均匀的配色方案。
+      </p>
+    </header>
+
+    <!-- Table of Contents -->
+    <nav class="glass-panel rounded-[2rem] p-6 mb-8">
+      <h2 class="font-semibold text-base-content mb-4 flex items-center gap-2">
+        <span class="iconify lucide--list size-5 text-primary"></span>
+        目录
+      </h2>
+      <div class="flex flex-wrap gap-2">
+        <a href="#colors" class="btn btn-ghost btn-sm rounded-lg">颜色系统</a>
+        <a href="#typography" class="btn btn-ghost btn-sm rounded-lg">排版系统</a>
+        <a href="#spacing" class="btn btn-ghost btn-sm rounded-lg">间距与圆角</a>
+        <a href="#components" class="btn btn-ghost btn-sm rounded-lg">组件示例</a>
+        <a href="#accessibility" class="btn btn-ghost btn-sm rounded-lg">无障碍指南</a>
+      </div>
+    </nav>
+
+    <!-- ================================ -->
+    <!-- Colors Section -->
+    <!-- ================================ -->
+    <section id="colors" class="glass-panel rounded-[2.5rem] p-6 md:p-8 mb-8 scroll-mt-24">
+      <h2 class="text-2xl font-bold text-base-content mb-2 flex items-center gap-3">
+        <span class="iconify lucide--palette size-6 text-primary"></span>
+        颜色系统
+      </h2>
+      <p class="text-content-secondary mb-8">使用 OKLCH 色彩空间定义，确保亮/暗模式下的感知一致性。</p>
+      
+      <!-- Primary Colors -->
+      <div class="mb-8">
+        <h3 class="font-semibold text-base-content mb-4">主色调 (Primary Colors)</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="space-y-2">
+            <div class="h-20 rounded-xl bg-primary flex items-end p-3">
+              <span class="text-primary-content text-xs font-mono">primary</span>
+            </div>
+            <p class="text-xs text-content-secondary font-mono">oklch(50% 0.22 280)</p>
+          </div>
+          <div class="space-y-2">
+            <div class="h-20 rounded-xl bg-secondary flex items-end p-3">
+              <span class="text-secondary-content text-xs font-mono">secondary</span>
+            </div>
+            <p class="text-xs text-content-secondary font-mono">oklch(55% 0.20 330)</p>
+          </div>
+          <div class="space-y-2">
+            <div class="h-20 rounded-xl bg-accent flex items-end p-3">
+              <span class="text-accent-content text-xs font-mono">accent</span>
+            </div>
+            <p class="text-xs text-content-secondary font-mono">oklch(55% 0.18 220)</p>
+          </div>
+          <div class="space-y-2">
+            <div class="h-20 rounded-xl bg-neutral flex items-end p-3">
+              <span class="text-neutral-content text-xs font-mono">neutral</span>
+            </div>
+            <p class="text-xs text-content-secondary font-mono">oklch(25% 0.03 280)</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Base Colors -->
+      <div class="mb-8">
+        <h3 class="font-semibold text-base-content mb-4">基础色 (Base Colors)</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="space-y-2">
+            <div class="h-20 rounded-xl bg-base-100 border border-base-300 flex items-end p-3">
+              <span class="text-base-content text-xs font-mono">base-100</span>
+            </div>
+            <p class="text-xs text-content-secondary font-mono">oklch(99% 0.005 280)</p>
+          </div>
+          <div class="space-y-2">
+            <div class="h-20 rounded-xl bg-base-200 border border-base-300 flex items-end p-3">
+              <span class="text-base-content text-xs font-mono">base-200</span>
+            </div>
+            <p class="text-xs text-content-secondary font-mono">oklch(96% 0.01 280)</p>
+          </div>
+          <div class="space-y-2">
+            <div class="h-20 rounded-xl bg-base-300 flex items-end p-3">
+              <span class="text-base-content text-xs font-mono">base-300</span>
+            </div>
+            <p class="text-xs text-content-secondary font-mono">oklch(92% 0.02 280)</p>
+          </div>
+          <div class="space-y-2">
+            <div class="h-20 rounded-xl bg-base-content flex items-end p-3">
+              <span class="text-base-100 text-xs font-mono">base-content</span>
+            </div>
+            <p class="text-xs text-content-secondary font-mono">oklch(20% 0.05 280)</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Status Colors -->
+      <div class="mb-8">
+        <h3 class="font-semibold text-base-content mb-4">状态色 (Status Colors)</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="space-y-2">
+            <div class="h-20 rounded-xl bg-info flex items-end p-3">
+              <span class="text-info-content text-xs font-mono">info</span>
+            </div>
+            <p class="text-xs text-content-secondary font-mono">oklch(65% 0.18 240)</p>
+          </div>
+          <div class="space-y-2">
+            <div class="h-20 rounded-xl bg-success flex items-end p-3">
+              <span class="text-success-content text-xs font-mono">success</span>
+            </div>
+            <p class="text-xs text-content-secondary font-mono">oklch(65% 0.20 145)</p>
+          </div>
+          <div class="space-y-2">
+            <div class="h-20 rounded-xl bg-warning flex items-end p-3">
+              <span class="text-warning-content text-xs font-mono">warning</span>
+            </div>
+            <p class="text-xs text-content-secondary font-mono">oklch(78% 0.18 70)</p>
+          </div>
+          <div class="space-y-2">
+            <div class="h-20 rounded-xl bg-error flex items-end p-3">
+              <span class="text-error-content text-xs font-mono">error</span>
+            </div>
+            <p class="text-xs text-content-secondary font-mono">oklch(60% 0.22 25)</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Gradient -->
+      <div>
+        <h3 class="font-semibold text-base-content mb-4">渐变色 (Gradients)</h3>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="space-y-2">
+            <div class="h-24 rounded-xl btn-gradient flex items-center justify-center">
+              <span class="text-white font-medium">Button Gradient</span>
+            </div>
+            <p class="text-xs text-content-secondary font-mono">
+              linear-gradient(135deg, oklch(45% 0.24 280), oklch(50% 0.22 330))
+            </p>
+          </div>
+          <div class="space-y-2">
+            <div class="h-24 rounded-xl flex items-center justify-center">
+              <span class="text-gradient text-2xl font-bold">Text Gradient</span>
+            </div>
+            <p class="text-xs text-content-secondary font-mono">
+              linear-gradient(135deg, oklch(45% 0.25 280), oklch(50% 0.22 330), oklch(50% 0.20 30))
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================ -->
+    <!-- Typography Section -->
+    <!-- ================================ -->
+    <section id="typography" class="glass-panel rounded-[2.5rem] p-6 md:p-8 mb-8 scroll-mt-24">
+      <h2 class="text-2xl font-bold text-base-content mb-2 flex items-center gap-3">
+        <span class="iconify lucide--type size-6 text-secondary"></span>
+        排版系统
+      </h2>
+      <p class="text-content-secondary mb-8">针对 CJK 文本优化的字体堆栈和排版规范。</p>
+      
+      <!-- Font Family -->
+      <div class="mb-8">
+        <h3 class="font-semibold text-base-content mb-4">字体堆栈 (Font Stack)</h3>
+        <div class="space-y-4">
+          <div class="glass-panel rounded-xl p-4">
+            <p class="text-sm text-content-secondary mb-2">Sans-serif (默认)</p>
+            <p class="text-lg">'Inter', 'Noto Sans SC', 'Hiragino Sans', 'Microsoft YaHei', system-ui, sans-serif</p>
+            <p class="mt-2">ABCDEFG abcdefg 中文字体测试 日本語テスト 123456</p>
+          </div>
+          <div class="glass-panel rounded-xl p-4">
+            <p class="text-sm text-content-secondary mb-2">Serif (故事/叙事内容)</p>
+            <p class="chat-bubble-story text-lg">'Merriweather', 'Noto Serif JP', 'Noto Serif SC', Georgia, serif</p>
+            <p class="chat-bubble-story mt-2">ABCDEFG abcdefg 中文字体测试 日本語テスト 123456</p>
+          </div>
+          <div class="glass-panel rounded-xl p-4">
+            <p class="text-sm text-content-secondary mb-2">Monospace (代码)</p>
+            <p class="font-mono text-lg">font-mono (系统等宽字体)</p>
+            <p class="font-mono mt-2">const greeting = "Hello World";</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Font Sizes -->
+      <div class="mb-8">
+        <h3 class="font-semibold text-base-content mb-4">字号层级 (Type Scale)</h3>
+        <div class="space-y-3">
+          <div class="flex items-baseline gap-4">
+            <span class="text-xs text-content-secondary w-16 shrink-0 font-mono">text-xs</span>
+            <span class="text-xs">0.75rem / 12px - 辅助说明文字</span>
+          </div>
+          <div class="flex items-baseline gap-4">
+            <span class="text-sm text-content-secondary w-16 shrink-0 font-mono">text-sm</span>
+            <span class="text-sm">0.875rem / 14px - 次要文字、标签</span>
+          </div>
+          <div class="flex items-baseline gap-4">
+            <span class="text-base text-content-secondary w-16 shrink-0 font-mono">text-base</span>
+            <span class="text-base">1rem / 16px - 正文内容</span>
+          </div>
+          <div class="flex items-baseline gap-4">
+            <span class="text-lg text-content-secondary w-16 shrink-0 font-mono">text-lg</span>
+            <span class="text-lg">1.125rem / 18px - 强调文字</span>
+          </div>
+          <div class="flex items-baseline gap-4">
+            <span class="text-xl text-content-secondary w-16 shrink-0 font-mono">text-xl</span>
+            <span class="text-xl">1.25rem / 20px - 小标题</span>
+          </div>
+          <div class="flex items-baseline gap-4">
+            <span class="text-2xl text-content-secondary w-16 shrink-0 font-mono">text-2xl</span>
+            <span class="text-2xl font-bold">1.5rem / 24px - 标题</span>
+          </div>
+          <div class="flex items-baseline gap-4">
+            <span class="text-3xl text-content-secondary w-16 shrink-0 font-mono">text-3xl</span>
+            <span class="text-3xl font-bold">1.875rem / 30px - 页面标题</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Line Height -->
+      <div>
+        <h3 class="font-semibold text-base-content mb-4">行高 (Line Height)</h3>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="glass-panel rounded-xl p-4">
+            <p class="text-sm text-content-secondary mb-2">默认行高: 1.75</p>
+            <p class="leading-[1.75]">适合混合 CJK 和拉丁字符的正文内容。这是一段示例文字，用于展示默认行高的效果。The quick brown fox jumps over the lazy dog.</p>
+          </div>
+          <div class="glass-panel rounded-xl p-4">
+            <p class="text-sm text-content-secondary mb-2">故事内容行高: 1.8</p>
+            <p class="chat-bubble-story leading-[1.8]">适合沉浸式阅读体验的叙事内容。这是一段示例文字，用于展示故事行高的效果。The quick brown fox jumps over the lazy dog.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================ -->
+    <!-- Spacing Section -->
+    <!-- ================================ -->
+    <section id="spacing" class="glass-panel rounded-[2.5rem] p-6 md:p-8 mb-8 scroll-mt-24">
+      <h2 class="text-2xl font-bold text-base-content mb-2 flex items-center gap-3">
+        <span class="iconify lucide--square size-6 text-accent"></span>
+        间距与圆角
+      </h2>
+      <p class="text-content-secondary mb-8">iOS/VisionOS 风格的大圆角设计语言。</p>
+      
+      <!-- Border Radius -->
+      <div class="mb-8">
+        <h3 class="font-semibold text-base-content mb-4">圆角系统 (Border Radius)</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="text-center">
+            <div class="h-20 w-full bg-primary/20 border-2 border-primary/40 rounded-lg mb-2"></div>
+            <p class="text-sm font-medium">radius-field</p>
+            <p class="text-xs text-content-secondary font-mono">0.75rem</p>
+          </div>
+          <div class="text-center">
+            <div class="h-20 w-full bg-primary/20 border-2 border-primary/40 rounded-xl mb-2"></div>
+            <p class="text-sm font-medium">radius-selector</p>
+            <p class="text-xs text-content-secondary font-mono">1rem</p>
+          </div>
+          <div class="text-center">
+            <div class="h-20 w-full bg-primary/20 border-2 border-primary/40 rounded-2xl mb-2"></div>
+            <p class="text-sm font-medium">radius-box</p>
+            <p class="text-xs text-content-secondary font-mono">1.5rem</p>
+          </div>
+          <div class="text-center">
+            <div class="h-20 w-full bg-primary/20 border-2 border-primary/40 rounded-full mb-2"></div>
+            <p class="text-sm font-medium">rounded-full</p>
+            <p class="text-xs text-content-secondary font-mono">9999px</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Glass Effects -->
+      <div class="mb-8">
+        <h3 class="font-semibold text-base-content mb-4">玻璃效果 (Glass Effects)</h3>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="space-y-2">
+            <div class="glass-panel rounded-xl p-6 h-32 flex items-center justify-center">
+              <span class="font-medium">.glass-panel</span>
+            </div>
+            <p class="text-xs text-content-secondary">
+              backdrop-filter: blur(24px) saturate(180%)<br>
+              background: oklch(100% 0 0 / 0.65)
+            </p>
+          </div>
+          <div class="space-y-2">
+            <div class="h-32 flex items-center justify-center p-4">
+              <input type="text" class="input glass-input w-full rounded-xl" placeholder=".glass-input" />
+            </div>
+            <p class="text-xs text-content-secondary">
+              backdrop-filter: none<br>
+              background: oklch(100% 0 0 / 0.5)
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Shadows -->
+      <div>
+        <h3 class="font-semibold text-base-content mb-4">阴影 (Shadows)</h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div class="text-center">
+            <div class="h-20 w-full bg-base-100 rounded-xl shadow-sm mb-2"></div>
+            <p class="text-sm font-medium">shadow-sm</p>
+          </div>
+          <div class="text-center">
+            <div class="h-20 w-full bg-base-100 rounded-xl shadow mb-2"></div>
+            <p class="text-sm font-medium">shadow</p>
+          </div>
+          <div class="text-center">
+            <div class="h-20 w-full bg-base-100 rounded-xl shadow-lg mb-2"></div>
+            <p class="text-sm font-medium">shadow-lg</p>
+          </div>
+          <div class="text-center">
+            <div class="h-20 w-full bg-base-100 rounded-xl shadow-xl mb-2"></div>
+            <p class="text-sm font-medium">shadow-xl</p>
+          </div>
+          <div class="text-center">
+            <div class="h-20 w-full bg-base-100 rounded-xl shadow-2xl mb-2"></div>
+            <p class="text-sm font-medium">shadow-2xl</p>
+          </div>
+          <div class="text-center">
+            <div class="h-20 w-full btn-gradient rounded-xl mb-2"></div>
+            <p class="text-sm font-medium">gradient shadow</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================ -->
+    <!-- Components Section -->
+    <!-- ================================ -->
+    <section id="components" class="glass-panel rounded-[2.5rem] p-6 md:p-8 mb-8 scroll-mt-24">
+      <h2 class="text-2xl font-bold text-base-content mb-2 flex items-center gap-3">
+        <span class="iconify lucide--layout-grid size-6 text-info"></span>
+        组件示例
+      </h2>
+      <p class="text-content-secondary mb-8">常用 UI 组件的样式规范和使用示例。</p>
+      
+      <!-- Buttons -->
+      <div class="mb-8">
+        <h3 class="font-semibold text-base-content mb-4">按钮 (Buttons)</h3>
+        <div class="space-y-4">
+          <div class="flex flex-wrap gap-3">
+            <button class="btn btn-primary rounded-xl">Primary</button>
+            <button class="btn btn-secondary rounded-xl">Secondary</button>
+            <button class="btn btn-accent rounded-xl">Accent</button>
+            <button class="btn btn-neutral rounded-xl">Neutral</button>
+            <button class="btn btn-ghost rounded-xl">Ghost</button>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <button class="btn btn-gradient rounded-xl">Gradient</button>
+            <button class="btn btn-info rounded-xl">Info</button>
+            <button class="btn btn-success rounded-xl">Success</button>
+            <button class="btn btn-warning rounded-xl">Warning</button>
+            <button class="btn btn-error rounded-xl">Error</button>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <button class="btn btn-primary btn-outline rounded-xl">Outline</button>
+            <button class="btn btn-primary btn-sm rounded-lg">Small</button>
+            <button class="btn btn-primary rounded-xl">Default</button>
+            <button class="btn btn-primary btn-lg rounded-2xl">Large</button>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <button class="btn btn-primary rounded-xl" disabled>Disabled</button>
+            <button class="btn btn-primary rounded-xl">
+              <span class="loading loading-spinner loading-sm"></span>
+              Loading
+            </button>
+            <button class="btn btn-primary rounded-xl">
+              <span class="iconify lucide--download size-4"></span>
+              With Icon
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Inputs -->
+      <div class="mb-8">
+        <h3 class="font-semibold text-base-content mb-4">输入框 (Inputs)</h3>
+        <div class="grid md:grid-cols-2 gap-4">
+          <fieldset class="fieldset">
+            <legend class="fieldset-legend">默认输入框</legend>
+            <input type="text" class="input w-full glass-input rounded-xl" placeholder="请输入内容...">
+          </fieldset>
+          <fieldset class="fieldset">
+            <legend class="fieldset-legend">带图标</legend>
+            <label class="input w-full glass-input rounded-xl">
+              <span class="iconify lucide--search size-5 text-base-content/50"></span>
+              <input type="text" placeholder="搜索...">
+            </label>
+          </fieldset>
+          <fieldset class="fieldset">
+            <legend class="fieldset-legend">成功状态</legend>
+            <input type="text" class="input w-full glass-input input-success rounded-xl" value="验证通过">
+          </fieldset>
+          <fieldset class="fieldset">
+            <legend class="fieldset-legend">错误状态</legend>
+            <input type="text" class="input w-full glass-input input-error rounded-xl" value="验证失败">
+          </fieldset>
+          <fieldset class="fieldset">
+            <legend class="fieldset-legend">下拉选择</legend>
+            <select class="select w-full glass-input rounded-xl">
+              <option disabled selected>请选择...</option>
+              <option>选项一</option>
+              <option>选项二</option>
+            </select>
+          </fieldset>
+          <fieldset class="fieldset">
+            <legend class="fieldset-legend">文本域</legend>
+            <textarea class="textarea w-full glass-input rounded-xl" placeholder="请输入内容..." rows="2"></textarea>
+          </fieldset>
+        </div>
+      </div>
+      
+      <!-- Badges -->
+      <div class="mb-8">
+        <h3 class="font-semibold text-base-content mb-4">徽章 (Badges)</h3>
+        <div class="flex flex-wrap gap-3">
+          <span class="badge">Default</span>
+          <span class="badge badge-primary">Primary</span>
+          <span class="badge badge-secondary">Secondary</span>
+          <span class="badge badge-accent">Accent</span>
+          <span class="badge badge-info">Info</span>
+          <span class="badge badge-success">Success</span>
+          <span class="badge badge-warning">Warning</span>
+          <span class="badge badge-error">Error</span>
+          <span class="badge badge-outline">Outline</span>
+          <span class="badge badge-ghost">Ghost</span>
+        </div>
+        <div class="flex flex-wrap gap-3 mt-3">
+          <span class="badge badge-primary badge-xs">XS</span>
+          <span class="badge badge-primary badge-sm">SM</span>
+          <span class="badge badge-primary badge-md">MD</span>
+          <span class="badge badge-primary badge-lg">LG</span>
+        </div>
+      </div>
+      
+      <!-- Toggles -->
+      <div class="mb-8">
+        <h3 class="font-semibold text-base-content mb-4">开关 (Toggles)</h3>
+        <div class="flex flex-wrap gap-6">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" class="toggle toggle-primary" checked>
+            <span>Primary</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" class="toggle toggle-secondary">
+            <span>Secondary</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" class="checkbox checkbox-primary" checked>
+            <span>Checkbox</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="radio" class="radio radio-primary" checked>
+            <span>Radio</span>
+          </label>
+        </div>
+      </div>
+      
+      <!-- Cards -->
+      <div class="mb-8">
+        <h3 class="font-semibold text-base-content mb-4">卡片 (Cards)</h3>
+        <div class="grid md:grid-cols-3 gap-4">
+          <div class="glass-panel rounded-[2rem] p-6 card-hover">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mb-4">
+              <span class="iconify lucide--star size-5 text-primary"></span>
+            </div>
+            <h4 class="font-semibold text-base-content mb-2">卡片标题</h4>
+            <p class="text-content-secondary text-sm">这是一个带有悬停效果的卡片组件示例。</p>
+          </div>
+          <div class="glass-panel rounded-[2rem] p-6 card-hover">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-secondary/20 to-secondary/10 flex items-center justify-center mb-4">
+              <span class="iconify lucide--heart size-5 text-secondary"></span>
+            </div>
+            <h4 class="font-semibold text-base-content mb-2">卡片标题</h4>
+            <p class="text-content-secondary text-sm">使用 .card-hover 类添加悬停效果。</p>
+          </div>
+          <div class="glass-panel rounded-[2rem] p-6 card-hover">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-accent/20 to-accent/10 flex items-center justify-center mb-4">
+              <span class="iconify lucide--zap size-5 text-accent"></span>
+            </div>
+            <h4 class="font-semibold text-base-content mb-2">卡片标题</h4>
+            <p class="text-content-secondary text-sm">支持自定义图标和颜色组合。</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Alerts -->
+      <div class="mb-8">
+        <h3 class="font-semibold text-base-content mb-4">提示 (Alerts)</h3>
+        <div class="space-y-3">
+          <div class="alert alert-info rounded-xl">
+            <span class="iconify lucide--info size-5"></span>
+            <span>这是一条信息提示。</span>
+          </div>
+          <div class="alert alert-success rounded-xl">
+            <span class="iconify lucide--check-circle size-5"></span>
+            <span>操作成功完成！</span>
+          </div>
+          <div class="alert alert-warning rounded-xl">
+            <span class="iconify lucide--alert-triangle size-5"></span>
+            <span>请注意：此操作不可撤销。</span>
+          </div>
+          <div class="alert alert-error rounded-xl">
+            <span class="iconify lucide--x-circle size-5"></span>
+            <span>发生错误，请重试。</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Avatar -->
+      <div>
+        <h3 class="font-semibold text-base-content mb-4">头像 (Avatar)</h3>
+        <div class="flex flex-wrap items-center gap-4">
+          <div class="avatar">
+            <div class="w-12 rounded-full bg-primary text-primary-content flex items-center justify-center">
+              <span class="text-lg font-medium">A</span>
+            </div>
+          </div>
+          <div class="avatar-ring-gradient">
+            <div class="avatar">
+              <div class="w-12 rounded-full bg-secondary text-secondary-content flex items-center justify-center">
+                <span class="text-lg font-medium">B</span>
+              </div>
+            </div>
+          </div>
+          <div class="avatar">
+            <div class="w-12 rounded-xl bg-accent text-accent-content flex items-center justify-center">
+              <span class="text-lg font-medium">C</span>
+            </div>
+          </div>
+          <div class="avatar online">
+            <div class="w-12 rounded-full bg-neutral text-neutral-content flex items-center justify-center">
+              <span class="text-lg font-medium">D</span>
+            </div>
+          </div>
+          <div class="avatar offline">
+            <div class="w-12 rounded-full bg-info text-info-content flex items-center justify-center">
+              <span class="text-lg font-medium">E</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================ -->
+    <!-- Accessibility Section -->
+    <!-- ================================ -->
+    <section id="accessibility" class="glass-panel rounded-[2.5rem] p-6 md:p-8 mb-8 scroll-mt-24">
+      <h2 class="text-2xl font-bold text-base-content mb-2 flex items-center gap-3">
+        <span class="iconify lucide--accessibility size-6 text-success"></span>
+        无障碍指南
+      </h2>
+      <p class="text-content-secondary mb-8">确保所有用户都能无障碍使用的设计规范。</p>
+      
+      <!-- Contrast -->
+      <div class="mb-8">
+        <h3 class="font-semibold text-base-content mb-4">对比度要求 (Contrast Requirements)</h3>
+        <div class="glass-panel rounded-xl p-4 mb-4">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="badge badge-success">WCAG AA</span>
+            <span class="font-medium">最低对比度 4.5:1</span>
+          </div>
+          <p class="text-content-secondary text-sm">
+            所有文字内容必须与背景保持至少 4.5:1 的对比度。大文字（18px 粗体或 24px 以上）可降至 3:1。
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="space-y-2">
+            <div class="h-16 bg-base-100 rounded-xl flex items-center justify-center border border-base-300">
+              <span class="text-base-content font-medium">主要文字 ✓</span>
+            </div>
+            <p class="text-xs text-content-secondary">base-content on base-100: 通过</p>
+          </div>
+          <div class="space-y-2">
+            <div class="h-16 bg-base-100 rounded-xl flex items-center justify-center border border-base-300">
+              <span class="text-content-secondary font-medium">次要文字 ✓</span>
+            </div>
+            <p class="text-xs text-content-secondary">content-secondary on base-100: 通过</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Focus States -->
+      <div class="mb-8">
+        <h3 class="font-semibold text-base-content mb-4">焦点状态 (Focus States)</h3>
+        <div class="glass-panel rounded-xl p-4 mb-4">
+          <p class="text-content-secondary text-sm mb-3">
+            所有可交互元素必须有清晰可见的焦点指示器，使用键盘导航时尤为重要。
+          </p>
+          <div class="flex items-center gap-2">
+            <span class="text-sm font-mono bg-base-200 px-2 py-1 rounded">:focus-visible</span>
+            <span class="text-sm">→</span>
+            <span class="text-sm font-mono bg-base-200 px-2 py-1 rounded">outline: 2px solid oklch(60% 0.24 280 / 0.8)</span>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-4">
+          <button class="btn btn-primary rounded-xl">点击后按 Tab 键测试焦点</button>
+          <input type="text" class="input glass-input rounded-xl" placeholder="焦点测试...">
+          <a href="#" class="link link-primary">链接焦点</a>
+        </div>
+      </div>
+      
+      <!-- Reduced Motion -->
+      <div class="mb-8">
+        <h3 class="font-semibold text-base-content mb-4">减少动画 (Reduced Motion)</h3>
+        <div class="glass-panel rounded-xl p-4">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="badge badge-info">@media</span>
+            <span class="font-mono text-sm">(prefers-reduced-motion: reduce)</span>
+          </div>
+          <p class="text-content-secondary text-sm mb-3">
+            当用户在系统设置中启用"减少动画"时，以下动画将被禁用：
+          </p>
+          <ul class="list-disc list-inside text-sm text-content-secondary space-y-1">
+            <li>背景渐变动画 (.bg-celestia-gradient)</li>
+            <li>浮动光球装饰 (.floating-orb)</li>
+            <li>消息出现动画 (.chat-message)</li>
+            <li>Toast 通知动画 (.toast-enter, .toast-exit)</li>
+            <li>页面过渡动画 (.page-enter)</li>
+            <li>卡片悬停变换 (.card-hover)</li>
+            <li>所有过渡效果 (transition-duration → 0.01ms)</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Semantic HTML -->
+      <div class="mb-8">
+        <h3 class="font-semibold text-base-content mb-4">语义化 HTML (Semantic HTML)</h3>
+        <div class="glass-panel rounded-xl p-4">
+          <p class="text-content-secondary text-sm mb-3">
+            使用正确的 HTML 元素确保屏幕阅读器能正确解析内容结构：
+          </p>
+          <div class="grid md:grid-cols-2 gap-4 text-sm">
+            <div>
+              <p class="font-medium text-base-content mb-1">推荐</p>
+              <ul class="space-y-1 text-content-secondary">
+                <li><code class="bg-base-200 px-1 rounded">&lt;button&gt;</code> 用于按钮</li>
+                <li><code class="bg-base-200 px-1 rounded">&lt;a&gt;</code> 用于链接</li>
+                <li><code class="bg-base-200 px-1 rounded">&lt;nav&gt;</code> 用于导航</li>
+                <li><code class="bg-base-200 px-1 rounded">&lt;main&gt;</code> 用于主内容</li>
+                <li><code class="bg-base-200 px-1 rounded">&lt;header/footer&gt;</code> 用于页眉/页脚</li>
+              </ul>
+            </div>
+            <div>
+              <p class="font-medium text-base-content mb-1">ARIA 属性</p>
+              <ul class="space-y-1 text-content-secondary">
+                <li><code class="bg-base-200 px-1 rounded">aria-label</code> 描述元素</li>
+                <li><code class="bg-base-200 px-1 rounded">aria-hidden</code> 隐藏装饰元素</li>
+                <li><code class="bg-base-200 px-1 rounded">role</code> 定义元素角色</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Color Usage -->
+      <div>
+        <h3 class="font-semibold text-base-content mb-4">颜色使用原则 (Color Usage)</h3>
+        <div class="glass-panel rounded-xl p-4">
+          <p class="text-content-secondary text-sm mb-3">
+            不要仅依赖颜色传达信息，始终配合图标或文字说明：
+          </p>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <p class="text-sm font-medium text-error">✗ 不推荐</p>
+              <div class="flex gap-2">
+                <span class="w-4 h-4 rounded-full bg-success"></span>
+                <span class="w-4 h-4 rounded-full bg-error"></span>
+                <span class="w-4 h-4 rounded-full bg-warning"></span>
+              </div>
+              <p class="text-xs text-content-secondary">仅用颜色区分状态</p>
+            </div>
+            <div class="space-y-2">
+              <p class="text-sm font-medium text-success">✓ 推荐</p>
+              <div class="flex gap-2">
+                <span class="badge badge-success gap-1"><span class="iconify lucide--check size-3"></span>成功</span>
+                <span class="badge badge-error gap-1"><span class="iconify lucide--x size-3"></span>失败</span>
+                <span class="badge badge-warning gap-1"><span class="iconify lucide--alert-triangle size-3"></span>警告</span>
+              </div>
+              <p class="text-xs text-content-secondary">颜色 + 图标 + 文字</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-8">
+      <p class="text-content-secondary text-sm">
+        Celestia UI Template v1.0 · DaisyUI 5 + Tailwind CSS 4
+      </p>
+      <p class="text-content-secondary text-xs mt-1">
+        Made with <span class="text-error">♥</span> for storytellers
+      </p>
+    </footer>
+  </main>
+
+  <script src="./js/app.js"></script>
+</body>
+</html>
