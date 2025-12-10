@@ -51,13 +51,24 @@ export default class extends Controller {
   updateOverlay() {
     if (!this.hasOverlayTarget) return
 
-    // Check if ANY chat sidebar panel is open on mobile
-    // This handles the shared overlay between multiple panel controllers
-    const anyPanelOpen = Array.from(document.querySelectorAll('.chat-sidebar')).some(panel => {
-      return panel.dataset.visible === 'true'
-    }) && window.innerWidth < this.breakpointValue
+    // Check if ANY chat sidebar panel is open in mobile mode
+    // Each panel type has its own breakpoint threshold
+    const windowWidth = window.innerWidth
+    
+    // Left panels use 1024px breakpoint
+    const leftPanelOpen = Array.from(document.querySelectorAll('.chat-sidebar-left')).some(
+      panel => panel.dataset.visible === 'true'
+    ) && windowWidth < 1024
+    
+    // Right panels use 1280px breakpoint
+    const rightPanelOpen = Array.from(document.querySelectorAll('.chat-sidebar-right')).some(
+      panel => panel.dataset.visible === 'true'
+    ) && windowWidth < 1280
 
-    if (!anyPanelOpen) {
+    // Show overlay if any panel is open in mobile mode, hide otherwise
+    if (leftPanelOpen || rightPanelOpen) {
+      this.overlayTarget.classList.remove('hidden')
+    } else {
       this.overlayTarget.classList.add('hidden')
     }
   }
