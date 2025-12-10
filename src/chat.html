@@ -37,7 +37,7 @@
     
     <!-- Top Bar -->
     <header class="flex-shrink-0 px-4 py-3 relative z-20">
-      <div class="glass-panel rounded-full px-4 py-2 flex items-center justify-between gap-4 max-w-7xl mx-auto">
+      <div class="glass-panel rounded-full px-4 py-2 flex items-center justify-between gap-4 max-w-6xl mx-auto">
         <!-- Left -->
         <div class="flex items-center gap-3">
           <!-- Logo -->
@@ -48,8 +48,8 @@
             <span class="font-bold text-lg hidden sm:inline">Celestia</span>
           </a>
           
-          <!-- Toggle Left Panel -->
-          <button id="toggle-left-panel" class="btn btn-ghost btn-sm btn-circle" title="角色/场景面板">
+          <!-- Toggle Left Panel (hidden on desktop when sidebar is always visible) -->
+          <button id="toggle-left-panel" class="btn btn-ghost btn-sm btn-circle lg:hidden" title="角色/场景面板">
             <span class="iconify lucide--sidebar size-5"></span>
           </button>
         </div>
@@ -71,8 +71,8 @@
         
         <!-- Right -->
         <div class="flex items-center gap-2">
-          <!-- Toggle Right Panel -->
-          <button id="toggle-right-panel" class="btn btn-ghost btn-sm btn-circle" title="参数设置">
+          <!-- Toggle Right Panel (hidden on desktop when sidebar is always visible) -->
+          <button id="toggle-right-panel" class="btn btn-ghost btn-sm btn-circle xl:hidden" title="参数设置">
             <span class="iconify lucide--sliders size-5"></span>
           </button>
           
@@ -105,10 +105,10 @@
       <aside id="left-panel" class="chat-sidebar chat-sidebar-left w-72 flex-shrink-0 flex-col" data-visible="auto">
         <div class="glass-panel rounded-[2rem] h-full flex flex-col overflow-hidden">
           <!-- Tabs -->
-          <div class="tabs tabs-box p-2 gap-1 bg-transparent">
-            <input type="radio" name="left-tab" class="tab rounded-lg" aria-label="角色" checked>
-            <input type="radio" name="left-tab" class="tab rounded-lg" aria-label="场景">
-            <input type="radio" name="left-tab" class="tab rounded-lg" aria-label="记忆">
+          <div class="tabs tabs-box p-2 gap-1 bg-transparent w-full">
+            <input type="radio" name="left-tab" class="tab flex-1 rounded-[2rem]" aria-label="角色" checked>
+            <input type="radio" name="left-tab" class="tab flex-1 rounded-[2rem]" aria-label="场景">
+            <input type="radio" name="left-tab" class="tab flex-1 rounded-[2rem]" aria-label="记忆">
           </div>
           
           <!-- Content -->
@@ -202,7 +202,7 @@
                 <span class="font-medium text-base-content">艾丽西亚</span>
                 <time class="text-xs text-base-content/50 ml-2">10分钟前</time>
               </div>
-              <div class="chat-bubble chat-bubble-ai rounded-[2rem] p-4">
+              <div class="chat-bubble chat-bubble-ai p-4">
                 <p class="chat-bubble-story">
                   欢迎来到星辉魔法学院的图书馆，年轻的学徒。我是艾丽西亚，负责指导你在这片知识海洋中探索。
                 </p>
@@ -226,7 +226,7 @@
                 <time class="text-xs text-base-content/50 mr-2">9分钟前</time>
                 <span class="font-medium text-base-content">你</span>
               </div>
-              <div class="chat-bubble chat-bubble-user rounded-[2rem] p-4">
+              <div class="chat-bubble chat-bubble-user p-4">
                 <p class="chat-bubble-story">
                   艾丽西亚老师，我对召唤魔法很感兴趣。我听说您曾经是宫廷的首席召唤师，能否指导我入门？
                 </p>
@@ -252,7 +252,7 @@
                 <span class="font-medium text-base-content">艾丽西亚</span>
                 <time class="text-xs text-base-content/50 ml-2">8分钟前</time>
               </div>
-              <div class="chat-bubble chat-bubble-ai rounded-[2rem] p-4">
+              <div class="chat-bubble chat-bubble-ai p-4">
                 <p class="chat-bubble-story">
                   <em>艾丽西亚微微挑眉，眼中闪过一丝惊讶和赞赏。她站起身，走向那排高耸入云的书架。</em>
                 </p>
@@ -279,7 +279,7 @@
                 <time class="text-xs text-base-content/50 mr-2">7分钟前</time>
                 <span class="font-medium text-base-content">你</span>
               </div>
-              <div class="chat-bubble chat-bubble-user rounded-[2rem] p-4">
+              <div class="chat-bubble chat-bubble-user p-4">
                 <p class="chat-bubble-story">
                   是的，我准备好了！请告诉我，召唤魔法的本质是什么？为什么说它既古老又危险？
                 </p>
@@ -305,7 +305,7 @@
                 <span class="font-medium text-base-content">艾丽西亚</span>
                 <time class="text-xs text-base-content/50 ml-2">6分钟前</time>
               </div>
-              <div class="chat-bubble chat-bubble-ai rounded-[2rem] p-4">
+              <div class="chat-bubble chat-bubble-ai p-4">
                 <p class="chat-bubble-story">
                   <em>艾丽西亚翻开书籍，一道淡蓝色的光芒从书页中升起，在空中形成一个复杂的魔法阵图案。</em>
                 </p>
@@ -338,7 +338,7 @@
                 <time class="text-xs text-base-content/50 mr-2">5分钟前</time>
                 <span class="font-medium text-base-content">你</span>
               </div>
-              <div class="chat-bubble chat-bubble-user rounded-[2rem] p-4">
+              <div class="chat-bubble chat-bubble-user p-4">
                 <p class="chat-bubble-story">
                   这听起来确实很危险……您提到需要付出代价，具体是什么样的代价呢？我需要准备什么吗？
                 </p>
@@ -364,7 +364,7 @@
                 <span class="font-medium text-base-content">艾丽西亚</span>
                 <time class="text-xs text-base-content/50 ml-2">4分钟前</time>
               </div>
-              <div class="chat-bubble chat-bubble-ai rounded-[2rem] p-4">
+              <div class="chat-bubble chat-bubble-ai p-4">
                 <p class="chat-bubble-story">
                   <em>艾丽西亚欣慰地点点头，似乎对你的谨慎态度感到满意。</em>
                 </p>
@@ -397,7 +397,7 @@
                 <time class="text-xs text-base-content/50 mr-2">3分钟前</time>
                 <span class="font-medium text-base-content">你</span>
               </div>
-              <div class="chat-bubble chat-bubble-user rounded-[2rem] p-4">
+              <div class="chat-bubble chat-bubble-user p-4">
                 <p class="chat-bubble-story">
                   我明白了，这比我想象的要复杂得多。那么，对于初学者来说，有没有相对安全的召唤对象可以练习？
                 </p>
@@ -423,7 +423,7 @@
                 <span class="font-medium text-base-content">艾丽西亚</span>
                 <time class="text-xs text-base-content/50 ml-2">2分钟前</time>
               </div>
-              <div class="chat-bubble chat-bubble-ai rounded-[2rem] p-4">
+              <div class="chat-bubble chat-bubble-ai p-4">
                 <p class="chat-bubble-story">
                   <em>艾丽西亚的嘴角终于露出一丝温和的笑意，她轻轻挥动手指，那道悬浮的魔法阵缩小成一个小巧的光球。</em>
                 </p>
@@ -450,7 +450,7 @@
                 <time class="text-xs text-base-content/50 mr-2">1分钟前</time>
                 <span class="font-medium text-base-content">你</span>
               </div>
-              <div class="chat-bubble chat-bubble-user rounded-[2rem] p-4">
+              <div class="chat-bubble chat-bubble-user p-4">
                 <p class="chat-bubble-story">
                   <em>我闭上眼睛，将注意力集中在掌心的光球上。起初只感到温暖，但渐渐地，我仿佛能"看到"一些东西……</em>
                 </p>
@@ -479,7 +479,7 @@
                 <span class="font-medium text-base-content">艾丽西亚</span>
                 <time class="text-xs text-base-content/50 ml-2">刚刚</time>
               </div>
-              <div class="chat-bubble chat-bubble-ai rounded-[2rem] p-4">
+              <div class="chat-bubble chat-bubble-ai p-4">
                 <p class="chat-bubble-story">
                   <em>艾丽西亚的眼中闪过一丝惊喜，她不由自主地向前倾身，声音中带着难以掩饰的激动。</em>
                 </p>
@@ -516,6 +516,52 @@
           
           <!-- Input Area -->
           <div class="flex-shrink-0 p-4 border-t border-base-300/30">
+            
+            <!-- Quick Replies -->
+            <div class="mb-3" id="quick-replies-container">
+              <div class="flex items-center gap-2">
+                <!-- Quick Reply Buttons Wrapper -->
+                <div 
+                  id="quick-replies-wrapper" 
+                  class="flex-1 overflow-hidden transition-all duration-300"
+                  style="max-height: 32px;"
+                >
+                  <div id="quick-replies-list" class="flex flex-wrap gap-2">
+                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors quick-reply-btn">
+                      我选择契约之路
+                    </button>
+                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors quick-reply-btn">
+                      我选择支配之路
+                    </button>
+                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors quick-reply-btn">
+                      能详细说明两条路的区别吗？
+                    </button>
+                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors quick-reply-btn">
+                      我需要更多时间考虑
+                    </button>
+                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors quick-reply-btn">
+                      您当初选择了哪条路？
+                    </button>
+                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors quick-reply-btn">
+                      两条路可以切换吗？
+                    </button>
+                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors quick-reply-btn">
+                      选择后会有什么影响？
+                    </button>
+                  </div>
+                </div>
+                
+                <!-- Expand/Collapse Toggle -->
+                <button 
+                  id="quick-replies-toggle" 
+                  class="btn btn-ghost btn-xs btn-circle flex-shrink-0 text-base-content/50 hover:text-primary hidden"
+                  title="展开/收起"
+                >
+                  <span class="iconify lucide--chevron-up size-4 transition-transform duration-300" id="toggle-icon"></span>
+                </button>
+              </div>
+            </div>
+            
             <div class="flex items-end gap-3">
               <!-- Attachment Button -->
               <button class="btn btn-ghost btn-sm btn-circle flex-shrink-0 mb-1">
@@ -756,6 +802,84 @@
     if (chatMessages) {
       chatMessages.scrollTop = chatMessages.scrollHeight;
     }
+    
+    // Quick Replies Logic
+    const quickRepliesWrapper = document.getElementById('quick-replies-wrapper');
+    const quickRepliesList = document.getElementById('quick-replies-list');
+    const quickRepliesToggle = document.getElementById('quick-replies-toggle');
+    const toggleIcon = document.getElementById('toggle-icon');
+    
+    let isExpanded = false;
+    const collapsedHeight = 32; // Single row height (btn-xs height)
+    
+    function checkOverflow() {
+      if (!quickRepliesList || !quickRepliesWrapper || !quickRepliesToggle) return;
+      
+      // Temporarily remove height constraint to measure actual height
+      const originalMaxHeight = quickRepliesWrapper.style.maxHeight;
+      quickRepliesWrapper.style.maxHeight = 'none';
+      
+      const actualHeight = quickRepliesList.scrollHeight;
+      
+      // Restore height constraint
+      quickRepliesWrapper.style.maxHeight = originalMaxHeight;
+      
+      // Show toggle button if content overflows the collapsed height
+      if (actualHeight > collapsedHeight) {
+        quickRepliesToggle.classList.remove('hidden');
+      } else {
+        quickRepliesToggle.classList.add('hidden');
+      }
+    }
+    
+    function toggleQuickReplies() {
+      if (!quickRepliesWrapper || !quickRepliesList || !toggleIcon || !quickRepliesToggle) return;
+      
+      isExpanded = !isExpanded;
+      
+      if (isExpanded) {
+        // Expand to show all
+        const fullHeight = quickRepliesList.scrollHeight;
+        quickRepliesWrapper.style.maxHeight = fullHeight + 'px';
+        toggleIcon.style.transform = 'rotate(180deg)';
+        quickRepliesToggle.title = '收起';
+      } else {
+        // Collapse to single row
+        quickRepliesWrapper.style.maxHeight = collapsedHeight + 'px';
+        toggleIcon.style.transform = 'rotate(0deg)';
+        quickRepliesToggle.title = '展开';
+      }
+    }
+    
+    // Initialize
+    if (quickRepliesToggle) {
+      quickRepliesToggle.addEventListener('click', toggleQuickReplies);
+    }
+    
+    // Check overflow on load and resize
+    checkOverflow();
+    window.addEventListener('resize', () => {
+      // Reset to collapsed state on resize
+      if (isExpanded && quickRepliesWrapper && toggleIcon) {
+        isExpanded = false;
+        quickRepliesWrapper.style.maxHeight = collapsedHeight + 'px';
+        toggleIcon.style.transform = 'rotate(0deg)';
+      }
+      checkOverflow();
+    });
+    
+    // Quick reply click handler
+    document.querySelectorAll('.quick-reply-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const replyText = this.textContent.trim();
+        if (textarea) {
+          textarea.value = replyText;
+          textarea.focus();
+          // Trigger input event for auto-resize
+          textarea.dispatchEvent(new Event('input'));
+        }
+      });
+    });
   </script>
 </body>
 </html>

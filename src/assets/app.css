@@ -45,9 +45,9 @@
   --color-error-content: oklch(98% 0.01 25);
 
   /* iOS-style large radius */
-  --radius-selector: 1rem;
-  --radius-field: 0.75rem;
-  --radius-box: 1.5rem;
+  --radius-selector: 2rem;
+  --radius-field: 2rem;
+  --radius-box: 2rem;
 
   --size-selector: 0.25rem;
   --size-field: 0.25rem;
@@ -94,9 +94,9 @@
   --color-error-content: oklch(15% 0.02 25);
 
   /* iOS-style large radius */
-  --radius-selector: 1rem;
-  --radius-field: 0.75rem;
-  --radius-box: 1.5rem;
+  --radius-selector: 2rem;
+  --radius-field: 2rem;
+  --radius-box: 2rem;
 
   --size-selector: 0.25rem;
   --size-field: 0.25rem;
@@ -313,6 +313,34 @@ body {
   line-height: 1.8;
   /* Better spacing for CJK mixed text */
   letter-spacing: 0.02em;
+}
+
+/* ================================
+   Chat Bubble Custom Styling
+   Override DaisyUI default to work with 2rem radius theme
+   ================================ */
+
+/* Hide the default DaisyUI chat bubble tail */
+.chat-bubble-ai::before,
+.chat-bubble-user::before {
+  display: none !important;
+}
+
+/* Base chat bubble styling */
+.chat .chat-bubble {
+  border-radius: 2rem;
+}
+
+/* AI chat bubble - left side, small notch on bottom-left near avatar */
+.chat-start .chat-bubble.chat-bubble-ai {
+  border-radius: 2rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+/* User chat bubble - right side, small notch on bottom-right */
+.chat-end .chat-bubble.chat-bubble-user {
+  border-radius: 2rem;
+  border-bottom-right-radius: 0.25rem;
 }
 
 .chat-bubble-ai {
@@ -559,6 +587,25 @@ body {
 
 [data-theme="celestia-dark"] .floating-orb {
   opacity: 0.25;
+}
+
+/* ================================
+   Chat Sidebar Tabs - Full Width
+   ================================ */
+.chat-sidebar .tabs-box {
+  width: 100%;
+  display: flex;
+}
+
+/* Active tab styling - enhanced for glass effect */
+.chat-sidebar .tabs-box .tab:checked,
+.chat-sidebar .tabs-box .tab[aria-selected="true"] {
+  background: oklch(100% 0 0 / 0.6);
+}
+
+[data-theme="celestia-dark"] .chat-sidebar .tabs-box .tab:checked,
+[data-theme="celestia-dark"] .chat-sidebar .tabs-box .tab[aria-selected="true"] {
+  background: oklch(100% 0 0 / 0.15);
 }
 
 /* ================================
