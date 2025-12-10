@@ -35,7 +35,7 @@
   </div>
 
   <!-- Navbar -->
-  <nav class="fixed top-0 left-0 right-0 z-50 px-4 py-4" data-navbar data-at-top="true">
+  <nav class="fixed top-0 left-0 right-0 z-50 px-4 py-4" data-controller="navbar" data-at-top="true">
     <div class="glass-panel rounded-full px-4 md:px-6 py-3 flex justify-between items-center max-w-6xl mx-auto relative">
       <a href="/" class="flex items-center gap-2 group">
         <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-primary to-secondary flex items-center justify-center text-white shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all">
@@ -51,9 +51,9 @@
       </div>
       
       <div class="flex items-center gap-2">
-        <button class="btn btn-ghost btn-sm btn-circle" data-theme-toggle>
-          <span class="iconify lucide--sun size-5 hidden" data-theme-icon="light"></span>
-          <span class="iconify lucide--moon size-5" data-theme-icon="dark"></span>
+        <button class="btn btn-ghost btn-sm btn-circle" data-controller="theme" data-action="click->theme#toggle">
+          <span class="iconify lucide--sun size-5 hidden" data-theme-target="sunIcon"></span>
+          <span class="iconify lucide--moon size-5" data-theme-target="moonIcon"></span>
         </button>
         
         <a href="./chat.html" class="btn btn-primary btn-sm rounded-full shadow-lg px-5">
@@ -423,8 +423,10 @@
     </div>
   </footer>
 
-  <script src="./js/app.js"></script>
-  <script src="./js/components/toast.js"></script>
+  <!-- Toast Container -->
+  <div data-controller="toast"></div>
+
+  <script type="module" src="./js/application.js"></script>
 </body>
 </html>
 

@@ -51,9 +51,9 @@
       </div>
       
       <div class="flex items-center gap-2">
-        <button class="btn btn-ghost btn-sm btn-circle" data-theme-toggle>
-          <span class="iconify lucide--sun size-5 hidden" data-theme-icon="light"></span>
-          <span class="iconify lucide--moon size-5" data-theme-icon="dark"></span>
+        <button class="btn btn-ghost btn-sm btn-circle" data-controller="theme" data-action="click->theme#toggle">
+          <span class="iconify lucide--sun size-5 hidden" data-theme-target="sunIcon"></span>
+          <span class="iconify lucide--moon size-5" data-theme-target="moonIcon"></span>
         </button>
         <a href="./chat.html" class="btn btn-primary btn-sm rounded-full">
           开始聊天
@@ -112,7 +112,7 @@
             <p class="text-base-content/60 mt-1">管理你的个人信息和账号设置</p>
           </div>
           
-          <form class="space-y-8" onsubmit="event.preventDefault(); window.CelestiaToast?.success('资料已保存');">
+          <form class="space-y-8" onsubmit="event.preventDefault();">
             
             <!-- Avatar Section -->
             <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
@@ -221,7 +221,7 @@
         <div class="glass-panel rounded-[2.5rem] p-6 md:p-8 mt-6 border-error/30 border">
           <h3 class="text-lg font-semibold text-error mb-2">危险区域</h3>
           <p class="text-base-content/60 text-sm mb-4">删除账号后，所有数据将被永久清除且无法恢复。</p>
-          <button type="button" class="btn btn-error btn-outline rounded-xl" onclick="CelestiaModal?.confirm({ title: '删除账号', message: '确定要删除你的账号吗？此操作不可撤销。', confirmText: '删除', onConfirm: () => CelestiaToast?.error('账号已删除') })">
+          <button type="button" class="btn btn-error btn-outline rounded-xl" data-action="click->modal#open" data-modal-open="delete-account-modal">
             <span class="iconify lucide--trash-2 size-5"></span>
             删除账号
           </button>
@@ -230,9 +230,25 @@
     </div>
   </main>
 
-  <script src="./js/app.js"></script>
-  <script src="./js/components/toast.js"></script>
-  <script src="./js/components/modal.js"></script>
+  <!-- Delete Account Modal -->
+  <dialog id="delete-account-modal" class="modal" data-controller="modal">
+    <div class="modal-box glass-panel rounded-ios">
+      <h3 class="text-lg font-bold">删除账号</h3>
+      <p class="py-4">确定要删除你的账号吗？此操作不可撤销。</p>
+      <div class="modal-action">
+        <form method="dialog">
+          <button class="btn btn-ghost">取消</button>
+        </form>
+        <button class="btn btn-error" onclick="this.closest('dialog').close()">删除</button>
+      </div>
+    </div>
+    <form method="dialog" class="modal-backdrop"><button>close</button></form>
+  </dialog>
+
+  <!-- Toast Container -->
+  <div data-controller="toast"></div>
+
+  <script type="module" src="./js/application.js"></script>
 </body>
 </html>
 

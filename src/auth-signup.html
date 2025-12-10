@@ -35,9 +35,9 @@
   </div>
 
   <!-- Theme Toggle (floating) -->
-  <button class="fixed top-4 right-4 btn btn-ghost btn-sm btn-circle glass-panel" data-theme-toggle aria-label="切换主题">
-    <span class="iconify lucide--sun size-5 hidden" data-theme-icon="light"></span>
-    <span class="iconify lucide--moon size-5" data-theme-icon="dark"></span>
+  <button class="fixed top-4 right-4 btn btn-ghost btn-sm btn-circle glass-panel" data-controller="theme" data-action="click->theme#toggle" aria-label="切换主题">
+    <span class="iconify lucide--sun size-5 hidden" data-theme-target="sunIcon"></span>
+    <span class="iconify lucide--moon size-5" data-theme-target="moonIcon"></span>
   </button>
 
   <div class="w-full max-w-md">
@@ -82,14 +82,14 @@
           </fieldset>
           
           <!-- Password -->
-          <fieldset class="fieldset">
+          <fieldset class="fieldset" data-controller="password-toggle">
             <legend class="fieldset-legend text-sm font-medium text-base-content/80">密码</legend>
             <label class="input w-full glass-input rounded-xl">
               <span class="iconify lucide--lock size-5 text-base-content/50"></span>
-              <input type="password" id="password" placeholder="至少 8 个字符" required autocomplete="new-password" minlength="8">
-              <button type="button" class="btn btn-ghost btn-xs btn-circle" data-password-toggle="password" aria-label="显示密码">
-                <span class="iconify lucide--eye size-4 text-base-content/50" data-show-icon></span>
-                <span class="iconify lucide--eye-off size-4 text-base-content/50 hidden" data-hide-icon></span>
+              <input type="password" id="password" placeholder="至少 8 个字符" required autocomplete="new-password" minlength="8" data-password-toggle-target="input">
+              <button type="button" class="btn btn-ghost btn-xs btn-circle" data-action="click->password-toggle#toggle" aria-label="显示密码">
+                <span class="iconify lucide--eye size-4 text-base-content/50" data-password-toggle-target="showIcon"></span>
+                <span class="iconify lucide--eye-off size-4 text-base-content/50 hidden" data-password-toggle-target="hideIcon"></span>
               </button>
             </label>
           </fieldset>
@@ -153,8 +153,10 @@
     </div>
   </div>
 
-  <script src="./js/app.js"></script>
-  <script src="./js/components/toast.js"></script>
+  <!-- Toast Container -->
+  <div data-controller="toast"></div>
+
+  <script type="module" src="./js/application.js"></script>
 </body>
 </html>
 

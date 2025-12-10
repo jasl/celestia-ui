@@ -42,7 +42,7 @@
   <!-- ================================ -->
   <!-- Navbar -->
   <!-- ================================ -->
-  <nav class="fixed top-0 left-0 right-0 z-50 px-4 py-4" data-navbar data-at-top="true">
+  <nav class="fixed top-0 left-0 right-0 z-50 px-4 py-4" data-controller="navbar" data-at-top="true">
     <div class="glass-panel rounded-full px-4 md:px-6 py-3 flex justify-between items-center max-w-6xl mx-auto relative">
       <!-- Logo -->
       <a href="/" class="flex items-center gap-2 group">
@@ -62,9 +62,9 @@
       <!-- Actions -->
       <div class="flex items-center gap-2">
         <!-- Theme Toggle: Sun=切换到亮色, Moon=切换到暗色 -->
-        <button class="btn btn-ghost btn-sm btn-circle" data-theme-toggle aria-label="切换主题">
-          <span class="iconify lucide--sun size-5 hidden" data-theme-icon="light"></span>
-          <span class="iconify lucide--moon size-5" data-theme-icon="dark"></span>
+        <button class="btn btn-ghost btn-sm btn-circle" data-controller="theme" data-action="click->theme#toggle" aria-label="切换主题">
+          <span class="iconify lucide--sun size-5 hidden" data-theme-target="sunIcon"></span>
+          <span class="iconify lucide--moon size-5" data-theme-target="moonIcon"></span>
         </button>
         
         <a href="./auth-login.html" class="btn btn-ghost btn-sm rounded-full hidden sm:inline-flex">登录</a>
@@ -74,7 +74,7 @@
         </a>
         
         <!-- Mobile Menu Toggle -->
-        <button class="btn btn-ghost btn-sm btn-square md:hidden" data-mobile-menu-toggle aria-label="菜单">
+        <button class="btn btn-ghost btn-sm btn-square md:hidden" data-action="click->mobile-menu#toggle" aria-label="菜单">
           <span class="iconify lucide--menu size-5"></span>
         </button>
       </div>
@@ -82,9 +82,9 @@
   </nav>
 
   <!-- Mobile Menu Drawer -->
-  <div class="fixed inset-0 z-40 pointer-events-none md:hidden" data-mobile-menu>
-    <div class="absolute inset-0 bg-black/50 opacity-0 transition-opacity pointer-events-none" data-mobile-menu-overlay></div>
-    <div class="absolute top-20 left-4 right-4 glass-panel rounded-[2rem] p-6 transform -translate-y-full opacity-0 transition-all pointer-events-auto">
+  <div class="fixed inset-0 z-40 pointer-events-none md:hidden" data-controller="mobile-menu">
+    <div class="absolute inset-0 bg-black/50 opacity-0 transition-opacity pointer-events-none" data-mobile-menu-target="overlay" data-action="click->mobile-menu#close"></div>
+    <div class="absolute top-20 left-4 right-4 glass-panel rounded-[2rem] p-6 transform -translate-y-full opacity-0 transition-all pointer-events-auto" data-mobile-menu-target="menu">
       <nav class="flex flex-col gap-2">
         <a href="/" class="btn btn-ghost justify-start rounded-xl">首页</a>
         <a href="./blog-list.html" class="btn btn-ghost justify-start rounded-xl">博客</a>
@@ -287,10 +287,14 @@
     </div>
   </footer>
 
+  <!-- Toast Container -->
+  <div data-controller="toast"></div>
+
+  <!-- Modal Container -->
+  <div data-controller="modal"></div>
+
   <!-- Scripts -->
-  <script src="./js/app.js"></script>
-  <script src="./js/components/toast.js"></script>
-  <script src="./js/components/modal.js"></script>
+  <script type="module" src="./js/application.js"></script>
 </body>
 </html>
 

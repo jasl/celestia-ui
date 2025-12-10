@@ -8,6 +8,9 @@
     "build": "vite build",
     "preview": "vite preview"
   },
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.2"
+  },
   "devDependencies": {
     "@iconify-json/lucide": "^1.2.79",
     "@iconify/tailwind4": "^1.2.0",

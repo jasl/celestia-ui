@@ -52,7 +52,7 @@
           </a>
           
           <!-- Toggle Left Panel (hidden on desktop when sidebar is always visible) -->
-          <button id="toggle-left-panel" class="btn btn-ghost btn-sm btn-circle lg:hidden" title="角色/场景面板">
+          <button class="btn btn-ghost btn-sm btn-circle lg:hidden" data-action="click->chat-panel#toggle" data-chat-panel-breakpoint-value="1024" title="角色/场景面板">
             <span class="iconify lucide--sidebar size-5"></span>
           </button>
         </div>
@@ -75,14 +75,14 @@
         <!-- Right -->
         <div class="flex items-center gap-2">
           <!-- Toggle Right Panel (hidden on desktop when sidebar is always visible) -->
-          <button id="toggle-right-panel" class="btn btn-ghost btn-sm btn-circle xl:hidden" title="参数设置">
+          <button class="btn btn-ghost btn-sm btn-circle xl:hidden" data-action="click->chat-panel-right#toggle" title="参数设置">
             <span class="iconify lucide--sliders size-5"></span>
           </button>
           
           <!-- Theme Toggle -->
-          <button class="btn btn-ghost btn-sm btn-circle" data-theme-toggle title="切换主题">
-            <span class="iconify lucide--sun size-5 hidden" data-theme-icon="light"></span>
-            <span class="iconify lucide--moon size-5" data-theme-icon="dark"></span>
+          <button class="btn btn-ghost btn-sm btn-circle" data-controller="theme" data-action="click->theme#toggle" title="切换主题">
+            <span class="iconify lucide--sun size-5 hidden" data-theme-target="sunIcon"></span>
+            <span class="iconify lucide--moon size-5" data-theme-target="moonIcon"></span>
           </button>
           
           <!-- User Menu -->
@@ -102,10 +102,10 @@
     </header>
 
     <!-- Content Area -->
-    <div class="flex-1 flex overflow-hidden px-4 pb-4 gap-4">
+    <div class="flex-1 flex overflow-hidden px-4 pb-4 gap-4" data-controller="chat-panel chat-panel-right" data-chat-panel-breakpoint-value="1024" data-chat-panel-right-breakpoint-value="1280">
       
       <!-- Left Sidebar - Characters/Scenes -->
-      <aside id="left-panel" class="chat-sidebar chat-sidebar-left w-72 flex-shrink-0 flex-col" data-visible="auto">
+      <aside id="left-panel" class="chat-sidebar chat-sidebar-left w-72 flex-shrink-0 flex-col" data-visible="auto" data-chat-panel-target="panel">
         <div class="glass-panel rounded-[2rem] h-full flex flex-col overflow-hidden">
           <!-- Tabs -->
           <div class="tabs tabs-box p-2 gap-1 bg-transparent w-full">
@@ -521,34 +521,34 @@
           <div class="flex-shrink-0 p-4 border-t border-base-300/30">
             
             <!-- Quick Replies -->
-            <div class="mb-3" id="quick-replies-container">
+            <div class="mb-3" data-controller="quick-replies" data-quick-replies-collapsed-height-value="32">
               <div class="flex items-center gap-2">
                 <!-- Quick Reply Buttons Wrapper -->
                 <div 
-                  id="quick-replies-wrapper" 
+                  data-quick-replies-target="wrapper"
                   class="flex-1 overflow-hidden transition-all duration-300"
                   style="max-height: 32px;"
                 >
-                  <div id="quick-replies-list" class="flex flex-wrap gap-2">
-                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors quick-reply-btn">
+                  <div data-quick-replies-target="list" class="flex flex-wrap gap-2">
+                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors" data-action="click->quick-replies#select">
                       我选择契约之路
                     </button>
-                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors quick-reply-btn">
+                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors" data-action="click->quick-replies#select">
                       我选择支配之路
                     </button>
-                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors quick-reply-btn">
+                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors" data-action="click->quick-replies#select">
                       能详细说明两条路的区别吗？
                     </button>
-                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors quick-reply-btn">
+                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors" data-action="click->quick-replies#select">
                       我需要更多时间考虑
                     </button>
-                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors quick-reply-btn">
+                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors" data-action="click->quick-replies#select">
                       您当初选择了哪条路？
                     </button>
-                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors quick-reply-btn">
+                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors" data-action="click->quick-replies#select">
                       两条路可以切换吗？
                     </button>
-                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors quick-reply-btn">
+                    <button class="btn btn-ghost btn-xs glass-panel rounded-full whitespace-nowrap hover:bg-primary/10 hover:text-primary transition-colors" data-action="click->quick-replies#select">
                       选择后会有什么影响？
                     </button>
                   </div>
@@ -556,11 +556,12 @@
                 
                 <!-- Expand/Collapse Toggle -->
                 <button 
-                  id="quick-replies-toggle" 
+                  data-quick-replies-target="toggle"
                   class="btn btn-ghost btn-xs btn-circle flex-shrink-0 text-base-content/50 hover:text-primary hidden"
                   title="展开/收起"
+                  data-action="click->quick-replies#toggle"
                 >
-                  <span class="iconify lucide--chevron-up size-4 transition-transform duration-300" id="toggle-icon"></span>
+                  <span class="iconify lucide--chevron-up size-4 transition-transform duration-300" data-quick-replies-target="icon"></span>
                 </button>
               </div>
             </div>
@@ -572,12 +573,14 @@
               </button>
               
               <!-- Input -->
-              <div class="flex-1 relative">
+              <div class="flex-1 relative" data-controller="textarea-autoresize" data-textarea-autoresize-max-height-value="150">
                 <textarea 
                   class="textarea glass-input w-full rounded-xl pr-12 resize-none" 
                   placeholder="输入你的回应..."
                   rows="2"
                   style="min-height: 60px; max-height: 150px;"
+                  data-action="input->textarea-autoresize#resize keydown->textarea-autoresize#handleKeydown"
+                  id="chat-textarea"
                 ></textarea>
                 
                 <!-- Send Button (positioned inside) -->
@@ -606,7 +609,7 @@
       </main>
       
       <!-- Right Sidebar - Settings -->
-      <aside id="right-panel" class="chat-sidebar chat-sidebar-right w-72 flex-shrink-0 flex-col" data-visible="auto">
+      <aside id="right-panel" class="chat-sidebar chat-sidebar-right w-72 flex-shrink-0 flex-col" data-visible="auto" data-chat-panel-right-target="panel">
         <div class="glass-panel rounded-[2rem] h-full flex flex-col overflow-hidden">
           <div class="p-4 border-b border-base-300/30">
             <h2 class="font-semibold text-base-content flex items-center gap-2">
@@ -628,12 +631,12 @@
             </fieldset>
             
             <!-- Temperature -->
-            <fieldset class="fieldset">
+            <fieldset class="fieldset" data-controller="range-display">
               <legend class="fieldset-legend text-sm font-medium flex items-center justify-between">
                 <span>Temperature</span>
-                <span class="text-primary font-mono">0.8</span>
+                <span class="text-primary font-mono" data-range-display-target="display">0.8</span>
               </legend>
-              <input type="range" min="0" max="2" step="0.1" value="0.8" class="range range-primary range-sm">
+              <input type="range" min="0" max="2" step="0.1" value="0.8" class="range range-primary range-sm" data-range-display-target="input" data-action="input->range-display#update">
               <div class="flex justify-between text-xs text-base-content/50 mt-1">
                 <span>精确</span>
                 <span>创意</span>
@@ -641,39 +644,39 @@
             </fieldset>
             
             <!-- Max Tokens -->
-            <fieldset class="fieldset">
+            <fieldset class="fieldset" data-controller="range-display">
               <legend class="fieldset-legend text-sm font-medium flex items-center justify-between">
                 <span>Max Tokens</span>
-                <span class="text-primary font-mono">2048</span>
+                <span class="text-primary font-mono" data-range-display-target="display">2048</span>
               </legend>
-              <input type="range" min="256" max="4096" step="256" value="2048" class="range range-secondary range-sm">
+              <input type="range" min="256" max="4096" step="256" value="2048" class="range range-secondary range-sm" data-range-display-target="input" data-action="input->range-display#update">
             </fieldset>
             
             <!-- Top P -->
-            <fieldset class="fieldset">
+            <fieldset class="fieldset" data-controller="range-display">
               <legend class="fieldset-legend text-sm font-medium flex items-center justify-between">
                 <span>Top P</span>
-                <span class="text-primary font-mono">0.95</span>
+                <span class="text-primary font-mono" data-range-display-target="display">0.95</span>
               </legend>
-              <input type="range" min="0" max="1" step="0.05" value="0.95" class="range range-accent range-sm">
+              <input type="range" min="0" max="1" step="0.05" value="0.95" class="range range-accent range-sm" data-range-display-target="input" data-action="input->range-display#update">
             </fieldset>
             
             <!-- Presence Penalty -->
-            <fieldset class="fieldset">
+            <fieldset class="fieldset" data-controller="range-display">
               <legend class="fieldset-legend text-sm font-medium flex items-center justify-between">
                 <span>Presence Penalty</span>
-                <span class="text-primary font-mono">0.0</span>
+                <span class="text-primary font-mono" data-range-display-target="display">0.0</span>
               </legend>
-              <input type="range" min="-2" max="2" step="0.1" value="0" class="range range-info range-sm">
+              <input type="range" min="-2" max="2" step="0.1" value="0" class="range range-info range-sm" data-range-display-target="input" data-action="input->range-display#update">
             </fieldset>
             
             <!-- Frequency Penalty -->
-            <fieldset class="fieldset">
+            <fieldset class="fieldset" data-controller="range-display">
               <legend class="fieldset-legend text-sm font-medium flex items-center justify-between">
                 <span>Frequency Penalty</span>
-                <span class="text-primary font-mono">0.0</span>
+                <span class="text-primary font-mono" data-range-display-target="display">0.0</span>
               </legend>
-              <input type="range" min="-2" max="2" step="0.1" value="0" class="range range-info range-sm">
+              <input type="range" min="-2" max="2" step="0.1" value="0" class="range range-info range-sm" data-range-display-target="input" data-action="input->range-display#update">
             </fieldset>
             
 <div class="divider"></div>
@@ -708,180 +711,32 @@
   </div>
 
   <!-- Mobile Panel Overlay -->
-  <div id="panel-overlay" class="fixed inset-0 bg-black/40 z-30 hidden lg:hidden" onclick="closePanels()"></div>
+  <div id="panel-overlay" class="fixed inset-0 bg-black/40 z-30 hidden lg:hidden" data-chat-panel-target="overlay" data-chat-panel-right-target="overlay" data-action="click->chat-panel#close click->chat-panel-right#close"></div>
+
+  <!-- Toast Container -->
+  <div data-controller="toast"></div>
+
+  <!-- Modal Container -->
+  <div data-controller="modal"></div>
 
   <!-- Scripts -->
-  <script src="./js/app.js"></script>
-  <script src="./js/components/toast.js"></script>
-  <script src="./js/components/modal.js"></script>
+  <script type="module" src="./js/application.js"></script>
   
-  <script>
-    // Panel Toggle Logic
-    const leftPanel = document.getElementById('left-panel');
-    const rightPanel = document.getElementById('right-panel');
-    const panelOverlay = document.getElementById('panel-overlay');
-    const toggleLeftBtn = document.getElementById('toggle-left-panel');
-    const toggleRightBtn = document.getElementById('toggle-right-panel');
-    
-    function togglePanel(panel, breakpoint = 1024) {
-      const isLargeScreen = window.innerWidth >= breakpoint;
-      const currentState = panel.dataset.visible;
-      
-      if (isLargeScreen) {
-        // Desktop: toggle between 'true' and 'false'
-        panel.dataset.visible = currentState === 'false' ? 'true' : 'false';
-      } else {
-        // Mobile: toggle with overlay
-        if (currentState === 'true') {
-          panel.dataset.visible = 'false';
-          updateOverlay();
-        } else {
-          panel.dataset.visible = 'true';
-          panelOverlay.classList.remove('hidden');
-        }
-      }
-    }
-    
-    function updateOverlay() {
-      const leftOpen = leftPanel.dataset.visible === 'true' && window.innerWidth < 1024;
-      const rightOpen = rightPanel.dataset.visible === 'true' && window.innerWidth < 1280;
-      if (!leftOpen && !rightOpen) {
-        panelOverlay.classList.add('hidden');
-      }
-    }
-    
-    function closePanels() {
-      if (window.innerWidth < 1024) leftPanel.dataset.visible = 'false';
-      if (window.innerWidth < 1280) rightPanel.dataset.visible = 'false';
-      panelOverlay.classList.add('hidden');
-    }
-    
-    // Reset to auto on resize (restore responsive behavior)
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        leftPanel.dataset.visible = 'auto';
-        rightPanel.dataset.visible = 'auto';
-        panelOverlay.classList.add('hidden');
-      }, 150);
-    });
-    
-    toggleLeftBtn.addEventListener('click', () => togglePanel(leftPanel, 1024));
-    toggleRightBtn.addEventListener('click', () => togglePanel(rightPanel, 1280));
-    
-    // Range input value display
-    document.querySelectorAll('.range').forEach(range => {
-      const legend = range.closest('fieldset').querySelector('.fieldset-legend span.font-mono');
-      if (legend) {
-        range.addEventListener('input', () => {
-          legend.textContent = range.value;
-        });
-      }
-    });
-    
-    // Textarea auto-resize
-    const textarea = document.querySelector('textarea');
-    if (textarea) {
-      textarea.addEventListener('input', function() {
-        this.style.height = 'auto';
-        this.style.height = Math.min(this.scrollHeight, 150) + 'px';
-      });
-      
-      // Enter to send
-      textarea.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' && !e.shiftKey) {
-          e.preventDefault();
-          // Simulate send
-          console.log('Send message:', this.value);
-          this.value = '';
-          this.style.height = 'auto';
-        }
-      });
-    }
-    
-    // Scroll to bottom
+  <script type="module">
+    // Scroll to bottom on page load
     const chatMessages = document.getElementById('chat-messages');
     if (chatMessages) {
       chatMessages.scrollTop = chatMessages.scrollHeight;
     }
     
-    // Quick Replies Logic
-    const quickRepliesWrapper = document.getElementById('quick-replies-wrapper');
-    const quickRepliesList = document.getElementById('quick-replies-list');
-    const quickRepliesToggle = document.getElementById('quick-replies-toggle');
-    const toggleIcon = document.getElementById('toggle-icon');
-    
-    let isExpanded = false;
-    const collapsedHeight = 32; // Single row height (btn-xs height)
-    
-    function checkOverflow() {
-      if (!quickRepliesList || !quickRepliesWrapper || !quickRepliesToggle) return;
-      
-      // Temporarily remove height constraint to measure actual height
-      const originalMaxHeight = quickRepliesWrapper.style.maxHeight;
-      quickRepliesWrapper.style.maxHeight = 'none';
-      
-      const actualHeight = quickRepliesList.scrollHeight;
-      
-      // Restore height constraint
-      quickRepliesWrapper.style.maxHeight = originalMaxHeight;
-      
-      // Show toggle button if content overflows the collapsed height
-      if (actualHeight > collapsedHeight) {
-        quickRepliesToggle.classList.remove('hidden');
-      } else {
-        quickRepliesToggle.classList.add('hidden');
+    // Handle quick replies selection - fill textarea
+    document.addEventListener('quick-replies:selected', (event) => {
+      const textarea = document.getElementById('chat-textarea');
+      if (textarea) {
+        textarea.value = event.detail.text;
+        textarea.focus();
+        textarea.dispatchEvent(new Event('input'));
       }
-    }
-    
-    function toggleQuickReplies() {
-      if (!quickRepliesWrapper || !quickRepliesList || !toggleIcon || !quickRepliesToggle) return;
-      
-      isExpanded = !isExpanded;
-      
-      if (isExpanded) {
-        // Expand to show all
-        const fullHeight = quickRepliesList.scrollHeight;
-        quickRepliesWrapper.style.maxHeight = fullHeight + 'px';
-        toggleIcon.style.transform = 'rotate(180deg)';
-        quickRepliesToggle.title = '收起';
-      } else {
-        // Collapse to single row
-        quickRepliesWrapper.style.maxHeight = collapsedHeight + 'px';
-        toggleIcon.style.transform = 'rotate(0deg)';
-        quickRepliesToggle.title = '展开';
-      }
-    }
-    
-    // Initialize
-    if (quickRepliesToggle) {
-      quickRepliesToggle.addEventListener('click', toggleQuickReplies);
-    }
-    
-    // Check overflow on load and resize
-    checkOverflow();
-    window.addEventListener('resize', () => {
-      // Reset to collapsed state on resize
-      if (isExpanded && quickRepliesWrapper && toggleIcon) {
-        isExpanded = false;
-        quickRepliesWrapper.style.maxHeight = collapsedHeight + 'px';
-        toggleIcon.style.transform = 'rotate(0deg)';
-      }
-      checkOverflow();
-    });
-    
-    // Quick reply click handler
-    document.querySelectorAll('.quick-reply-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const replyText = this.textContent.trim();
-        if (textarea) {
-          textarea.value = replyText;
-          textarea.focus();
-          // Trigger input event for auto-resize
-          textarea.dispatchEvent(new Event('input'));
-        }
-      });
     });
   </script>
 </body>

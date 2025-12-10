@@ -52,9 +52,9 @@
       </div>
       
       <div class="flex items-center gap-2">
-        <button class="btn btn-ghost btn-sm btn-circle" data-theme-toggle>
-          <span class="iconify lucide--sun size-5 hidden" data-theme-icon="light"></span>
-          <span class="iconify lucide--moon size-5" data-theme-icon="dark"></span>
+        <button class="btn btn-ghost btn-sm btn-circle" data-controller="theme" data-action="click->theme#toggle">
+          <span class="iconify lucide--sun size-5 hidden" data-theme-target="sunIcon"></span>
+          <span class="iconify lucide--moon size-5" data-theme-target="moonIcon"></span>
         </button>
       </div>
     </div>
@@ -762,6 +762,9 @@
     </footer>
   </main>
 
-  <script src="./js/app.js"></script>
+  <!-- Toast Container -->
+  <div data-controller="toast"></div>
+
+  <script type="module" src="./js/application.js"></script>
 </body>
 </html>
